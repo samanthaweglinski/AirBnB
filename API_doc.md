@@ -1251,7 +1251,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: DELETE
-  * URL: /users/:id/reviews/:id OR /properties/:id
+  * URL: /images/:id
   * Body: none
 
 * Successful Response
