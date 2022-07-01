@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId
+  * URL: /users/currentUser
   * Body: none
 
 * Successful Response
@@ -348,7 +348,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /users/:userId/properties
+  * URL: /properties
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -547,7 +547,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/reviews
+  * URL: /reviews
   * Body: none
 
 * Successful Response
@@ -1141,8 +1141,8 @@ Create and return a new image for a spot specified by id.
 * Require Authentication: true
 * Require proper authorization: Spot must belong to the current user
 * Request
-  * Method: PUT
-  * URL: /properties/:propertyId
+  * Method: POST
+  * URL: /properties/:propertyId/image
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1188,8 +1188,8 @@ Create and return a new image for a review specified by id.
 * Require Authentication: true
 * Require proper authorization: Review must belong to the current user
 * Request
-  * Method: PUT
-  * URL: /reviews/:reviewId
+  * Method: POST
+  * URL: /reviews/:reviewId/image
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1287,7 +1287,7 @@ Return spots filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /properties?queryParameters=
+  * URL: /properties?
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20
