@@ -9,10 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       propertyId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Properties' }
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
       },
       startDate: {
         type: Sequelize.DATE

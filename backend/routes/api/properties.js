@@ -27,8 +27,22 @@ router.get('/:propertyId', async (req, res) => {
     const data = {}
     data.prop = {
       id: prop.id,
-
+      address: prop.address,
+      city: prop.city,
+      state: prop.state,
+      country: prop.country,
+      lat: prop.lat,
+      lng: prop.lng,
+      name: prop.name,
+      description: prop.description,
+      price: prop.price,
+      createdAt: prop.createdAt,
+      updatedAt: prop.updatedAt
     }
+
+    data.numReviews = numReviews
+
+    res.json(data)
   }
 })
 
