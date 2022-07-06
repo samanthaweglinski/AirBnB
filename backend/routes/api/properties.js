@@ -11,16 +11,6 @@ router.get('/', async (req, res) => {
 });
 
 // GET ALL PROPERTIES FROM AN ID
-/*
-router.get('/userSpots', requireAuth, async (req, res) => {
-  const { id } = req.user
-
-    const places = await Spot.findAll({
-        where: {ownerId: id}
-    });
-res.json(places[0])
-});
-*/
 
 router.get('/:propertyId', async (req, res) => {
   const prop = await Property.findByPk(req.params.id, {
