@@ -341,9 +341,9 @@ Returns the details of a Property specified by its id.
     }
     ```
 
-## Create a Spot
+## Create a Property
 
-Creates and returns a new spot.
+Creates and returns a new property.
 
 * Require Authentication: true
 * Request
@@ -415,9 +415,9 @@ Creates and returns a new spot.
     }
     ```
 
-## Edit a Spot
+## Edit a Property
 
-Updates and returns an existing spot.
+Updates and returns an existing property.
 
 * Require Authentication: true
 * Require proper authorization: Property must belong to the current user
@@ -503,9 +503,9 @@ Updates and returns an existing spot.
     }
     ```
 
-## Delete a Spot
+## Delete a Property
 
-Deletes an existing spot.
+Deletes an existing property.
 
 * Require Authentication: true
 * Require proper authorization: Property must belong to the current user
@@ -535,7 +535,7 @@ Deletes an existing spot.
 
     ```json
     {
-      "message": "Propertycouldn't be found",
+      "message": "Property couldn't be found",
       "statusCode": 404
     }
     ```
@@ -562,7 +562,7 @@ Returns all the reviews written by the current user.
         {
           "id": 1,
           "userId": 1,
-          "spotId": 1,
+          "propertyId": 1,
           "review": "This was an awesome spot!",
           "stars": 5,
           "createdAt": "2021-11-19 20:39:36",
@@ -572,7 +572,7 @@ Returns all the reviews written by the current user.
             "firstName": "John",
             "lastName": "Smith"
           },
-          "Spot": {
+          "Property": {
             "id": 1,
             "ownerId": 1,
             "address": "123 Disney Lane",
@@ -592,9 +592,9 @@ Returns all the reviews written by the current user.
     }
     ```
 
-## Get all Reviews by a Spot's id
+## Get all Reviews by a Property's id
 
-Returns all the reviews that belong to a Propertyspecified by id.
+Returns all the reviews that belong to a property specified by id.
 
 * Require Authentication: false
 * Request
@@ -614,7 +614,7 @@ Returns all the reviews that belong to a Propertyspecified by id.
         {
           "id": 1,
           "userId": 1,
-          "spotId": 1,
+          "propertyId": 1,
           "review": "This was an awesome spot!",
           "stars": 5,
           "createdAt": "2021-11-19 20:39:36",
@@ -632,7 +632,7 @@ Returns all the reviews that belong to a Propertyspecified by id.
     }
     ```
 
-* Error response: Couldn't find a Propertywith the specified id
+* Error response: Couldn't find a Property with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -640,12 +640,12 @@ Returns all the reviews that belong to a Propertyspecified by id.
 
     ```json
     {
-      "message": "Propertycouldn't be found",
+      "message": "Property couldn't be found",
       "statusCode": 404
     }
     ```
 
-## Create a Review for a Property based on the Spot's id
+## Create a Review for a Property based on the Property's id
 
 Create and return a new review for a Property specified by id.
 
@@ -674,7 +674,7 @@ Create and return a new review for a Property specified by id.
     {
       "id": 1,
       "userId": 1,
-      "spotId": 1,
+      "propertyId": 1,
       "review": "This was an awesome spot!",
       "stars": 5,
       "createdAt": "2021-11-19 20:39:36",
@@ -712,7 +712,7 @@ Create and return a new review for a Property specified by id.
     }
     ```
 
-* Error response: Review from the current user already exists for the Spot
+* Error response: Review from the current user already exists for the Property
   * Status Code: 403
   * Headers:
     * Content-Type: application/json
@@ -720,7 +720,7 @@ Create and return a new review for a Property specified by id.
 
     ```json
     {
-      "message": "User already has a review for this spot",
+      "message": "User already has a review for this property",
       "statusCode": 403
     }
     ```
@@ -755,7 +755,7 @@ Update and return an existing review.
     {
       "id": 1,
       "userId": 1,
-      "spotId": 1,
+      "propertyId": 1,
       "review": "This was an awesome spot!",
       "stars": 5,
       "createdAt": "2021-11-19 20:39:36",
@@ -851,8 +851,8 @@ Return all the bookings that the current user has made.
       "Bookings": [
         {
           "id": 1,
-          "spotId": 1,
-          "Spot": {
+          "propertyId": 1,
+          "Property": {
             "id": 1,
             "ownerId": 1,
             "address": "123 Disney Lane",
@@ -875,7 +875,7 @@ Return all the bookings that the current user has made.
     }
     ```
 
-## Get all Bookings for a Property based on the Spot's id
+## Get all Bookings for a Property based on the Property's id
 
 Return all the bookings for a Property specified by id.
 
@@ -885,7 +885,7 @@ Return all the bookings for a Property specified by id.
   * URL: /properties/:propertyId/bookings
   * Body: none
 
-* Successful Response: If you ARE NOT the owner of the spot.
+* Successful Response: If you ARE NOT the owner of the property.
   * Status Code: 200
   * Headers:
     * Content-Type: application/json
@@ -895,7 +895,7 @@ Return all the bookings for a Property specified by id.
     {
       "Bookings": [
         {
-          "spotId": 1,
+          "propertyId": 1,
           "startDate": "2021-11-19",
           "endDate": "2021-11-19"
         }
@@ -903,7 +903,7 @@ Return all the bookings for a Property specified by id.
     }
     ```
 
-* Successful Response: If you ARE the owner of the spot.
+* Successful Response: If you ARE the owner of the property.
   * Status Code: 200
   * Headers:
     * Content-Type: application/json
@@ -919,7 +919,7 @@ Return all the bookings for a Property specified by id.
             "lastName": "Smith"
           },
           "id": 1,
-          "spotId": 1,
+          "propertyId": 1,
           "userId": 2,
           "startDate": "2021-11-19",
           "endDate": "2021-11-19",
@@ -943,7 +943,7 @@ Return all the bookings for a Property specified by id.
     }
     ```
 
-## Create a Booking from a Property based on the Spot's id
+## Create a Booking from a Property based on the Property's id
 
 Create and return a new booking from a Property specified by id.
 
@@ -963,7 +963,7 @@ Create and return a new booking from a Property specified by id.
     ```json
     {
       "id": 1,
-      "spotId": 1,
+      "propertyId": 1,
       "userId": 2,
       "startDate": "2021-11-19",
       "endDate": "2021-11-19",
@@ -993,7 +993,7 @@ Create and return a new booking from a Property specified by id.
 
     ```json
     {
-      "message": "Sorry, this Property is already booked for the specified dates",
+      "message": "Sorry, this property is already booked for the specified dates",
       "statusCode": 403,
       "errors": {
         "startDate": "Start date conflicts with an existing booking",
@@ -1031,7 +1031,7 @@ Update and return an existing booking.
     ```json
     {
       "id": 1,
-      "spotId": 1,
+      "propertyId": 1,
       "userId": 2,
       "startDate": "2021-11-19",
       "endDate": "2021-11-19",
@@ -1074,7 +1074,7 @@ Update and return an existing booking.
 
     ```json
     {
-      "message": "Sorry, this Property is already booked for the specified dates",
+      "message": "Sorry, this property is already booked for the specified dates",
       "statusCode": 403,
       "errors": {
         "startDate": "Start date conflicts with an existing booking",
@@ -1134,7 +1134,7 @@ Delete an existing booking.
     }
     ```
 
-## Add an Image to a Property based on the Spot's id
+## Add an Image to a Property based on the Property's id
 
 Create and return a new image for a Property specified by id.
 
