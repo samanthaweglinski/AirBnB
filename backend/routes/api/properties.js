@@ -12,15 +12,6 @@ router.get('/', async (req, res) => {
 });
 
 // Get details of a Property from an id
-router.get('/:propertyId', requireAuth, async (req, res) => {
-  const { id } = req.user
-
-    const places = await Property.findAll({
-        where: {ownerId: id}
-    });
-res.json(places[0])
-});
-
 
 
 // Create a Property

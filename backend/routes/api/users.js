@@ -38,8 +38,24 @@ router.post("/", validateSignup, async (req, res) => {
 });
 
 // Get the Current User
-router.get('/currentUser', requireAuth, async (req, res) => {
+router.get("/currentUser", requireAuth, async (req, res) => {
+  const user = {
+    id: req.user.id,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    email: req.user.email,
+  };
+  return res.json(user);
+});
 
-})
+// Get all Properties owned by the Current User
+router.get("/currentUser/properties", requireAuth, async (req, res) => {
+  const { id } = req.user;
+
+  const props = await Property.findAll({
+    where: { ownerId: id },
+  });
+  res.json(props);
+});
 
 module.exports = router;
