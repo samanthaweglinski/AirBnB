@@ -3,10 +3,24 @@ const router = express.Router();
 
 const { Property, Review, User } = require('../../db/models');
 
+
+// GET ALL PROPERTIES
 router.get('/', async (req, res) => {
   const allProperties = await Property.findAll()
-  res.json({ allProperties })
+  res.json(allProperties)
 });
+
+// GET ALL PROPERTIES FROM AN ID
+/*
+router.get('/userSpots', requireAuth, async (req, res) => {
+  const { id } = req.user
+
+    const places = await Spot.findAll({
+        where: {ownerId: id}
+    });
+res.json(places[0])
+});
+*/
 
 router.get('/:propertyId', async (req, res) => {
   const prop = await Property.findByPk(req.params.id, {

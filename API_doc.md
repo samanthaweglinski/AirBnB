@@ -206,9 +206,9 @@ user's information.
     }
     ```
 
-## Get all Spots
+## Get all Properties
 
-Returns all the spots.
+Returns all the properties.
 
 * Require Authentication: false
 * Request
@@ -224,7 +224,7 @@ Returns all the spots.
 
     ```json
     {
-      "Spots":[
+      "Properties":[
         {
           "id": 1,
           "ownerId": 1,
@@ -245,9 +245,9 @@ Returns all the spots.
     }
     ```
 
-## Get all Spots owned by the Current User
+## Get all Properties owned by the Current User
 
-Returns all the spots owned (created) by the current user.
+Returns all the Properties owned (created) by the current user.
 
 * Require Authentication: true
 * Request
@@ -263,7 +263,7 @@ Returns all the spots owned (created) by the current user.
 
     ```json
     {
-      "Spots": [
+      "Properties": [
         {
           "id": 1,
           "ownerId": 1,
@@ -284,9 +284,9 @@ Returns all the spots owned (created) by the current user.
     }
     ```
 
-## Get details of a Spot from an id
+## Get details of a Property from an id
 
-Returns the details of a spot specified by its id.
+Returns the details of a Property specified by its id.
 
 * Require Authentication: false
 * Request
@@ -328,7 +328,7 @@ Returns the details of a spot specified by its id.
     }
     ```
 
-* Error response: Couldn't find a Spot with the specified id
+* Error response: Couldn't find a Property with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -336,7 +336,7 @@ Returns the details of a spot specified by its id.
 
     ```json
     {
-      "message": "Spot couldn't be found",
+      "message": "Property couldn't be found",
       "statusCode": 404
     }
     ```
@@ -420,7 +420,7 @@ Creates and returns a new spot.
 Updates and returns an existing spot.
 
 * Require Authentication: true
-* Require proper authorization: Spot must belong to the current user
+* Require proper authorization: Property must belong to the current user
 * Request
   * Method: PUT
   * URL: /properties/:propertyId
@@ -490,7 +490,7 @@ Updates and returns an existing spot.
     }
     ```
 
-* Error response: Couldn't find a Spot with the specified id
+* Error response: Couldn't find a Property with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -498,7 +498,7 @@ Updates and returns an existing spot.
 
     ```json
     {
-      "message": "Spot couldn't be found",
+      "message": "Property couldn't be found",
       "statusCode": 404
     }
     ```
@@ -508,7 +508,7 @@ Updates and returns an existing spot.
 Deletes an existing spot.
 
 * Require Authentication: true
-* Require proper authorization: Spot must belong to the current user
+* Require proper authorization: Property must belong to the current user
 * Request
   * Method: DELETE
   * URL: /properties/:propertyId
@@ -527,7 +527,7 @@ Deletes an existing spot.
     }
     ```
 
-* Error response: Couldn't find a Spot with the specified id
+* Error response: Couldn't find a Property with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -535,7 +535,7 @@ Deletes an existing spot.
 
     ```json
     {
-      "message": "Spot couldn't be found",
+      "message": "Propertycouldn't be found",
       "statusCode": 404
     }
     ```
@@ -594,7 +594,7 @@ Returns all the reviews written by the current user.
 
 ## Get all Reviews by a Spot's id
 
-Returns all the reviews that belong to a spot specified by id.
+Returns all the reviews that belong to a Propertyspecified by id.
 
 * Require Authentication: false
 * Request
@@ -632,7 +632,7 @@ Returns all the reviews that belong to a spot specified by id.
     }
     ```
 
-* Error response: Couldn't find a Spot with the specified id
+* Error response: Couldn't find a Propertywith the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -640,14 +640,14 @@ Returns all the reviews that belong to a spot specified by id.
 
     ```json
     {
-      "message": "Spot couldn't be found",
+      "message": "Propertycouldn't be found",
       "statusCode": 404
     }
     ```
 
-## Create a Review for a Spot based on the Spot's id
+## Create a Review for a Property based on the Spot's id
 
-Create and return a new review for a spot specified by id.
+Create and return a new review for a Property specified by id.
 
 * Require Authentication: true
 * Request
@@ -699,7 +699,7 @@ Create and return a new review for a spot specified by id.
     }
     ```
 
-* Error response: Couldn't find a Spot with the specified id
+* Error response: Couldn't find a Property with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -707,7 +707,7 @@ Create and return a new review for a spot specified by id.
 
     ```json
     {
-      "message": "Spot couldn't be found",
+      "message": "Property couldn't be found",
       "statusCode": 404
     }
     ```
@@ -875,9 +875,9 @@ Return all the bookings that the current user has made.
     }
     ```
 
-## Get all Bookings for a Spot based on the Spot's id
+## Get all Bookings for a Property based on the Spot's id
 
-Return all the bookings for a spot specified by id.
+Return all the bookings for a Property specified by id.
 
 * Require Authentication: true
 * Request
@@ -930,7 +930,7 @@ Return all the bookings for a spot specified by id.
     }
     ```
 
-* Error response: Couldn't find a Spot with the specified id
+* Error response: Couldn't find a Property with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -938,17 +938,17 @@ Return all the bookings for a spot specified by id.
 
     ```json
     {
-      "message": "Spot couldn't be found",
+      "message": "Property couldn't be found",
       "statusCode": 404
     }
     ```
 
-## Create a Booking from a Spot based on the Spot's id
+## Create a Booking from a Property based on the Spot's id
 
-Create and return a new booking from a spot specified by id.
+Create and return a new booking from a Property specified by id.
 
 * Require Authentication: true
-* Require proper authorization: Spot must NOT belong to the current user
+* Require proper authorization: Property must NOT belong to the current user
 * Request
   * Method: POST
   * URL: properties/:propertyId/bookings
@@ -972,7 +972,7 @@ Create and return a new booking from a spot specified by id.
     }
     ```
 
-* Error response: Couldn't find a Spot with the specified id
+* Error response: Couldn't find a Property with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -980,7 +980,7 @@ Create and return a new booking from a spot specified by id.
 
     ```json
     {
-      "message": "Spot couldn't be found",
+      "message": "Property couldn't be found",
       "statusCode": 404
     }
     ```
@@ -993,7 +993,7 @@ Create and return a new booking from a spot specified by id.
 
     ```json
     {
-      "message": "Sorry, this spot is already booked for the specified dates",
+      "message": "Sorry, this Property is already booked for the specified dates",
       "statusCode": 403,
       "errors": {
         "startDate": "Start date conflicts with an existing booking",
@@ -1074,7 +1074,7 @@ Update and return an existing booking.
 
     ```json
     {
-      "message": "Sorry, this spot is already booked for the specified dates",
+      "message": "Sorry, this Property is already booked for the specified dates",
       "statusCode": 403,
       "errors": {
         "startDate": "Start date conflicts with an existing booking",
@@ -1089,7 +1089,7 @@ Delete an existing booking.
 
 * Require Authentication: true
 * Require proper authorization: Booking must belong to the current user or the
-  Spot must belong to the current user
+  Property must belong to the current user
 * Request
   * Method: DELETE
   * URL: /bookings/:bookingId
@@ -1134,12 +1134,12 @@ Delete an existing booking.
     }
     ```
 
-## Add an Image to a Spot based on the Spot's id
+## Add an Image to a Property based on the Spot's id
 
-Create and return a new image for a spot specified by id.
+Create and return a new image for a Property specified by id.
 
 * Require Authentication: true
-* Require proper authorization: Spot must belong to the current user
+* Require proper authorization: Property must belong to the current user
 * Request
   * Method: POST
   * URL: /properties/:propertyId/image
@@ -1168,7 +1168,7 @@ Create and return a new image for a spot specified by id.
     }
     ```
 
-* Error response: Couldn't find a Spot with the specified id
+* Error response: Couldn't find a Property with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -1176,7 +1176,7 @@ Create and return a new image for a spot specified by id.
 
     ```json
     {
-      "message": "Spot couldn't be found",
+      "message": "Property couldn't be found",
       "statusCode": 404
     }
     ```
@@ -1280,9 +1280,9 @@ Delete an existing image.
     }
     ```
 
-## Add Query Filters to Get All Spots
+## Add Query Filters to Get All Properties
 
-Return spots filtered by query parameters.
+Return Properties filtered by query parameters.
 
 * Require Authentication: false
 * Request
@@ -1307,7 +1307,7 @@ Return spots filtered by query parameters.
 
     ```json
     {
-      "Spots":[
+      "Properties":[
         {
           "id": 1,
           "ownerId": 1,
