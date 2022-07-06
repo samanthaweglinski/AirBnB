@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Property extends Model {
     /**
@@ -11,80 +9,71 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Property.belongsTo(
-        models.User,
-        { foreignKey: 'ownerId' }
-      )
-      Property.hasMany(
-        models.Booking,
-        { foreignKey: 'propertyId' }
-      )
-      Property.hasMany(
-        models.Review,
-        { foreignKey: 'propertyId' }
-      )
-      Property.hasMany(
-        models.Image,
-        { foreignKey: 'propertyId' }
-      )
+      Property.belongsTo(models.User, { foreignKey: "ownerId" });
+      Property.hasMany(models.Booking, { foreignKey: "propertyId" });
+      Property.hasMany(models.Review, { foreignKey: "propertyId" });
+      Property.hasMany(models.Image, { foreignKey: "propertyId" });
     }
   }
-  Property.init({
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+  Property.init(
+    {
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      country: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lat: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validate: {
+          isDecimal: true,
+        },
+      },
+      lng: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validate: {
+          isDecimal: true,
+        },
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+      },
+      previewImage: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        unique: true,
+      },
+      ownerId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    state: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    country: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    lat: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        isDecimal: true
-      }
-    },
-    lng: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        isDecimal: true
-      }
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    previewImage: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: true
-    },
-    ownerId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    {
+      sequelize,
+      modelName: "Property",
     }
-  }, {
-    sequelize,
-    modelName: 'Property',
-  });
+  );
   return Property;
 };

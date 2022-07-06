@@ -1,5 +1,4 @@
 "use strict";
-const bcrypt = require("bcryptjs");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -13,28 +12,22 @@ module.exports = {
      * }], {});
      */
     return queryInterface.bulkInsert(
-      "Users",
+      "Images",
       [
         {
-          email: "demo@user.io",
-          firstName: 'Anna',
-          lastName: 'Prentice',
-          username: "Demo-lition",
-          hashedPassword: bcrypt.hashSync("password"),
+          url: "https://images.squarespace-cdn.com/content/v1/57b71e086a49637a9109a3f9/1536592971873-EQ6PZV356RUAX2SV0L4I/Cupboard+under+the+stairs+HP+Dr+Bookworm.JPG",
+          reviewId: 1,
+          propertyId: 1,
         },
         {
-          email: "user1@user.io",
-          firstName: 'Bud',
-          lastName: 'Wieser',
-          username: "FakeUser1",
-          hashedPassword: bcrypt.hashSync("password2"),
+          url: "https://media.sketchfab.com/models/69be107ca5234ca8a9fcff6ba6851e9e/thumbnails/8e0d6effa45a4d9d8ed4fc1c89023f47/1024x576.jpeg",
+          reviewId: 2,
+          propertyId: 2,
         },
         {
-          email: "user2@user.io",
-          firstName: 'Mike',
-          lastName: 'Stand',
-          username: "FakeUser2",
-          hashedPassword: bcrypt.hashSync("password3"),
+          url: "https://static.wikia.nocookie.net/simpsons/images/6/65/800px-742_Evergreen_Terrace.png/revision/latest?cb=20170101225756",
+          reviewId: 3,
+          propertyId: 3,
         },
       ],
       {}
@@ -50,9 +43,9 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(
-      "Users",
+      "Images",
       {
-        username: { [Op.in]: ["Demo-lition", "FakeUser1", "FakeUser2"] },
+        propertyId: { [Op.in]: [1, 2, 3] },
       },
       {}
     );

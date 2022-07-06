@@ -1,5 +1,4 @@
 "use strict";
-const bcrypt = require("bcryptjs");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -13,28 +12,25 @@ module.exports = {
      * }], {});
      */
     return queryInterface.bulkInsert(
-      "Users",
+      "Bookings",
       [
         {
-          email: "demo@user.io",
-          firstName: 'Anna',
-          lastName: 'Prentice',
-          username: "Demo-lition",
-          hashedPassword: bcrypt.hashSync("password"),
+          propertyId: 1,
+          userId: 3,
+          startDate: "2022-11-19",
+          endDate: "2022-12-19",
         },
         {
-          email: "user1@user.io",
-          firstName: 'Bud',
-          lastName: 'Wieser',
-          username: "FakeUser1",
-          hashedPassword: bcrypt.hashSync("password2"),
+          propertyId: 2,
+          userId: 1,
+          startDate: "2022-08-26",
+          endDate: "2022-08-29",
         },
         {
-          email: "user2@user.io",
-          firstName: 'Mike',
-          lastName: 'Stand',
-          username: "FakeUser2",
-          hashedPassword: bcrypt.hashSync("password3"),
+          propertyId: 3,
+          userId: 2,
+          startDate: "2022-09-03",
+          endDate: "2022-09-09",
         },
       ],
       {}
@@ -50,9 +46,9 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(
-      "Users",
+      "Bookings",
       {
-        username: { [Op.in]: ["Demo-lition", "FakeUser1", "FakeUser2"] },
+        propertyId: { [Op.in]: [1, 2, 3] },
       },
       {}
     );
