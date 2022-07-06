@@ -27,8 +27,38 @@ const validateSignup = [
 
 // Sign up
 router.post("/", validateSignup, async (req, res) => {
-  const { email, password, username } = req.body;
-  const user = await User.signup({ email, username, password });
+  const { email, username, password, firstName, lastName } = req.body;
+
+  const validateEmail = await User.findOne({
+    where: { email },
+  });
+
+  if (validateEmail) {
+    res.status(403);
+    res.json({
+      message: "User already exists",
+    });
+  }
+
+  const user = await User.signup({
+    email,
+    username,
+    password,
+    firstName,
+    lastName
+  });
+
+  if (!firstName) {
+    res.status(400).json({
+      message: "First Name is required",
+    });
+  }
+
+  if (!lastName) {
+    res.status(400).json({
+      message: "Last Name is required",
+    });
+  }
 
   await setTokenCookie(res, user);
 

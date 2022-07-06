@@ -83,8 +83,8 @@ information.
 
     ```json
     {
-      "email": "john.smith@gmail.com",
-      "password": "secret password"
+      "credential": "demo@user.io",
+      "password": "password"
     }
     ```
 
@@ -320,7 +320,7 @@ Returns the details of a Property specified by its id.
       "images": [
         "image url"
       ],
-      "Owner": {
+      "User": {
         "id": 1,
         "firstName": "John",
         "lastName": "Smith"

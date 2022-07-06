@@ -37,21 +37,21 @@ router.post("/", validateLogin, async (req, res, next) => {
   if (!user) {
     res.status(401);
     return res.json({
-      message: 'Invalid credentials',
-      statusCode: 401
-    });
+      message: "Invalid credentials",
+      statusCode: 401,
+    });ƒ
   }
 
-  if (!req.body) {
-    res.json( {
-      message: "Validation error",
-      statusCode: 400,
-      errors: {
-        email: "Email is Required",
-        password: "Password is Required"
-      }
-    })
-  };
+  // if (!req.body) {
+  //   res.json({
+  //     message: "Validation error",
+  //     statusCode: 400,
+  //     errors: {
+  //       email: "Email is Required",
+  //       password: "Password is Required",
+  //     },
+  //   });
+  // }
 
   const token = await setTokenCookie(res, user);
 
