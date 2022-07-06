@@ -1,53 +1,35 @@
 const express = require('express');
+const { requireAuth } = require('../../utils/auth');
+const { Property, Review, Image, User } = require('../../db/models');
 const router = express.Router();
 
-const { Property, Review, User } = require('../../db/models');
 
 
-// GET ALL PROPERTIES
+// Get all Properties
 router.get('/', async (req, res) => {
   const allProperties = await Property.findAll()
   res.json(allProperties)
 });
 
-// GET ALL PROPERTIES FROM AN ID
+// Get details of a Property from an id
+router.get('/:propertyId', requireAuth, async (req, res) => {
+  const { id } = req.user
 
-router.get('/:propertyId', async (req, res) => {
-  const prop = await Property.findByPk(req.params.id, {
-    include: {model: User, attributes: ['id', 'firstName', 'lastName']},
-  })
+    const places = await Property.findAll({
+        where: {ownerId: id}
+    });
+res.json(places[0])
+});
 
-  if (!prop) {
-    const err = new Error("Property couldn't be found")
-    err.status = 404
-    res.json({
-      message: err.message,
-      code: err.status
-    })
-  } else {
-    const numReviews = await Review.count({
-      where: { propertyId: property.id }
-    })
-    const data = {}
-    data.prop = {
-      id: prop.id,
-      address: prop.address,
-      city: prop.city,
-      state: prop.state,
-      country: prop.country,
-      lat: prop.lat,
-      lng: prop.lng,
-      name: prop.name,
-      description: prop.description,
-      price: prop.price,
-      createdAt: prop.createdAt,
-      updatedAt: prop.updatedAt
-    }
 
-    data.numReviews = numReviews
 
-    res.json(data)
-  }
-})
+// Create a Property
+
+
+// Edit a Property
+
+
+// Delete a Property
+
 
 module.exports = router;
