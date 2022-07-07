@@ -320,7 +320,7 @@ Returns the details of a Property specified by its id.
       "images": [
         "image url"
       ],
-      "User": {
+      "Owner": {
         "id": 1,
         "firstName": "John",
         "lastName": "Smith"
@@ -952,7 +952,7 @@ Create and return a new booking from a Property specified by id.
 * Request
   * Method: POST
   * URL: properties/:propertyId/bookings
-  * Body: none
+  * Body: start date and end date from the user to determine what dates to make the booking for
 
 * Successful Response
   * Status Code: 200
