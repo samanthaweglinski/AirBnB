@@ -18,9 +18,7 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
     .withMessage("Please provide a username with at least 4 characters."),
-  check("username")
-    .not().isEmail()
-    .withMessage("Username cannot be an email."),
+  check("username").not().isEmail().withMessage("Username cannot be an email."),
   check("password")
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
@@ -95,6 +93,27 @@ router.get("/currentUser/properties", requireAuth, async (req, res) => {
     where: { ownerId: id },
   });
   res.json(props);
+});
+
+// Get all Reviews
+
+router.get("/currentUser/reviews", requireAuth, async (req, res) => {
+  const { id } = req.user;
+
+  const reviews = await Review.findAll({
+    include: [
+      { model: User, attributes: ["id", "firstName", "lastName"] },
+      {
+        model: Property,
+        attributes: {
+          exclude: ["description", "previewImage", "createdAt", "updatedAt"]
+        },
+      },
+      { model: Image, as: "Images", attributes: ["url"] },
+    ],
+    where: { userId: id },
+  });
+  res.json(reviews);
 });
 
 module.exports = router;
