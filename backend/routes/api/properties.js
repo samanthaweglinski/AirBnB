@@ -5,7 +5,7 @@ const { Property, Review, Image, User } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
+// const sequelize = new Sequelize("sqlite::memory:");
 
 const router = express.Router();
 
