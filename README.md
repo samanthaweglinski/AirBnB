@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/currentUser
+  * URL: /api/users/currentUser
   * Body: none
 
 * Successful Response
@@ -76,7 +76,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /session
+  * URL: /api/session
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -142,7 +142,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /users
+  * URL: /api/users
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -213,7 +213,7 @@ Returns all the properties.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /properties
+  * URL: /api/properties
   * Body: none
 
 * Successful Response
@@ -252,7 +252,7 @@ Returns all the Properties owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/currentUser/properties
+  * URL: /api/users/currentUser/properties
   * Body: none
 
 * Successful Response
@@ -291,7 +291,7 @@ Returns the details of a Property specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /properties/:propertyId
+  * URL: /api/properties/:propertyId
   * Body: none
 
 * Successful Response
@@ -348,7 +348,7 @@ Creates and returns a new property.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /properties
+  * URL: /api/properties
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -423,7 +423,7 @@ Updates and returns an existing property.
 * Require proper authorization: Property must belong to the current user
 * Request
   * Method: PUT
-  * URL: /properties/:propertyId
+  * URL: /api/properties/:propertyId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -511,7 +511,7 @@ Deletes an existing property.
 * Require proper authorization: Property must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /properties/:propertyId
+  * URL: /api/properties/:propertyId
   * Body: none
 
 * Successful Response
@@ -547,7 +547,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: user/currentUser/reviews
+  * URL: /apiuser/currentUser/reviews
   * Body: none
 
 * Successful Response
@@ -599,7 +599,7 @@ Returns all the reviews that belong to a property specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /properties/:propertyId/reviews
+  * URL: /api/properties/:propertyId/reviews
   * Body: none
 
 * Successful Response
@@ -652,7 +652,7 @@ Create and return a new review for a Property specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /properties/:propertyId/reviews
+  * URL: /api/properties/:propertyId/reviews
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -733,7 +733,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: /reviews/:reviewId
+  * URL: /api/reviews/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -801,7 +801,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /reviews/:reviewId
+  * URL: /api/reviews/:reviewId
   * Body: none
 
 * Successful Response
@@ -837,7 +837,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: users/currentUser/bookings
+  * URL: /apiusers/currentUser/bookings
   * Body: none
 
 * Successful Response
@@ -882,7 +882,7 @@ Return all the bookings for a Property specified by id.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /properties/:propertyId/bookings
+  * URL: /api/properties/:propertyId/bookings
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the property.
@@ -951,7 +951,7 @@ Create and return a new booking from a Property specified by id.
 * Require proper authorization: Property must NOT belong to the current user
 * Request
   * Method: POST
-  * URL: properties/:propertyId/bookings
+  * URL: /api/properties/:propertyId/bookings
   * Body: start date and end date from the user to determine what dates to make the booking for
 
 * Successful Response
@@ -1010,7 +1010,7 @@ Update and return an existing booking.
 * Require proper authorization: Booking must belong to the current user
 * Request
   * Method: PUT
-  * URL: /bookings/:bookingId
+  * URL: /api/bookings/:bookingId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1092,7 +1092,7 @@ Delete an existing booking.
   Property must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /bookings/:bookingId
+  * URL: /api/bookings/:bookingId
   * Body: none
 
 * Successful Response
@@ -1142,7 +1142,7 @@ Create and return a new image for a Property specified by id.
 * Require proper authorization: Property must belong to the current user
 * Request
   * Method: POST
-  * URL: /properties/:propertyId/image
+  * URL: /api/properties/:propertyId/image
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1189,7 +1189,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: POST
-  * URL: /reviews/:reviewId/image
+  * URL: /api/reviews/:reviewId/image
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1251,7 +1251,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: DELETE
-  * URL: /images/:imageId
+  * URL: /api/images/:imageId
   * Body: none
 
 * Successful Response
@@ -1287,7 +1287,7 @@ Return Properties filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /properties?
+  * URL: /api/properties?
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20

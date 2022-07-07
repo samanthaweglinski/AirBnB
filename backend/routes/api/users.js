@@ -106,10 +106,10 @@ router.get("/currentUser/reviews", requireAuth, async (req, res) => {
       {
         model: Property,
         attributes: {
-          exclude: ["description", "previewImage", "createdAt", "updatedAt"]
+          exclude: ["description", "previewImage", "createdAt", "updatedAt"],
         },
       },
-      { model: Image, as: "Images", attributes: ["url"] },
+      { model: Image, attributes: ["url"] },
     ],
     where: { userId: id },
   });
