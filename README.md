@@ -957,8 +957,8 @@ Create and return a new booking from a Property specified by id.
 
     ```json
     {
-      "startDate": "2021-11-19",
-      "endDate": "2021-11-25"
+      "startDate": "2022-01-01",
+      "endDate": "2022-01-15"
     }
     ```
 
