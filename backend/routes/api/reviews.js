@@ -2,8 +2,8 @@ const express = require("express");
 const { Property, Review, Image } = require("../../db/models");
 const { requireAuth } = require("../../utils/auth");
 const { Op } = require("sequelize");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
+// const { check } = require("express-validator");
+// const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 
 // const validateReview = [
@@ -75,7 +75,7 @@ router.post("/:propertyId", requireAuth, async (req, res) => {
 
   if (!review) err.errors.review = "Review text is required";
   if (stars < 1 || stars > 5)
-    err.errors.star = "Stars must be an integer from 1 to 5";
+    err.errors.stars = "Stars must be an integer from 1 to 5";
   if (!review || !stars) {
     return res.status(400).json(err);
   }

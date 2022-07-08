@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { Property, Review, Image, User } = require("../../db/models");
+const { Property, Review, Image, User, Booking } = require("../../db/models");
 
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
 
@@ -119,6 +119,26 @@ router.get("/currentUser/reviews", requireAuth, async (req, res) => {
   }
 
   res.json(reviews);
+});
+
+// Get all of the Current User's Bookings
+router.get("/currentUser/bookings", requireAuth, async (req, res) => {
+  const userBookings = await Booking.findAll({
+    include: [
+      {
+        model: Property,
+      },
+    ],
+    where: { userId: req.user.id },
+  });
+
+  if (!userBookings.length) {
+    return res.status(204).json({
+      message: "You currently do not have any bookings.",
+      statusCode: 204,
+    });
+  }
+  res.json(userBookings);
 });
 
 module.exports = router;
