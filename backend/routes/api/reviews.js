@@ -57,6 +57,8 @@ router.post("/:reviewId/image", requireAuth, async (req, res) => {
   }
 
   const image = await Image.create({
+    reviewId: req.params.reviewId,
+    propertyId: review.propertyId,
     imageableId: allImages.length + 1,
     imageableType: "Review",
     url,
