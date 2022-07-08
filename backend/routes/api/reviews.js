@@ -17,6 +17,54 @@ const router = express.Router();
 //   handleValidationErrors,
 // ];
 
+// Add an Image to a Review based on the Review's id
+router.post("/:reviewId/image", requireAuth, async (req, res) => {
+  const { url } = req.body;
+  const currentUserId = req.user.id;
+  const review = await Review.findByPk(req.params.reviewId, {
+    where: { userId: req.user.id },
+  });
+
+  if (!review) {
+    return res.status(404).json({
+      message: "Review couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  if (review.userId !== currentUserId) {
+    res.status(403);
+    res.json({
+      message: "Only owners of the property can add an image",
+      statusCode: 403,
+    });
+  }
+
+  const allImages = await Image.findAll({
+    where: {
+      [Op.and]: [
+        { reviewId: req.params.reviewId },
+        { imageableType: "Review" },
+      ],
+    },
+  });
+
+  if (allImages.length > 10) {
+    return res.status(400).json({
+      message: "Maximum number of images for this resource was reached",
+      statusCode: 400,
+    });
+  }
+
+  const image = await Image.create({
+    imageableId: allImages.length + 1,
+    imageableType: "Review",
+    url,
+  });
+
+  res.json(image);
+});
+
 // Get all Reviews by a Property's id
 router.get("/:propertyId", async (req, res) => {
   const reviews = await Review.findAll({

@@ -38,7 +38,7 @@ const validateProperty = [
 // Add an Image to a Property based on the Property's id
 router.post("/:propertyId/image", requireAuth, async (req, res) => {
   const { url } = req.body;
-  let currentUserId = req.user.id;
+  const currentUserId = req.user.id;
   const prop = await Property.findByPk(req.params.propertyId, {
     where: {
       ownerId: req.user.id,
@@ -76,10 +76,6 @@ router.post("/:propertyId/image", requireAuth, async (req, res) => {
   });
 
   image = image.toJSON();
-  // delete image["spotId"];
-  // delete image["reviewId"];
-  // delete image["createdAt"];
-  // delete image["updatedAt"];
 
   res.json(image);
 });
