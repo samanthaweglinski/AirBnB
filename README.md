@@ -952,8 +952,15 @@ Create and return a new booking from a Property specified by id.
 * Require proper authorization: Property must NOT belong to the current user
 * Request
   * Method: POST
-  * URL: /api/properties/:propertyId/bookings
-  * Body: start date and end date from the user to determine what dates to make the booking for
+  * URL: /api/bookings/:propertyId
+  * Body:
+
+    ```json
+    {
+      "startDate": "2021-11-19",
+      "endDate": "2021-11-25"
+    }
+    ```
 
 * Successful Response
   * Status Code: 200
