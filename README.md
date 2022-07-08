@@ -883,7 +883,7 @@ Return all the bookings for a Property specified by id.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/properties/:propertyId/bookings
+  * URL: /api/bookings/:propertyId
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the property.
