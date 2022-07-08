@@ -1,25 +1,21 @@
 const express = require("express");
-const { Property, Review, Image, User, sequelize } = require("../../db/models");
-const {
-  setTokenCookie,
-  requireAuth,
-  restoreUser,
-} = require("../../utils/auth");
+const { Property, Review, Image } = require("../../db/models");
+const { requireAuth } = require("../../utils/auth");
 const { Op } = require("sequelize");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 
-const validateReview = [
-  check("review")
-    .exists({ checkFalsy: true })
-    .withMessage("Review text is required"),
-  check("stars")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 1, max: 5 })
-    .withMessage("Stars must be an integer from 1 to 5"),
-  handleValidationErrors,
-];
+// const validateReview = [
+//   check("review")
+//     .exists({ checkFalsy: true })
+//     .withMessage("Review text is required"),
+//   check("stars")
+//     .exists({ checkFalsy: true })
+//     .isLength({ min: 1, max: 5 })
+//     .withMessage("Stars must be an integer from 1 to 5"),
+//   handleValidationErrors,
+// ];
 
 // Get all Reviews by a Property's id
 router.get("/:propertyId", async (req, res) => {
@@ -78,7 +74,8 @@ router.post("/:propertyId", requireAuth, async (req, res) => {
   }
 
   if (!review) err.errors.review = "Review text is required";
-  if (stars < 1 || stars > 5) err.errors.star = "Stars must be an integer from 1 to 5"
+  if (stars < 1 || stars > 5)
+    err.errors.star = "Stars must be an integer from 1 to 5";
   if (!review || !stars) {
     return res.status(400).json(err);
   }
@@ -91,6 +88,54 @@ router.post("/:propertyId", requireAuth, async (req, res) => {
   });
 
   res.json(newReview);
+});
+
+// Edit a Review
+router.put("/:reviewId", requireAuth, async (req, res) => {
+  const updatedReview = await Review.findByPk(req.params.reviewId);
+  const { review, stars } = req.body;
+  const err = {
+    message: "Validation error",
+    statusCode: 400,
+    errors: {},
+  };
+
+  if (!updatedReview || updatedReview.userId !== req.user.id) {
+    return res.status(404).json({
+      message: "Review couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  if (!review) err.errors.review = "Review text is required";
+  if (stars < 1 || stars > 5)
+    err.errors.stars = "Stars must be an integer from 1 to 5";
+  if (!review || !stars) {
+    return res.status(400).json(err);
+  }
+
+  updatedReview.review = review;
+  updatedReview.stars = stars;
+  await updatedReview.save();
+  res.json(updatedReview);
+});
+
+// Delete a Review
+router.delete("/:reviewId", requireAuth, async (req, res) => {
+  const review = await Review.findByPk(req.params.reviewId);
+
+  if (!review || review.userId !== req.user.id) {
+    return res.status(404).json({
+      message: "Review couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  await review.destroy();
+  res.json({
+    message: "Successfully deleted",
+    statusCode: 200,
+  });
 });
 
 module.exports = router;
