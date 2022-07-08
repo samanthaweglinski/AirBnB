@@ -14,13 +14,15 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Users' }
+        references: { model: 'Users' },
       },
       startDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY,
+        allowNull: false
       },
       endDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

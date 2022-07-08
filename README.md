@@ -653,7 +653,7 @@ Create and return a new review for a Property specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /api/properties/:propertyId/reviews
+  * URL: /api/reviews/:propertyId/
   * Headers:
     * Content-Type: application/json
   * Body:
