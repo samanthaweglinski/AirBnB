@@ -18,16 +18,22 @@ module.exports = {
           url: "https://images.squarespace-cdn.com/content/v1/57b71e086a49637a9109a3f9/1536592971873-EQ6PZV356RUAX2SV0L4I/Cupboard+under+the+stairs+HP+Dr+Bookworm.JPG",
           reviewId: 1,
           propertyId: 1,
+          imageableId: 1,
+          imageableType: "Review",
         },
         {
           url: "https://media.sketchfab.com/models/69be107ca5234ca8a9fcff6ba6851e9e/thumbnails/8e0d6effa45a4d9d8ed4fc1c89023f47/1024x576.jpeg",
           reviewId: 2,
           propertyId: 2,
+          imageableId: 1,
+          imageableType: "Review",
         },
         {
           url: "https://static.wikia.nocookie.net/simpsons/images/6/65/800px-742_Evergreen_Terrace.png/revision/latest?cb=20170101225756",
           reviewId: 3,
           propertyId: 3,
+          imageableId: 1,
+          imageableType: "Review",
         },
       ],
       {}
