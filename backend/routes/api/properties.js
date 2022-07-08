@@ -128,21 +128,33 @@ router.put("/:propertyId", requireAuth, validateProperty, async (req, res) => {
 
   const prop = await Property.findByPk(req.params.propertyId);
 
+  // if (!prop) {
+  //   res.status(404);
+  //   res.json({
+  //     message: "Property couldn't be found",
+  //     statusCode: 404,
+  //   });
+  // }
+
+  // if (prop !== req.user) {
+  //   res.status(401);
+  //   res.json({
+  //     message: "You must be the owner to edit this property",
+  //     statusCode: 401,
+  //   });
+  // }
+
   if (!prop) {
     res.status(404);
-    res.json({
+    return res.json({
       message: "Property couldn't be found",
       statusCode: 404,
-    });
-  };
-
-  if (prop !== req.user) {
-    res.status(401);
-    res.json({
-      message: "You must be the owner to edit this property",
-      statusCode: 401
-    });
-  };
+    })
+  } else if (prop.ownerId !== req.user.id) {
+    return res
+      .status(403)
+      .json({ message: "You must be the owner to edit this property" });
+  }
 
   prop.address = address;
   prop.city = city;
@@ -163,21 +175,33 @@ router.put("/:propertyId", requireAuth, validateProperty, async (req, res) => {
 router.delete("/:propertyId", requireAuth, async (req, res) => {
   const prop = await Property.findByPk(req.params.propertyId);
 
+  // if (!prop) {
+  //   res.status(404);
+  //   res.json({
+  //     message: "Property couldn't be found",
+  //     statusCode: 404,
+  //   });
+  // }
+
+  // if (prop !== req.user) {
+  //   res.status(401);
+  //   res.json({
+  //     message: "You must be the owner to delete this property",
+  //     statusCode: 401,
+  //   });
+  // }
+
   if (!prop) {
     res.status(404);
-    res.json({
+    return res.json({
       message: "Property couldn't be found",
-      statusCode: 404
-    });
-  };
-
-  if (prop !== req.user) {
-    res.status(401);
-    res.json({
-      message: "You must be the owner to delete this property",
-      statusCode: 401
-    });
-  };
+      statusCode: 404,
+    })
+  } else if (prop.ownerId !== req.user.id) {
+    return res
+      .status(403)
+      .json({ message: "You must be the owner to edit this property" });
+  }
 
   res.json({
     message: "Successfully deleted",

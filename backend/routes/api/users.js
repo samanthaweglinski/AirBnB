@@ -67,10 +67,11 @@ router.post("/", validateSignup, async (req, res) => {
     });
   }
 
-  await setTokenCookie(res, user);
+  const token = await setTokenCookie(res, user);
 
   return res.json({
     user,
+    token,
   });
 });
 
@@ -95,8 +96,7 @@ router.get("/currentUser/properties", requireAuth, async (req, res) => {
   res.json(props);
 });
 
-// Get all Reviews
-
+// Get all Reviews of the Current User
 router.get("/currentUser/reviews", requireAuth, async (req, res) => {
   const { id } = req.user;
 
@@ -113,6 +113,11 @@ router.get("/currentUser/reviews", requireAuth, async (req, res) => {
     ],
     where: { userId: id },
   });
+
+  if (!reviews) {
+    res.json({ message: "The user has no reviews." });
+  }
+
   res.json(reviews);
 });
 

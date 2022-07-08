@@ -152,6 +152,7 @@ user's information.
       "firstName": "John",
       "lastName": "Smith",
       "email": "john.smith@gmail.com",
+      "username": "johnnysmith",
       "password": "secret password"
     }
     ```
