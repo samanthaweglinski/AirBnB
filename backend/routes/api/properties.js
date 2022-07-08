@@ -1,5 +1,5 @@
 const express = require("express");
-
+const { Op } = require("sequelize");
 const { requireAuth } = require("../../utils/auth");
 const { Property, Review, Image, User, sequelize } = require("../../db/models");
 const { check } = require("express-validator");
@@ -34,6 +34,55 @@ const validateProperty = [
     .withMessage("Price per day is required"),
   handleValidationErrors,
 ];
+
+// Add an Image to a Property based on the Property's id
+router.post("/:propertyId/image", requireAuth, async (req, res) => {
+  const { url } = req.body;
+  let currentUserId = req.user.id;
+  const prop = await Property.findByPk(req.params.propertyId, {
+    where: {
+      ownerId: req.user.id,
+    },
+  });
+
+  if (!prop) {
+    return res.status(404).json({
+      message: "Property couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  if (
+    prop.ownerId !== currentUserId
+  ) {
+    res.status(403);
+    res.json({
+      message: "Only owners of the property can add an image",
+      statusCode: 403,
+    });
+  }
+
+  const allImages = await Image.findAll({
+    where: {
+      [Op.and]: [{ propertyId: req.params.propertyId }, { imageableType: "Property" }],
+    },
+  });
+
+  let image = await Image.create({
+    url,
+    imageableId: allImages.length + 1,
+    imageableType: "Property",
+    propertyId: req.params.propertyId,
+  });
+
+  image = image.toJSON();
+  // delete image["spotId"];
+  // delete image["reviewId"];
+  // delete image["createdAt"];
+  // delete image["updatedAt"];
+
+  res.json(image);
+});
 
 // Get all Properties
 router.get("/", async (req, res) => {
@@ -149,7 +198,7 @@ router.put("/:propertyId", requireAuth, validateProperty, async (req, res) => {
     return res.json({
       message: "Property couldn't be found",
       statusCode: 404,
-    })
+    });
   } else if (prop.ownerId !== req.user.id) {
     return res
       .status(403)
@@ -196,7 +245,7 @@ router.delete("/:propertyId", requireAuth, async (req, res) => {
     return res.json({
       message: "Property couldn't be found",
       statusCode: 404,
-    })
+    });
   } else if (prop.ownerId !== req.user.id) {
     return res
       .status(403)
