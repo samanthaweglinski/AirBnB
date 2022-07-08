@@ -1171,7 +1171,7 @@ Create and return a new image for a Property specified by id.
     {
       "id": 1,
       "imageableId": 1,
-      "imageableType": "Spot",
+      "imageableType": "Property",
       "url": "image url",
     }
     ```
