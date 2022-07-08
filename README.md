@@ -548,7 +548,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /apiuser/currentUser/reviews
+  * URL: /api/users/currentUser/reviews
   * Body: none
 
 * Successful Response
@@ -600,7 +600,7 @@ Returns all the reviews that belong to a property specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/properties/:propertyId/reviews
+  * URL: /api/reviews/:propertyId
   * Body: none
 
 * Successful Response
