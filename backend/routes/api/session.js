@@ -39,7 +39,7 @@ router.post("/", validateLogin, async (req, res, next) => {
     return res.json({
       message: "Invalid credentials",
       statusCode: 401,
-    });ƒ
+    });
   }
 
   // if (!req.body) {
@@ -65,6 +65,7 @@ router.post("/", validateLogin, async (req, res, next) => {
 
   return res.json(userRes);
 });
+
 
 // Log out
 router.delete("/", (_req, res) => {
