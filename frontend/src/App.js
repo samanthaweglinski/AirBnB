@@ -5,7 +5,7 @@ import LoginFormPage from './components/LoginFormPage';
 function App() {
   return (
     <Switch>
-      <Route path="/login">
+      <Route path="/session">
         <LoginFormPage />
       </Route>
     </Switch>
