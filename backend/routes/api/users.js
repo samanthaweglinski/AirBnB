@@ -36,16 +36,16 @@ const validateSignup = [
 router.post("/", validateSignup, async (req, res) => {
   const { email, username, password, firstName, lastName } = req.body;
 
-  const validateEmail = await User.findOne({
-    where: { email },
-  });
+  // const validateEmail = await User.findOne({
+  //   where: { email },
+  // });
 
-  if (validateEmail) {
-    res.status(403);
-    res.json({
-      message: "User already exists",
-    });
-  }
+  // if (validateEmail) {
+  //   res.status(403);
+  //   res.json({
+  //     message: "User already exists",
+  //   });
+  // }
 
   const user = await User.signup({
     email,
