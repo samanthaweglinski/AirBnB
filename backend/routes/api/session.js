@@ -42,24 +42,14 @@ router.post("/", validateLogin, async (req, res, next) => {
     });
   }
 
-  // if (!req.body) {
-  //   res.json({
-  //     message: "Validation error",
-  //     statusCode: 400,
-  //     errors: {
-  //       email: "Email is Required",
-  //       password: "Password is Required",
-  //     },
-  //   });
-  // }
-
   const token = await setTokenCookie(res, user);
 
   const userRes = {
-    id: req.user.id,
-    firstName: req.user.firstName,
-    lastName: req.user.lastName,
-    email: req.user.email,
+    id: user.id,
+    username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
     token: token,
   };
 
