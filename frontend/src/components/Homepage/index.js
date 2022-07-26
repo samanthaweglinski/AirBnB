@@ -33,7 +33,7 @@ const Homepage = () => {
               <p> Price: ${ele.price}/night</p>
               <div className="property-rating">
                 <i className="fa-solid fa-star"></i>
-                <div className="rating-score">New, if no reviews</div>
+                New
               </div>
             </div>
           </Link>
