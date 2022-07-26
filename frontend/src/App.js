@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
+import PropertyDetails from "./components/Properties";
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Homepage />
+          </Route>
+          <Route exact path="/properties/:propertyId">
+            <PropertyDetails />
           </Route>
         </Switch>
       )}

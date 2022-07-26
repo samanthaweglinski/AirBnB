@@ -22,7 +22,7 @@ const Homepage = () => {
       </div>
       <div>
         {allProps.allProperties.map((ele) => (
-          <Link to={`/properties/${ele.id}`}>
+          <Link to={`/properties/${ele.id}`} key={ele.id}>
             <div key={ele.id}>
               <h3>{ele.name}</h3>
               <h4>

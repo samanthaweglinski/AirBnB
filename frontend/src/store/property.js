@@ -86,6 +86,7 @@ const propertyReducer = (state = initialState, action) => {
     }
     case FIND_PROPERTY: {
       newState[action.property.id] = action.property
+      // console.log(newState)
       return newState
     }
     case UPDATE_PROPERTY: {
