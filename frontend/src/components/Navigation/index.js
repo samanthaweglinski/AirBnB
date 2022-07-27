@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -9,6 +9,24 @@ import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   let sessionLinks;
   if (sessionUser) {
@@ -16,29 +34,51 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <DemoUser />
-        <LoginFormModal />
-        <SignupFormModal />
+        <button onClick={openMenu}>
+          <i className="fas fa-bars nav_bars_icon"></i>{" "}
+          <i className="fas fa-user-circle user_icon"></i>
+          {/* <i class="fa-brands fa-airbnb"></i> */}
+        </button>
+        {showMenu && (
+          <ul className="profile-dropdown">
+            <li>
+              <LoginFormModal />
+            </li>
+            <li>
+              <SignupFormModal />
+            </li>
+            <li>
+              <DemoUser />
+            </li>
+          </ul>
+        )}
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">
-          <img src="https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg" alt="airbnb-logo" id="airbnb_logo"></img>
-          <button>
-            <i className="fa-solid fa-house"></i>
-            Home
-          </button>
-        </NavLink>
-        <NavLink to="/properties">
-          <button type="button">Become a Host</button>
-        </NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <>
+      {/* <ul>
+        <li> */}
+      <NavLink exact to="/">
+        {/* <button> */}
+        <img
+          src="https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg"
+          alt="airbnb-logo"
+          id="airbnb_logo"
+        ></img>
+        {/* <i className="fa-solid fa-house"></i>
+            Home */}
+        {/* </button> */}
+      </NavLink>
+      <i class="fa-solid fa-earth-americas"></i>{" "}
+      <NavLink to="/properties">
+        <button type="button">Become a Host</button>
+      </NavLink>
+      {isLoaded && sessionLinks}
+      {/* </li>
+      </ul> */}
+    </>
   );
 }
 
