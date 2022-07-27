@@ -8,6 +8,8 @@ import PropertyDetails from "./components/Properties";
 import PropertyForm from "./components/Properties/PropertyForm";
 import { Modal } from "../src/context/Modal";
 import LoginForm from "./components/LoginFormModal/LoginForm";
+import EditProperty from "./components/Properties/EditPropertyForm";
+import UsersProperties from "./components/Properties/UsersProperties";
 
 
 function App() {
@@ -37,6 +39,12 @@ function App() {
           </Route>
           <Route exact path="/properties/">
             <PropertyForm />
+          </Route>
+          <Route exact path="/properties/:propertyId/edit">
+            <EditProperty />
+          </Route>
+          <Route exact path="/currentUser/properties">
+            <UsersProperties />
           </Route>
         </Switch>
       )}

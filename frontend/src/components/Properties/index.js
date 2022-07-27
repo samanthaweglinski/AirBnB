@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findPropertyById, deletePropertyById } from "../../store/property";
+import { findPropertyById, deletePropertyById, editAProperty } from "../../store/property";
 import "./Properties.css";
 
-const PropertyDetails = () => {
+const PropertyDetails = ({passedPropId}) => {
   let { propertyId } = useParams();
+  if (!propertyId) {
+    propertyId = passedPropId
+  }
   propertyId = Number(propertyId);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -19,14 +22,15 @@ const PropertyDetails = () => {
   if (wholeNumbers.includes(avgReviewRating))
     avgReviewRating = avgReviewRating.toString() + ".0";
 
-  // const handleEdit = (e) => {
-  //   e.preventDefault()
-  //   setPage(2)
-  // }
+  const handleEdit = (e) => {
+    e.preventDefault()
+    dispatch(editAProperty(propertyId))
+    history.push(`/properties/${propertyId}/edit`);
+  }
 
   const removeProperty = (e) => {
     e.preventDefault();
-    dispatch(deletePropertyById(propertyId));
+    dispatch(deletePropertyById(propertyId))
     history.push("/");
   };
 
@@ -60,7 +64,7 @@ const PropertyDetails = () => {
             <>
               {sessionUser?.id === prop[propertyId]?.id && (
                 <div>
-                  {/* <button onClick={handleEdit} className="edit-listing-button">Edit</button> */}
+                  <button onClick={handleEdit}>Edit</button>
                   <button onClick={removeProperty}>Delete</button>
                 </div>
               )}

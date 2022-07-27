@@ -18,14 +18,14 @@ const findProperty = (property) => ({
   property,
 });
 
-// const findMyProperties = (properties) => ({
-//   type: FIND_MY_PROPERTIES,
-//   properties,
-// });
+const findMyProperties = (currentUserProperties) => ({
+  type: FIND_MY_PROPERTIES,
+  currentUserProperties,
+});
 
-const editProperty = (updatedProperty) => ({
+const editProperty = (property) => ({
   type: UPDATE_PROPERTY,
-  updatedProperty,
+  property,
 });
 
 const createProperty = (property) => ({
@@ -39,6 +39,7 @@ const deleteProperty = (property) => ({
 });
 
 // Thunks
+// Get all properties
 export const listAllProperties = () => async (dispatch) => {
   const response = await csrfFetch(`/api/properties`);
   // console.log('res:', response)
@@ -49,6 +50,18 @@ export const listAllProperties = () => async (dispatch) => {
   return response;
 };
 
+// Find all users properties
+export const getCurrentUserProperties = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/currentUser/properties`);
+  // console.log('res:', response)
+  if (response.ok) {
+    const propertiesObj = await response.json();
+    dispatch(findMyProperties(propertiesObj));
+  }
+  return response;
+};
+
+// Get property details by ID
 export const findPropertyById = (propertyId) => async (dispatch) => {
   const response = await csrfFetch(`/api/properties/${propertyId}`);
   if (response.ok) {
@@ -58,31 +71,7 @@ export const findPropertyById = (propertyId) => async (dispatch) => {
   return response;
 };
 
-// export const createNewProperty = (formValue) => async (dispatch) => {
-//   const { address, city, state, country, lat, lng, name, description, price } =
-//     formValue;
-
-//   const response = await csrfFetch("/api/properties", {
-//     method: "POST",
-//     body: JSON.stringify({
-//       address,
-//       city,
-//       state,
-//       country,
-//       lat,
-//       lng,
-//       name,
-//       description,
-//       price,
-//     }),
-//   });
-//   if (response.ok) {
-//     const newProp = await response.json();
-//     dispatch(createProperty(newProp));
-//     return newProp;
-//   }
-// };
-
+// Create property
 export const createNewProperty = (data) => async (dispatch) => {
   // console.log(data);
   const response = await csrfFetch("/api/properties", {
@@ -99,46 +88,23 @@ export const createNewProperty = (data) => async (dispatch) => {
   }
 };
 
-export const updateProperty = (propertyData) => async (dispatch) => {
-  const {
-    id,
-    address,
-    city,
-    state,
-    country,
-    lat,
-    lng,
-    name,
-    description,
-    price,
-    previewImage,
-    ownerId,
-  } = propertyData;
-  const response = await csrfFetch(`/api/properties/${id}`, {
+// Edit property
+export const editAProperty = (data, propertyId) => async (dispatch) => {
+  console.log(propertyId);
+  const response = await csrfFetch(`/api/properties/${propertyId}`, {
     method: "PUT",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      id,
-      address,
-      city,
-      state,
-      country,
-      lat,
-      lng,
-      name,
-      description,
-      price,
-      previewImage,
-      ownerId,
-    }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
   });
+
   if (response.ok) {
-    const updatedProperty = await response.json();
-    dispatch(editProperty(updatedProperty));
-    return updatedProperty;
+    const updatedProp = await response.json();
+    dispatch(editProperty(updatedProp));
+    return updatedProp;
   }
 };
 
+// Delete property
 export const deletePropertyById = (propertyId) => async (dispatch) => {
   const response = await csrfFetch(`/api/properties/${propertyId}`, {
     method: "DELETE",
@@ -168,15 +134,17 @@ const propertyReducer = (state = initialState, action) => {
       return newState;
     }
     case FIND_MY_PROPERTIES: {
-      newState[action.property.id] = action.property;
-      return newState;
+      return {
+        ...state,
+        currentUserProperties: action.currentUserProperties,
+      };
     }
     case CREATE_PROPERTY: {
       // newState[action.property.id] = action.property;
       return newState;
     }
     case UPDATE_PROPERTY: {
-      newState[action.updatedProperty.id] = action.updatedProperty;
+      // newState[action.updatedProperty.id] = action.updatedProperty;
       return newState;
     }
     case DELETE_PROPERTY: {
