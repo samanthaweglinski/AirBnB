@@ -33,25 +33,30 @@ function Navigation({ isLoaded }) {
     sessionLinks = <ProfileButton user={sessionUser} />;
   } else {
     sessionLinks = (
+      // <>
+      //   <button onClick={openMenu}>
+      //     <i className="fas fa-bars nav_bars_icon"></i>{" "}
+      //     <i className="fas fa-user-circle user_icon"></i>
+      //     {/* <i class="fa-brands fa-airbnb"></i> */}
+      //   </button>
+      //   {showMenu && (
+      //     <ul className="profile-dropdown">
+      //         <LoginFormModal />
+      //       <li>
+      //       </li>
+      //       <li>
+      //         <SignupFormModal />
+      //       </li>
+      //       <li>
+      //         <DemoUser />
+      //       </li>
+      //     </ul>
+      //   )}
+      // </>
       <>
-        <button onClick={openMenu}>
-          <i className="fas fa-bars nav_bars_icon"></i>{" "}
-          <i className="fas fa-user-circle user_icon"></i>
-          {/* <i class="fa-brands fa-airbnb"></i> */}
-        </button>
-        {showMenu && (
-          <ul className="profile-dropdown">
-            <li>
-              <LoginFormModal />
-            </li>
-            <li>
-              <SignupFormModal />
-            </li>
-            <li>
-              <DemoUser />
-            </li>
-          </ul>
-        )}
+        <LoginFormModal />
+        <SignupFormModal />
+        <DemoUser />
       </>
     );
   }
