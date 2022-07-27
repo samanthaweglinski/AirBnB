@@ -103,10 +103,10 @@ router.get("/", async (req, res) => {
   size = Number(size);
 
   if (Number.isNaN(page)) page = 0;
-  if (Number.isNaN(size)) size = 20;
+  if (Number.isNaN(size)) size = 40;
 
   if (page > 10) page = 10;
-  if (size > 20) size = 20;
+  if (size > 40) size = 40;
 
   if (page < 0) error.errors.page = "Page must be greater than or equal to 0";
   if (size < 0) error.errors.size = "Size must be greater than or equal to 0";
