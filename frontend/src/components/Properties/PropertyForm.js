@@ -14,6 +14,9 @@ const PropertyForm = ({ property }) => {
   const [city, setCity] = useState(property?.city ?? "");
   const [state, setState] = useState(property?.state ?? "");
   const [country, setCountry] = useState(property?.country ?? "");
+  const [previewImage, setPreviewImage] = useState(
+    "https://images.familyhomeplans.com/cdn-cgi/image/fit=scale-down,quality=85/plans/41438/41438-b580.jpg"
+  );
   const [lat, setLat] = useState(property?.lat ?? "");
   const [lng, setLng] = useState(property?.lng ?? "");
   const [name, setName] = useState(property?.name ?? "");
@@ -66,6 +69,7 @@ const PropertyForm = ({ property }) => {
       name: name,
       description: description,
       price: price,
+      previewImage: previewImage,
     };
     return dispatch(createNewProperty(data))
       .then(async (res) => {
@@ -164,6 +168,15 @@ const PropertyForm = ({ property }) => {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
+          />
+        </label>
+        <label>
+          Image
+          <input
+            type="text"
+            placeholder="img-url"
+            value={previewImage}
+            onChange={(e) => setPreviewImage(e.target.value)}
           />
         </label>
         <button type="submit">Submit Property</button>

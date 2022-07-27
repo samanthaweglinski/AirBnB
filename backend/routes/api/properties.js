@@ -257,6 +257,7 @@ router.post("/", requireAuth, validateProperty, async (req, res, next) => {
     name,
     description,
     price,
+    previewImage
   } = req.body;
   const { id } = req.user;
 
@@ -271,6 +272,7 @@ router.post("/", requireAuth, validateProperty, async (req, res, next) => {
     name,
     description,
     price,
+    previewImage
   });
 
   res.json(201, newProp);
