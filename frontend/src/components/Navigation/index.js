@@ -71,7 +71,7 @@ function Navigation({ isLoaded }) {
             Home */}
         {/* </button> */}
       </NavLink>
-      <i class="fa-solid fa-earth-americas"></i>{" "}
+      <i className="fa-solid fa-earth-americas"></i>{" "}
       <NavLink to="/properties">
         <button type="button">Become a Host</button>
       </NavLink>

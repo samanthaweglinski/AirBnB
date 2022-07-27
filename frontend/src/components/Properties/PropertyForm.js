@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { createNewProperty } from "../../store/property";
 // import LoginForm from "../LoginFormModal/LoginForm";
 // import { Modal } from "../../context/Modal";
@@ -20,6 +20,7 @@ const PropertyForm = ({ property }) => {
   const [description, setDescription] = useState(property?.description ?? "");
   const [price, setPrice] = useState(property?.price ?? "");
   const [errors, setErrors] = useState([]);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -27,26 +28,53 @@ const PropertyForm = ({ property }) => {
     }
   });
 
+  if (submitSuccess) {
+    return <Redirect to="/" />;
+  }
 
-  const handleSubmit = async (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setErrors([]);
+  //   return dispatch(
+  //     createNewProperty({
+  //       address,
+  //       city,
+  //       state,
+  //       country,
+  //       lat,
+  //       lng,
+  //       name,
+  //       description,
+  //       price,
+  //     })
+  //   ).catch((res) => {
+  //     const data = res.json();
+  //     if (data && data.errors) setErrors(data.errors);
+  //   });
+  // };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(
-      createNewProperty({
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price,
+    let data = {
+      address: address,
+      city: city,
+      state: state,
+      country: country,
+      lat: lat,
+      lng: lng,
+      name: name,
+      description: description,
+      price: price,
+    };
+    return dispatch(createNewProperty(data))
+      .then(async (res) => {
+        setSubmitSuccess(true);
       })
-    ).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
-    });
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
   return (

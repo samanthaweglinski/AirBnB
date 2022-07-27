@@ -18,23 +18,24 @@ const findProperty = (property) => ({
   property,
 });
 
-const findMyProperties = (properties) => ({
-  type: FIND_MY_PROPERTIES,
-  properties,
-});
+// const findMyProperties = (properties) => ({
+//   type: FIND_MY_PROPERTIES,
+//   properties,
+// });
 
 const editProperty = (updatedProperty) => ({
   type: UPDATE_PROPERTY,
   updatedProperty,
 });
 
-const createProperty = (newProperty) => ({
+const createProperty = (property) => ({
   type: CREATE_PROPERTY,
-  newProperty,
+  newProperty: property,
 });
 
-const deleteProperty = () => ({
+const deleteProperty = (property) => ({
   type: DELETE_PROPERTY,
+  property,
 });
 
 // Thunks
@@ -57,13 +58,67 @@ export const findPropertyById = (propertyId) => async (dispatch) => {
   return response;
 };
 
-export const createNewProperty = (formValue) => async (dispatch) => {
-  const { address, city, state, country, lat, lng, name, description, price } =
-    formValue;
+// export const createNewProperty = (formValue) => async (dispatch) => {
+//   const { address, city, state, country, lat, lng, name, description, price } =
+//     formValue;
 
+//   const response = await csrfFetch("/api/properties", {
+//     method: "POST",
+//     body: JSON.stringify({
+//       address,
+//       city,
+//       state,
+//       country,
+//       lat,
+//       lng,
+//       name,
+//       description,
+//       price,
+//     }),
+//   });
+//   if (response.ok) {
+//     const newProp = await response.json();
+//     dispatch(createProperty(newProp));
+//     return newProp;
+//   }
+// };
+
+export const createNewProperty = (data) => async (dispatch) => {
+  // console.log(data);
   const response = await csrfFetch("/api/properties", {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  // console.log(response);
+  if (response.ok) {
+    const prop = await response.json();
+    dispatch(createProperty(prop));
+    return prop;
+  }
+};
+
+export const updateProperty = (propertyData) => async (dispatch) => {
+  const {
+    id,
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    previewImage,
+    ownerId,
+  } = propertyData;
+  const response = await csrfFetch(`/api/properties/${id}`, {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
     body: JSON.stringify({
+      id,
       address,
       city,
       state,
@@ -73,26 +128,28 @@ export const createNewProperty = (formValue) => async (dispatch) => {
       name,
       description,
       price,
+      previewImage,
+      ownerId,
     }),
   });
-  const updatedProperty = await response.json();
-  dispatch(createProperty(updatedProperty.newListing));
-  return updatedProperty.newListing;
+  if (response.ok) {
+    const updatedProperty = await response.json();
+    dispatch(editProperty(updatedProperty));
+    return updatedProperty;
+  }
 };
 
-export const updateProperty = (propertyData) => async (dispatch) => {
-  const { id, address, city, state, country, lat, lng, name, description, price, previewImage, ownerId } = propertyData
-  const response = await csrfFetch(`/api/properties/${id}`, {
-    method: 'PUT',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ id, address, city, state, country, lat, lng, name, description, price, previewImage, ownerId })
-  })
-  if (response.ok) {
-    const updatedProperty = await response.json()
-    dispatch(editProperty(updatedProperty))
-    return updatedProperty
-  }
-}
+export const deletePropertyById = (propertyId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/properties/${propertyId}`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      propertyId: propertyId,
+    }),
+  });
+  const deletedRoom = await response.json();
+  dispatch(deleteProperty(propertyId));
+  return deletedRoom;
+};
 
 // Store/State Changes
 const initialState = {};
@@ -115,12 +172,16 @@ const propertyReducer = (state = initialState, action) => {
       return newState;
     }
     case CREATE_PROPERTY: {
-      newState[action.newProperty.id] = action.newProperty;
+      // newState[action.property.id] = action.property;
       return newState;
     }
     case UPDATE_PROPERTY: {
-      newState[action.updatedProperty.id] = action.updatedProperty
-      return newState
+      newState[action.updatedProperty.id] = action.updatedProperty;
+      return newState;
+    }
+    case DELETE_PROPERTY: {
+      delete newState[action.propertyId];
+      return newState;
     }
     default:
       return newState;
