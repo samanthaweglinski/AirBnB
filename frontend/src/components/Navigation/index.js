@@ -27,6 +27,7 @@ function Navigation({ isLoaded }) {
     <ul>
       <li>
         <NavLink exact to="/">
+          <img src="https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg" alt="airbnb-logo" id="airbnb_logo"></img>
           <button>
             <i className="fa-solid fa-house"></i>
             Home
