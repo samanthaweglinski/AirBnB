@@ -32,6 +32,9 @@ function Navigation({ isLoaded }) {
             Home
           </button>
         </NavLink>
+        <NavLink to="/properties">
+          <button type="button">Become a Host</button>
+        </NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>

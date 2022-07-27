@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
+const SET_SHOW_LOGIN_MODAL = "/session/setShowLoginModal";
 
 const setUser = (user) => {
   return {
@@ -15,6 +16,14 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+export const setShowLoginModal = (payload) => {
+  return {
+    type: SET_SHOW_LOGIN_MODAL,
+    payload,
+  };
+};
+
 
 // login thunk
 export const login = (user) => async (dispatch) => {
@@ -67,7 +76,8 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-const initialState = { user: null };
+// Everything in my redux state tree can be accessed by any component wow
+const initialState = { user: null, showLoginModal: false };
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -79,6 +89,10 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
+      return newState;
+    case SET_SHOW_LOGIN_MODAL:
+      newState = Object.assign({}, state); // cloning state object so we dont mutate
+      newState.showLoginModal = action.payload; // setting equal to payload when we fire action
       return newState;
     default:
       return state;

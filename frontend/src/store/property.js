@@ -28,8 +28,9 @@ const editProperty = (updatedProperty) => ({
   updatedProperty,
 });
 
-const createProperty = () => ({
+const createProperty = (newProperty) => ({
   type: CREATE_PROPERTY,
+  newProperty,
 });
 
 const deleteProperty = () => ({
@@ -38,23 +39,46 @@ const deleteProperty = () => ({
 
 // Thunks
 export const listAllProperties = () => async (dispatch) => {
-  const response = await csrfFetch(`/api/properties`)
+  const response = await csrfFetch(`/api/properties`);
   // console.log('res:', response)
   if (response.ok) {
-    const propertiesObj = await response.json()
-    dispatch(listProperties(propertiesObj))
+    const propertiesObj = await response.json();
+    dispatch(listProperties(propertiesObj));
   }
-  return response
-}
+  return response;
+};
 
 export const findPropertyById = (propertyId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/properties/${propertyId}`)
+  const response = await csrfFetch(`/api/properties/${propertyId}`);
   if (response.ok) {
-    const property = await response.json()
-    dispatch(findProperty(property))
+    const property = await response.json();
+    dispatch(findProperty(property));
   }
-  return response
-}
+  return response;
+};
+
+export const createNewProperty = (formValue) => async (dispatch) => {
+  const { address, city, state, country, lat, lng, name, description, price } =
+    formValue;
+
+  const response = await csrfFetch("/api/properties", {
+    method: "POST",
+    body: JSON.stringify({
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+    }),
+  });
+  const updatedProperty = await response.json();
+  dispatch(createProperty(updatedProperty.newListing));
+  return updatedProperty.newListing;
+};
 
 export const updateProperty = (propertyData) => async (dispatch) => {
   const { id, address, city, state, country, lat, lng, name, description, price, previewImage, ownerId } = propertyData
@@ -71,31 +95,36 @@ export const updateProperty = (propertyData) => async (dispatch) => {
 }
 
 // Store/State Changes
-const initialState = {}
+const initialState = {};
 
 const propertyReducer = (state = initialState, action) => {
-  const newState = { ...state }
+  const newState = { ...state };
   switch (action.type) {
     case LIST_PROPERTIES: {
-      // for (let prop in action.properties) newState[prop.id] = prop
-      // return
       return {
         ...state,
-        properties: action.properties
-      }
+        properties: action.properties,
+      };
     }
     case FIND_PROPERTY: {
-      newState[action.property.id] = action.property
-      // console.log(newState)
-      return newState
+      newState[action.property.id] = action.property;
+      return newState;
+    }
+    case FIND_MY_PROPERTIES: {
+      newState[action.property.id] = action.property;
+      return newState;
+    }
+    case CREATE_PROPERTY: {
+      newState[action.newProperty.id] = action.newProperty;
+      return newState;
     }
     case UPDATE_PROPERTY: {
       newState[action.updatedProperty.id] = action.updatedProperty
       return newState
     }
     default:
-      return newState
+      return newState;
   }
-}
+};
 
-export default propertyReducer
+export default propertyReducer;

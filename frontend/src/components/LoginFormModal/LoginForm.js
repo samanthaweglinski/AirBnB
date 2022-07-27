@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { Redirect } from 'react-router-dom';
 import "./LoginForm.css";
 
@@ -15,15 +15,16 @@ const LoginForm = () => {
   //   <Redirect to="/" />
   // );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    await dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        if (data?.message) setErrors([data.message]);
       }
     );
+    dispatch(sessionActions.setShowLoginModal(false));
   };
 
   return (
