@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findPropertyById, deletePropertyById, editAProperty } from "../../store/property";
+import {
+  findPropertyById,
+  deletePropertyById,
+  // editAProperty,
+} from "../../store/property";
 import "./Properties.css";
 
-const PropertyDetails = ({passedPropId}) => {
+const PropertyDetails = ({ passedPropId, hideButtons }) => {
   let { propertyId } = useParams();
   if (!propertyId) {
-    propertyId = passedPropId
+    propertyId = passedPropId;
   }
   propertyId = Number(propertyId);
   const dispatch = useDispatch();
@@ -22,23 +26,21 @@ const PropertyDetails = ({passedPropId}) => {
   if (wholeNumbers.includes(avgReviewRating))
     avgReviewRating = avgReviewRating.toString() + ".0";
 
-  const handleEdit = (e) => {
-    e.preventDefault()
-    dispatch(editAProperty(propertyId))
-    history.push(`/properties/${propertyId}/edit`);
-  }
+  // const handleEdit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(editAProperty(propertyId));
+  //   history.push(`/properties/${propertyId}/edit`);
+  // };
 
   const removeProperty = (e) => {
     e.preventDefault();
-    dispatch(deletePropertyById(propertyId))
-    history.push("/");
+    dispatch(deletePropertyById(propertyId));
+    history.push("/currentUser/properties");
   };
 
   useEffect(() => {
     dispatch(findPropertyById(propertyId));
   }, [dispatch, propertyId]);
-
-  // if (!prop) return null
 
   return (
     <div>
@@ -62,9 +64,11 @@ const PropertyDetails = ({passedPropId}) => {
         <div>
           {sessionUser ? (
             <>
-              {sessionUser?.id === prop[propertyId]?.id && (
+              {!hideButtons && sessionUser?.id === prop[propertyId]?.ownerId && (
                 <div>
-                  <button onClick={handleEdit}>Edit</button>
+                  <NavLink to={`/properties/${propertyId}/edit`}>
+                    <button>Edit</button>
+                  </NavLink>
                   <button onClick={removeProperty}>Delete</button>
                 </div>
               )}

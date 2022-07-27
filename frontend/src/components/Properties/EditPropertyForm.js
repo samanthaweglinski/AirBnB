@@ -5,7 +5,7 @@ import { editAProperty } from "../../store/property";
 
 const EditProperty = () => {
   const dispatch = useDispatch();
-  let { spotId: propertyId } = useParams();
+  let { propertyId } = useParams();
   propertyId = Number(propertyId);
   const property = useSelector((state) => state.properties);
   const [address, setAddress] = useState(property.address);
@@ -18,7 +18,7 @@ const EditProperty = () => {
   const [description, setDescription] = useState(property.description);
   const [price, setPrice] = useState(property.price);
   const [previewImage, setPreviewImage] = useState(
-    "https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607"
+    "https://images.rezfusion.com/?optimize=true&quality=70&width=1600&source=//vacasa-units.imgix.net/2354765.jpg&settings=default"
   );
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -54,7 +54,7 @@ const EditProperty = () => {
       price: price,
     };
 
-    return dispatch(editAProperty(data, property.id))
+    return dispatch(editAProperty(data, propertyId))
       .then(async (res) => {
         console.log("Success");
         setSubmitSuccess(true);
@@ -152,7 +152,7 @@ const EditProperty = () => {
           />
         </label>
       </label>
-      <button type="submit">Edit Property</button>
+      <button type="submit">Confirm Changes</button>
     </form>
   );
 };

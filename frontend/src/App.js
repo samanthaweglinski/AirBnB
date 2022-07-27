@@ -11,20 +11,14 @@ import LoginForm from "./components/LoginFormModal/LoginForm";
 import EditProperty from "./components/Properties/EditPropertyForm";
 import UsersProperties from "./components/Properties/UsersProperties";
 
-
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
   const showLoginModal = useSelector((state) => state.session.showLoginModal);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(sessionActions.setShowLoginModal(true))
-  // }, [dispatch]);
 
   return (
     <>
