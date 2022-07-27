@@ -11,21 +11,21 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  // if (sessionUser) return (
-  //   <Redirect to="/" />
-  // );
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    await dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
+    await dispatch(sessionActions.login({ credential, password }))
+      .then(() => {
+        dispatch(sessionActions.setShowLoginModal(false));
+      })
+      .catch(async (res) => {
         const data = await res.json();
+        // console.log(data.message)
         if (data?.message) setErrors([data.message]);
-      }
-    );
-    dispatch(sessionActions.setShowLoginModal(false));
+      });
   };
+
+  // console.log('errors:', errors)
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import { useParams, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   // deletePropertyById,
@@ -13,7 +13,7 @@ const UsersProperties = () => {
   const dispatch = useDispatch();
   // const history = useHistory();
   const prop = useSelector((state) => state.properties?.currentUserProperties);
-  const currentUser = useSelector((state) => state.session?.user)
+  const currentUser = useSelector((state) => state.session?.user);
   console.log("prop:", prop);
   // const sessionUser = useSelector((state) => state.session.user);
 
@@ -42,7 +42,11 @@ const UsersProperties = () => {
 
   return (
     <div>
-      {prop?.map((ele) => <Property key={ele.id} passedPropId={ele.id} />)}
+      {prop?.map((ele) => (
+        <Link to={`/properties/${ele.id}`} key={ele.id}>
+          <Property key={ele.id} passedPropId={ele.id} />
+        </Link>
+      ))}
     </div>
   );
 };
