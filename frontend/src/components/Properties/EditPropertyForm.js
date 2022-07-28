@@ -5,11 +5,11 @@ import { editAProperty, findPropertyById } from "../../store/property";
 
 const EditProperty = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   let { propertyId } = useParams();
   propertyId = Number(propertyId);
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const history = useHistory();
   const [selectedProperty, setSelectedProperty] = useState({})
 
   const updateAddress = (e) => setSelectedProperty({...selectedProperty, address:e.target.value});

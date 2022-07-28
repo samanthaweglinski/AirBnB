@@ -74,7 +74,7 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
               )}
             </>
           ) : (
-            <>Is it hitting this</>
+            <>Cannot edit or delete</>
           )}
         </div>
       </div>
