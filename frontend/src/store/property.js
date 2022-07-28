@@ -90,11 +90,11 @@ export const createNewProperty = (data) => async (dispatch) => {
 
 // Edit property
 export const editAProperty = (data) => async (dispatch) => {
-  const { id, ownerId, address, city, state, country, lat, lng, name, description, price } = data;
+  const { id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage } = data;
   const response = await csrfFetch(`/api/properties/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id, ownerId, address, city, state, country, lat, lng, name, description, price }),
+    body: JSON.stringify({ id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage }),
   });
 
   if (response.ok) {
@@ -144,7 +144,7 @@ const propertyReducer = (state = initialState, action) => {
       return newState;
     }
     case UPDATE_PROPERTY: {
-      // newState[action.property.id] = action.property;
+      newState[action.property.id] = action.property
       return newState;
     }
     case DELETE_PROPERTY: {

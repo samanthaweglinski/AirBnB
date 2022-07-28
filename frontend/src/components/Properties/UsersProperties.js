@@ -17,6 +17,7 @@ const UsersProperties = () => {
 
   return (
     <div>
+      <h2>My Properties</h2>
       {prop?.map((ele) => (
         <Link to={`/properties/${ele.id}`} key={ele.id}>
           <Property hideButtons key={ele.id} passedPropId={ele.id} />

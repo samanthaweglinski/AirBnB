@@ -257,7 +257,7 @@ router.post("/", requireAuth, validateProperty, async (req, res, next) => {
     name,
     description,
     price,
-    previewImage
+    previewImage,
   } = req.body;
   const { id } = req.user;
 
@@ -272,7 +272,7 @@ router.post("/", requireAuth, validateProperty, async (req, res, next) => {
     name,
     description,
     price,
-    previewImage
+    previewImage,
   });
 
   res.json(201, newProp);
@@ -281,8 +281,18 @@ router.post("/", requireAuth, validateProperty, async (req, res, next) => {
 // Edit a Property
 
 router.put("/:propertyId", requireAuth, validateProperty, async (req, res) => {
-  let { address, city, state, country, lat, lng, name, description, price } =
-    req.body;
+  let {
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    previewImage,
+  } = req.body;
 
   const prop = await Property.findByPk(req.params.propertyId);
 
@@ -307,6 +317,7 @@ router.put("/:propertyId", requireAuth, validateProperty, async (req, res) => {
   prop.name = name;
   prop.description = description;
   prop.price = price;
+  prop.previewImage = previewImage;
 
   await prop.save();
   return res.json(prop);

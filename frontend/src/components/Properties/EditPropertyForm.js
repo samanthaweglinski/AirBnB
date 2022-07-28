@@ -126,8 +126,8 @@ const EditProperty = () => {
       <label>
         <input
           type="text"
-          value={selectedProperty.price}
           placeholder="Price"
+          value={selectedProperty.price}
           onChange={updatePrice}
         />
         <label>

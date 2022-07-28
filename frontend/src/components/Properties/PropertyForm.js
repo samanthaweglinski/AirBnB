@@ -15,7 +15,7 @@ const PropertyForm = ({ property }) => {
   const [state, setState] = useState(property?.state ?? "");
   const [country, setCountry] = useState(property?.country ?? "");
   const [previewImage, setPreviewImage] = useState(
-    "https://images.familyhomeplans.com/cdn-cgi/image/fit=scale-down,quality=85/plans/41438/41438-b580.jpg"
+    "https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg"
   );
   const [lat, setLat] = useState(property?.lat ?? "");
   const [lng, setLng] = useState(property?.lng ?? "");
