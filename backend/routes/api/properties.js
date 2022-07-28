@@ -286,22 +286,6 @@ router.put("/:propertyId", requireAuth, validateProperty, async (req, res) => {
 
   const prop = await Property.findByPk(req.params.propertyId);
 
-  // if (!prop) {
-  //   res.status(404);
-  //   res.json({
-  //     message: "Property couldn't be found",
-  //     statusCode: 404,
-  //   });
-  // }
-
-  // if (prop !== req.user) {
-  //   res.status(401);
-  //   res.json({
-  //     message: "You must be the owner to edit this property",
-  //     statusCode: 401,
-  //   });
-  // }
-
   if (!prop) {
     res.status(404);
     return res.json({

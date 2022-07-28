@@ -35,27 +35,6 @@ const PropertyForm = ({ property }) => {
     return <Redirect to="/" />;
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setErrors([]);
-  //   return dispatch(
-  //     createNewProperty({
-  //       address,
-  //       city,
-  //       state,
-  //       country,
-  //       lat,
-  //       lng,
-  //       name,
-  //       description,
-  //       price,
-  //     })
-  //   ).catch((res) => {
-  //     const data = res.json();
-  //     if (data && data.errors) setErrors(data.errors);
-  //   });
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);

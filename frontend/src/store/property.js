@@ -67,8 +67,8 @@ export const findPropertyById = (propertyId) => async (dispatch) => {
   if (response.ok) {
     const property = await response.json();
     dispatch(findProperty(property));
+    return property;
   }
-  return response;
 };
 
 // Create property
@@ -90,12 +90,11 @@ export const createNewProperty = (data) => async (dispatch) => {
 
 // Edit property
 export const editAProperty = (data) => async (dispatch) => {
-  console.log('data:', data);
-  const { propertyId, ownerId, address, city, state, country, lat, lng, name, description, price } = data;
-  const response = await csrfFetch(`/api/properties/${propertyId}`, {
+  const { id, ownerId, address, city, state, country, lat, lng, name, description, price } = data;
+  const response = await csrfFetch(`/api/properties/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ propertyId, ownerId, address, city, state, country, lat, lng, name, description, price }),
+    body: JSON.stringify({ id, ownerId, address, city, state, country, lat, lng, name, description, price }),
   });
 
   if (response.ok) {
