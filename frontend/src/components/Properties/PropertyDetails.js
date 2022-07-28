@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  findPropertyById,
-  deletePropertyById,
-  // editAProperty,
-} from "../../store/property";
+import { findPropertyById, deletePropertyById } from "../../store/property";
 import "./Properties.css";
+import PropertyReviews from "../Reviews/PropertyReviews";
 
 const PropertyDetails = ({ passedPropId, hideButtons }) => {
   let { propertyId } = useParams();
@@ -36,19 +33,6 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
         <h4>
           {prop[propertyId]?.city}, {prop[propertyId]?.state}
         </h4>
-        {/* <div>{prop[propertyId].images[0].url}</div> */}
-        <img
-          src={prop[propertyId]?.previewImage}
-          alt="property_preview_image"
-        ></img>
-        <p>{prop[propertyId]?.description}</p>
-        <p> Price: ${prop[propertyId]?.price}/night</p>
-        <div>
-          <i className="fa-solid fa-star"></i>
-          Average goes here, or new if no reviews (RENDER STAR REVIEWS COMPONENT
-          HERE)
-          <div>{`${prop[propertyId]?.numReviews} reviews`}</div>
-        </div>
         <div>
           {sessionUser ? (
             <>
@@ -64,6 +48,23 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
           ) : (
             <>Cannot edit or delete</>
           )}
+        </div>
+        <br></br>
+        <img
+          src={prop[propertyId]?.previewImage}
+          alt="property_preview_image"
+        ></img>
+        <p>{prop[propertyId]?.description}</p>
+        <p> Price: ${prop[propertyId]?.price}/night</p>
+        <div>
+          <div>
+            <div className="star_reviews_avg">
+              <i className="fa-solid fa-star"></i>
+                Average rating
+            </div>
+            <div className="total_reviews">{`${prop[propertyId]?.numReviews} reviews`}</div>
+            <PropertyReviews />
+          </div>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
-import PropertyDetails from "./components/Properties";
+import PropertyDetails from "./components/Properties/PropertyDetails";
 import PropertyForm from "./components/Properties/PropertyForm";
 import { Modal } from "../src/context/Modal";
 import LoginForm from "./components/LoginFormModal/LoginForm";
