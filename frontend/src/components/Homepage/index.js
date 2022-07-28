@@ -29,9 +29,9 @@ const Homepage = () => {
               <img src={ele.previewImage} alt={ele.name}></img>
               <p>{ele.description}</p>
               <p> Price: ${ele.price}/night</p>
-              <div className="property-rating">
+              <div className="property-rating" id="star_review_score">
                 <i className="fa-solid fa-star"></i>
-                New
+                Average goes here, or new if no reviews (RENDER STAR REVIEWS COMPONENT HERE)
               </div>
             </div>
           </Link>

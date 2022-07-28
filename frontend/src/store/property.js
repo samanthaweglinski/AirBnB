@@ -1,15 +1,15 @@
 import { csrfFetch } from "./csrf";
 
 // Actions
-const LIST_PROPERTIES = "properties/LIST_PROPERTIES";
+const GET_ALL_PROPERTIES = "properties/LIST_PROPERTIES";
 const FIND_PROPERTY = "properties/FIND_PROPERTY";
 const FIND_MY_PROPERTIES = "properties/FIND_MY_PROPERTIES";
 const UPDATE_PROPERTY = "properties/UPDATE_PROPERTY";
 const CREATE_PROPERTY = "properties/CREATE_PROPERTY";
 const DELETE_PROPERTY = "properties/DELETE_PROPERTY";
 
-const listProperties = (properties) => ({
-  type: LIST_PROPERTIES,
+const getAllProperties = (properties) => ({
+  type: GET_ALL_PROPERTIES,
   properties,
 });
 
@@ -45,7 +45,7 @@ export const listAllProperties = () => async (dispatch) => {
   // console.log('res:', response)
   if (response.ok) {
     const propertiesObj = await response.json();
-    dispatch(listProperties(propertiesObj));
+    dispatch(getAllProperties(propertiesObj));
   }
   return response;
 };
@@ -119,11 +119,10 @@ export const deletePropertyById = (propertyId) => async (dispatch) => {
 
 // Store/State Changes
 const initialState = {};
-
 const propertyReducer = (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
-    case LIST_PROPERTIES: {
+    case GET_ALL_PROPERTIES: {
       return {
         ...state,
         properties: action.properties,
@@ -132,6 +131,10 @@ const propertyReducer = (state = initialState, action) => {
     case FIND_PROPERTY: {
       newState[action.property.id] = action.property;
       return newState;
+      // return {
+      //   ...state,
+      //   property: action.property,
+      // };
     }
     case FIND_MY_PROPERTIES: {
       return {
@@ -152,7 +155,7 @@ const propertyReducer = (state = initialState, action) => {
       return newState;
     }
     default:
-      return newState;
+      return state;
   }
 };
 

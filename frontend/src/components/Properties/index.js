@@ -19,19 +19,6 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
   const prop = useSelector((state) => state.properties);
   const sessionUser = useSelector((state) => state.session.user);
 
-  let avgReviewRating = prop[propertyId]?.avgStarRating;
-  avgReviewRating = Math.round(avgReviewRating * 100) / 100;
-
-  const wholeNumbers = [1, 2, 3, 4, 5];
-  if (wholeNumbers.includes(avgReviewRating))
-    avgReviewRating = avgReviewRating.toString() + ".0";
-
-  // const handleEdit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(editAProperty(propertyId));
-  //   history.push(`/properties/${propertyId}/edit`);
-  // };
-
   const removeProperty = (e) => {
     e.preventDefault();
     dispatch(deletePropertyById(propertyId));
@@ -58,9 +45,10 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
         <p> Price: ${prop[propertyId]?.price}/night</p>
         <div>
           <i className="fa-solid fa-star"></i>
-          {avgReviewRating}
+          Average goes here, or new if no reviews (RENDER STAR REVIEWS COMPONENT
+          HERE)
+          <div>{`${prop[propertyId]?.numReviews} reviews`}</div>
         </div>
-        <div>{`${prop[propertyId]?.numReviews} reviews`}</div>
         <div>
           {sessionUser ? (
             <>
