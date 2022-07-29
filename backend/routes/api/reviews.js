@@ -81,12 +81,12 @@ router.get("/:propertyId", async (req, res) => {
     },
   });
 
-  if (!reviews.length) {
-    return res.status(404).json({
-      message: "Property couldn't be found",
-      statusCode: 404,
-    });
-  }
+  // if (!reviews.length) {
+  //   return res.status(404).json({
+  //     message: "Property couldn't be found",
+  //     statusCode: 404,
+  //   });
+  // }
   res.json(reviews);
 });
 

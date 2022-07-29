@@ -6,7 +6,8 @@ import "./Homepage.css";
 
 const Homepage = () => {
   const dispatch = useDispatch();
-  const allProps = useSelector((state) => state.properties.properties);
+  const allPropsObj = useSelector((state) => state.properties);
+  const allProps = Object.values(allPropsObj) //changing to array to .map
 
   useEffect(() => {
     dispatch(listAllProperties());

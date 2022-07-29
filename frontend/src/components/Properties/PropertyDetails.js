@@ -13,7 +13,8 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
   propertyId = Number(propertyId);
   const dispatch = useDispatch();
   const history = useHistory();
-  const prop = useSelector((state) => state.properties);
+  const prop = useSelector((state) => state.properties[propertyId]);
+  // console.log('Prop:', prop)
   const sessionUser = useSelector((state) => state.session.user);
 
   const removeProperty = (e) => {
@@ -28,15 +29,15 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
 
   return (
     <div>
-      <div key={prop[propertyId]?.id}>
-        <h3>{prop[propertyId]?.name}</h3>
+      <div key={prop?.id}>
+        <h3>{prop?.name}</h3>
         <h4>
-          {prop[propertyId]?.city}, {prop[propertyId]?.state}
+          {prop?.city}, {prop?.state}
         </h4>
         <div>
           {sessionUser ? (
             <>
-              {!hideButtons && sessionUser?.id === prop[propertyId]?.ownerId && (
+              {!hideButtons && sessionUser?.id === prop?.ownerId && (
                 <div>
                   <NavLink to={`/properties/${propertyId}/edit`}>
                     <button>Edit</button>
@@ -51,26 +52,21 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
         </div>
         <br></br>
         <img
-          src={prop[propertyId]?.previewImage}
+          src={prop?.previewImage}
           alt="property_preview_image"
         ></img>
-        <p>{prop[propertyId]?.description}</p>
-        <p> Price: ${prop[propertyId]?.price}/night</p>
+        <p>{prop?.description}</p>
+        <p> Price: ${prop?.price}/night</p>
         <div className="property_review_details">
           <div className="avg_rating_component_and_reviews">
             <div className="star_reviews_avg">
               <i className="fa-solid fa-star"></i>
               Average rating component
             </div>
-            <div className="total_reviews">{`${prop[propertyId]?.numReviews} reviews`}</div>
+            <div className="total_reviews">{`${prop?.numReviews} reviews`}</div>
           </div>
-          {/* <button>
-            <Link to={`/properties/${propertyId}/reviews`}>
-              <PropertyReviews />
-            </Link>
-          </button> */}
           <div>
-            <PropertyReviews />
+            <PropertyReviews property={prop} />
           </div>
         </div>
       </div>

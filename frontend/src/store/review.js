@@ -1,22 +1,9 @@
 import { csrfFetch } from "./csrf";
 
-const GET_REVIEWS = "reviews/GET_REVIEWS";
-const FIND_MY_REVIEWS = "properties/FIND_MY_REVIEWS";
 const FIND_PROPERTY_REVIEWS = "properties/FIND_PROPERTY_REVIEWS";
+const FIND_MY_REVIEWS = "properties/FIND_MY_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
-// const DELETE_REVIEW = "reviews/DELETE_REVIEW";
-
-// const getAllReviews = (reviews) => {
-//   return {
-//     type: GET_REVIEWS,
-//     reviews,
-//   };
-// };
-
-// const findMyReviews = (payload) => ({
-//   type: FIND_MY_REVIEWS,
-//   payload,
-// });
+const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
 const findPropertyReviews = (payload) => {
   return {
@@ -25,72 +12,96 @@ const findPropertyReviews = (payload) => {
   };
 };
 
-// const createAReview = (payload) => {
-//   return {
-//     type: CREATE_REVIEW,
-//     payload,
-//   };
-// };
+const findMyReviews = (payload) => {
+  return {
+    type: FIND_MY_REVIEWS,
+    payload,
+  };
+};
 
-// const deleteAReview = (payload) => {
-//   return {
-//     type: DELETE_REVIEW,
-//     payload,
-//   };
-// };
+const createAReview = (payload) => {
+  return {
+    type: CREATE_REVIEW,
+    payload,
+  };
+};
+
+const deleteAReview = (payload) => {
+  return {
+    type: DELETE_REVIEW,
+    payload,
+  };
+};
 
 export const getPropertyReviews = (propertyId) => async (dispatch) => {
-  // console.log('propertyId:', propertyId)
   const response = await csrfFetch(`/api/reviews/${propertyId}`);
   if (response.ok) {
     const data = await response.json();
     dispatch(findPropertyReviews(data));
-    // console.log(response)
-    return response;
+    return data;
+  }
+};
+
+export const getUserReviews = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/currentUser/reviews`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(findMyReviews(data));
   }
   return response;
 };
 
-// export const getUserReviews = () => async (dispatch) => {
-//   const response = await csrfFetch(`/api/users/currentUser/reviews`);
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(getAllReviews(data.Reviews));
-//   }
-//   return response;
-// };
+export const createNewReview = (data, propertyId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${propertyId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  if (response.ok) {
+    const review = await response.json();
+    dispatch(createAReview(review));
+    return review;
+  }
+};
+
+export const deleteReview = (reviewId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      id: reviewId,
+    }),
+  });
+  if (response.ok) {
+    const deletedReview = await response.json();
+    dispatch(deleteAReview(reviewId));
+    return deletedReview;
+  }
+};
 
 const initialState = {};
 
 const reviewsReducer = (state = initialState, action) => {
-  // let newState;
-  // console.log("random string");
+  let newState;
   switch (action.type) {
-    case GET_REVIEWS: {
-      const newState = {};
-      action.reviews.forEach((review) => (newState[review.id] = review));
-      return { ...newState };
-    }
     case FIND_PROPERTY_REVIEWS: {
-      const newState = {};
+      newState = {};
       action.payload.forEach((review) => (newState[review.id] = review));
       return newState;
     }
-    case FIND_PROPERTY_REVIEWS: {
-      const newState = {};
+    case FIND_MY_REVIEWS: {
+      newState = {};
       action.payload.forEach((review) => (newState[review.id] = review));
       return newState;
     }
     case CREATE_REVIEW: {
-      let newState = {}
-      newState = Object.assign({}, state);
+      newState = { ...state };
       newState[action.payload.id] = action.payload;
       return newState;
     }
-    // case DELETE_REVIEW:
-    //   newState = Object.assign({}, state);
-    //   delete newState[action.id];
-    //   return newState;
+    case DELETE_REVIEW:
+      newState = { ...state };
+      delete newState[action.propertyId];
+      return newState;
     default:
       return state;
   }

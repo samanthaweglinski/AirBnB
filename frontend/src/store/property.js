@@ -30,7 +30,7 @@ const editProperty = (property) => ({
 
 const createProperty = (property) => ({
   type: CREATE_PROPERTY,
-  newProperty: property,
+  property,
 });
 
 const deleteProperty = (property) => ({
@@ -56,8 +56,9 @@ export const getCurrentUserProperties = () => async (dispatch) => {
   if (response.ok) {
     const propertiesObj = await response.json();
     dispatch(findMyProperties(propertiesObj));
+    return response
   }
-  return response;
+  // return response;
 };
 
 // Get property details by ID
@@ -147,36 +148,38 @@ export const deletePropertyById = (propertyId) => async (dispatch) => {
 // Store/State Changes MAKING EDITS
 const initialState = {};
 const propertyReducer = (state = initialState, action) => {
-  const newState = { ...state };
+  let newState;
   switch (action.type) {
     case GET_ALL_PROPERTIES: {
-      return {
-        properties: action.properties
-      };
+      newState = {};
+      action.properties.forEach(
+        (property) => (newState[property.id] = property)
+      );
+      return newState;
     }
     case FIND_PROPERTY: {
+      newState = {};
       newState[action.property.id] = action.property;
       return newState;
-      // return {
-      //   ...state,
-      //   property: action.property,
-      // };
     }
     case FIND_MY_PROPERTIES: {
-      return {
-        ...state,
-        currentUserProperties: action.currentUserProperties,
-      };
+      newState = {};
+      action.currentUserProperties.forEach(property => newState[property.id] = property);
+      let allProperties = {...newState};
+      return allProperties;
     }
     case CREATE_PROPERTY: {
-      // newState[action.property.id] = action.property;
+      newState = { ...state };
+      newState[action.property.id] = action.property;
       return newState;
     }
     case UPDATE_PROPERTY: {
+      newState = { ...state };
       newState[action.property.id] = action.property;
       return newState;
     }
     case DELETE_PROPERTY: {
+      newState = { ...state };
       delete newState[action.propertyId];
       return newState;
     }
