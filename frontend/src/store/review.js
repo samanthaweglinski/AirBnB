@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const GET_REVIEWS = "reviews/GET_REVIEWS";
-// const FIND_MY_REVIEWS = "properties/FIND_MY_REVIEWS";
+const FIND_MY_REVIEWS = "properties/FIND_MY_REVIEWS";
 const FIND_PROPERTY_REVIEWS = "properties/FIND_PROPERTY_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 // const DELETE_REVIEW = "reviews/DELETE_REVIEW";
@@ -40,8 +40,8 @@ const findPropertyReviews = (payload) => {
 // };
 
 export const getPropertyReviews = (propertyId) => async (dispatch) => {
+  // console.log('propertyId:', propertyId)
   const response = await csrfFetch(`/api/reviews/${propertyId}`);
-  // console.log(propertyId)
   if (response.ok) {
     const data = await response.json();
     dispatch(findPropertyReviews(data));
@@ -50,15 +50,6 @@ export const getPropertyReviews = (propertyId) => async (dispatch) => {
   }
   return response;
 };
-
-// export const findPropertyById = (propertyId) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/properties/${propertyId}`);
-//   if (response.ok) {
-//     const property = await response.json();
-//     dispatch(findProperty(property));
-//     return property;
-//   }
-// };
 
 // export const getUserReviews = () => async (dispatch) => {
 //   const response = await csrfFetch(`/api/users/currentUser/reviews`);
@@ -73,12 +64,17 @@ const initialState = {};
 
 const reviewsReducer = (state = initialState, action) => {
   // let newState;
-  console.log("random string");
+  // console.log("random string");
   switch (action.type) {
     case GET_REVIEWS: {
       const newState = {};
       action.reviews.forEach((review) => (newState[review.id] = review));
       return { ...newState };
+    }
+    case FIND_PROPERTY_REVIEWS: {
+      const newState = {};
+      action.payload.forEach((review) => (newState[review.id] = review));
+      return newState;
     }
     case FIND_PROPERTY_REVIEWS: {
       const newState = {};

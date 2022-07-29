@@ -5,27 +5,45 @@ import { getPropertyReviews } from "../../store/review";
 import "./UsersReviews";
 
 function PropertyReviews() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   let { propertyId } = useParams();
   propertyId = Number(propertyId);
-  const prop = useSelector((state) => state)
-  // console.log('prop:', prop)
+  const prop = useSelector((state) => Object.values(state.reviews));
+  // console.log("prop:", prop);
 
   useEffect(() => {
-    dispatch(getPropertyReviews(propertyId))
-  }, [propertyId, dispatch])
+    dispatch(getPropertyReviews(propertyId));
+  }, [propertyId, dispatch]);
 
-  if (Object.values(prop).length === 0) {
-    return null
+  if (prop.length === 0) {
+    return <p>No reviews yet</p>;
   }
 
   return (
     <div>
-      {/* <h2>My Properties</h2>
-      {prop?.forEach((ele) => (
-        <div>Pretend its rendering</div>
+      {/* <h3>Reviews</h3>
+      {prop.map((review) => (
+        <div key={review.id} className="ind-review">
+          <div className="review-list-rating">
+            <i className="fa-solid fa-star"></i>
+            {review.stars}
+          </div>
+          <div className="review-content">{review.review}</div>
+        </div>
       ))} */}
-      <h3>Reviews</h3>
+      {prop && (
+        <>
+          {prop.map((review) => (
+            <div key={review.id} className="ind-review">
+              <div className="review-list-rating">
+                <i className="fa-solid fa-star"></i>
+                <p>{review.stars}</p>
+              </div>
+              <div className="review-content">{review.review}</div>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }

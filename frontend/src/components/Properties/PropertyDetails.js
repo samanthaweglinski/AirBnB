@@ -64,11 +64,14 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
             </div>
             <div className="total_reviews">{`${prop[propertyId]?.numReviews} reviews`}</div>
           </div>
-          <button>
+          {/* <button>
             <Link to={`/properties/${propertyId}/reviews`}>
               <PropertyReviews />
             </Link>
-          </button>
+          </button> */}
+          <div>
+            <PropertyReviews />
+          </div>
         </div>
       </div>
     </div>
