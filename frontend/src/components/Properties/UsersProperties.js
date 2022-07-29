@@ -10,7 +10,7 @@ const UsersProperties = () => {
   const userPropertiesObj = useSelector((state) => state.properties);
   const userProperties = Object.values(userPropertiesObj); //changing to array to .map
   const [loaded, setLoaded] = useState(false);
-  console.log("prop:", userProperties);
+  // console.log("prop:", userProperties);
 
   useEffect(() => {
     dispatch(getCurrentUserProperties()).then(() => setLoaded(true));

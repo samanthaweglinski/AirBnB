@@ -6,7 +6,7 @@ import "./UsersReviews";
 function PropertyReviews({property}) {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => Object.values(state.reviews));
-  console.log("reviews:", reviews);
+  // console.log("reviews:", reviews);
 
   useEffect(() => {
     dispatch(getPropertyReviews(property.id));

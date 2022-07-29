@@ -27,7 +27,7 @@ const EditProperty = () => {
     if (!propertyId) history.push("/");
     async function fetchData() {
       const response = await dispatch(findPropertyById(propertyId));
-      console.log(response)
+      // console.log(response)
       setSelectedProperty(response)
     }
     fetchData();
