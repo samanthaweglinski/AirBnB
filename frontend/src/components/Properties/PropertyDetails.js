@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useHistory, NavLink } from "react-router-dom";
+import { useParams, useHistory, NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findPropertyById, deletePropertyById } from "../../store/property";
 import "./Properties.css";
@@ -64,7 +64,11 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
             </div>
             <div className="total_reviews">{`${prop[propertyId]?.numReviews} reviews`}</div>
           </div>
-          <PropertyReviews />
+          <button>
+            <Link to={`/properties/${propertyId}/reviews`}>
+              <PropertyReviews />
+            </Link>
+          </button>
         </div>
       </div>
     </div>
