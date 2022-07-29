@@ -7,7 +7,6 @@ import "./Homepage.css";
 const Homepage = () => {
   const dispatch = useDispatch();
   const allProps = useSelector((state) => state.properties.properties);
-  // console.log("allProps:", allProps);
 
   useEffect(() => {
     dispatch(listAllProperties());
@@ -19,7 +18,7 @@ const Homepage = () => {
     <>
       <div>
         <h2>All Properties</h2>
-        {allProps.allProperties.map((ele) => (
+        {allProps.map((ele) => (
           <Link to={`/properties/${ele.id}`} key={ele.id}>
             <div key={ele.id}>
               <h3>{ele.name}</h3>
@@ -31,7 +30,7 @@ const Homepage = () => {
               <p> Price: ${ele.price}/night</p>
               <div className="property-rating" id="star_review_score">
                 <i className="fa-solid fa-star"></i>
-                Average goes here, or new if no reviews (RENDER STAR REVIEWS COMPONENT HERE)
+                Average rating component
               </div>
             </div>
           </Link>

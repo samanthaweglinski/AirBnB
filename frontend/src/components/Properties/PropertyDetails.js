@@ -46,7 +46,7 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
               )}
             </>
           ) : (
-            <>Cannot edit or delete</>
+            <></>
           )}
         </div>
         <br></br>
@@ -56,15 +56,15 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
         ></img>
         <p>{prop[propertyId]?.description}</p>
         <p> Price: ${prop[propertyId]?.price}/night</p>
-        <div>
-          <div>
+        <div className="property_review_details">
+          <div className="avg_rating_component_and_reviews">
             <div className="star_reviews_avg">
               <i className="fa-solid fa-star"></i>
-                Average rating
+              Average rating component
             </div>
             <div className="total_reviews">{`${prop[propertyId]?.numReviews} reviews`}</div>
-            <PropertyReviews />
           </div>
+          <PropertyReviews />
         </div>
       </div>
     </div>

@@ -41,6 +41,7 @@ export const getPropertyReviews = (propertyId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${propertyId}`);
   if (response.ok) {
     const data = await response.json();
+    console.log('data:', data)
     dispatch(getAllReviews(data));
   }
   return response;

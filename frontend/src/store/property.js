@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 // Actions
-const GET_ALL_PROPERTIES = "properties/LIST_PROPERTIES";
+const GET_ALL_PROPERTIES = "properties/GET_ALL_PROPERTIES";
 const FIND_PROPERTY = "properties/FIND_PROPERTY";
 const FIND_MY_PROPERTIES = "properties/FIND_MY_PROPERTIES";
 const UPDATE_PROPERTY = "properties/UPDATE_PROPERTY";
@@ -42,18 +42,17 @@ const deleteProperty = (property) => ({
 // Get all properties
 export const listAllProperties = () => async (dispatch) => {
   const response = await csrfFetch(`/api/properties`);
-  // console.log('res:', response)
   if (response.ok) {
     const propertiesObj = await response.json();
-    dispatch(getAllProperties(propertiesObj));
+    // console.log('propertiesObj:', propertiesObj.allProperties)
+    dispatch(getAllProperties(propertiesObj.allProperties));
+    return response;
   }
-  return response;
 };
 
 // Find all users properties
 export const getCurrentUserProperties = () => async (dispatch) => {
   const response = await csrfFetch(`/api/users/currentUser/properties`);
-  // console.log('res:', response)
   if (response.ok) {
     const propertiesObj = await response.json();
     dispatch(findMyProperties(propertiesObj));
@@ -90,11 +89,37 @@ export const createNewProperty = (data) => async (dispatch) => {
 
 // Edit property
 export const editAProperty = (data) => async (dispatch) => {
-  const { id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage } = data;
+  const {
+    id,
+    ownerId,
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    previewImage,
+  } = data;
   const response = await csrfFetch(`/api/properties/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage }),
+    body: JSON.stringify({
+      id,
+      ownerId,
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+      previewImage,
+    }),
   });
 
   if (response.ok) {
@@ -112,20 +137,21 @@ export const deletePropertyById = (propertyId) => async (dispatch) => {
       propertyId: propertyId,
     }),
   });
-  const deletedRoom = await response.json();
-  dispatch(deleteProperty(propertyId));
-  return deletedRoom;
+  if (response.ok) {
+    const deletedRoom = await response.json();
+    dispatch(deleteProperty(propertyId));
+    return deletedRoom;
+  }
 };
 
-// Store/State Changes
+// Store/State Changes MAKING EDITS
 const initialState = {};
 const propertyReducer = (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
     case GET_ALL_PROPERTIES: {
       return {
-        ...state,
-        properties: action.properties,
+        properties: action.properties
       };
     }
     case FIND_PROPERTY: {
@@ -147,7 +173,7 @@ const propertyReducer = (state = initialState, action) => {
       return newState;
     }
     case UPDATE_PROPERTY: {
-      newState[action.property.id] = action.property
+      newState[action.property.id] = action.property;
       return newState;
     }
     case DELETE_PROPERTY: {

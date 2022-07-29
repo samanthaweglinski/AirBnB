@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { createNewProperty } from "../../store/property";
-// import LoginForm from "../LoginFormModal/LoginForm";
-// import { Modal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
 import "./PropertyForm.css";
 
@@ -14,9 +12,7 @@ const PropertyForm = ({ property }) => {
   const [city, setCity] = useState(property?.city ?? "");
   const [state, setState] = useState(property?.state ?? "");
   const [country, setCountry] = useState(property?.country ?? "");
-  const [previewImage, setPreviewImage] = useState(
-    "https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg"
-  );
+  const [previewImage, setPreviewImage] = useState("");
   const [lat, setLat] = useState(property?.lat ?? "");
   const [lng, setLng] = useState(property?.lng ?? "");
   const [name, setName] = useState(property?.name ?? "");
@@ -156,6 +152,7 @@ const PropertyForm = ({ property }) => {
             placeholder="img-url"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
+            required
           />
         </label>
         <button type="submit">Submit Property</button>
