@@ -13,7 +13,7 @@ function UsersReviews() {
   }, [dispatch]);
 
   if (userReviews.length === 0) {
-    return <p>Oh no! No reviews yet</p>;
+    return <p>Oh no! No reviews yet.</p>;
   }
 
   return (

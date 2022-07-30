@@ -12,6 +12,7 @@ import EditProperty from "./components/Properties/EditPropertyForm";
 import UsersProperties from "./components/Properties/UsersProperties";
 import PropertyReviews from "./components/Reviews/PropertyReviews";
 import UsersReviews from "./components/Reviews/UsersReviews";
+import SignupForm from "./components/SignupFormModal/SignupForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ function App() {
         <Modal
           onClose={() => dispatch(sessionActions.setShowLoginModal(false))}
         >
-          You must be logged in.
+          You must be logged in to host a property.
           <LoginForm />
         </Modal>
       )}

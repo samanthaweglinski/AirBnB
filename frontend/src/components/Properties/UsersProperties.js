@@ -14,6 +14,10 @@ const UsersProperties = () => {
     dispatch(getCurrentUserProperties());
   }, [dispatch]);
 
+  if (userProperties.length === 0) {
+    return <p>Oh no! No properties yet.</p>
+  }
+
   return (
     <div>
       <h2>My Properties</h2>
