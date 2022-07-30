@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPropertyReviews } from "../../store/review";
 import "./UsersReviews";
 
-function PropertyReviews({property}) {
+function PropertyReviews({ property }) {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => Object.values(state.reviews));
   // console.log("reviews:", reviews);

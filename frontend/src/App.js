@@ -11,6 +11,7 @@ import LoginForm from "./components/LoginFormModal/LoginForm";
 import EditProperty from "./components/Properties/EditPropertyForm";
 import UsersProperties from "./components/Properties/UsersProperties";
 import PropertyReviews from "./components/Reviews/PropertyReviews";
+import UsersReviews from "./components/Reviews/UsersReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route exact path="/currentUser/properties">
             <UsersProperties />
+          </Route>
+          <Route exact path="/currentUser/reviews">
+            <UsersReviews />
           </Route>
           <Route exact path="/properties/:propertyId/reviews">
             <PropertyReviews />

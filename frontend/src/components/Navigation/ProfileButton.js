@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import UsersReviews from "../Reviews/UsersReviews";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -29,7 +28,9 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
-  const showUsersProperties = (e) => {};
+  const showUsersProperties = (e) => { };
+  const showUsersReviews = (e) => { };
+
 
   return (
     <>
@@ -43,6 +44,11 @@ function ProfileButton({ user }) {
           <li>
             <NavLink to="/currentUser/properties">
               <button onClick={showUsersProperties}>My Properties</button>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/currentUser/reviews">
+              <button onClick={showUsersReviews}>My Reviews</button>
             </NavLink>
           </li>
           <li>

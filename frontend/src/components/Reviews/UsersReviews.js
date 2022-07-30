@@ -1,36 +1,35 @@
-// import { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
-// import { getPropertyReviews } from "../../store/review";
-// import "./UsersReviews";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserReviews } from "../../store/review";
+import "./UsersReviews";
 
-// function UsersReviews() {
-//   const dispatch = useDispatch();
-//   const reviews = useSelector((state) => state);
-//   console.log('reviews:', reviews)
-//   const properties = useSelector((state) => state.properties.properties);
-//   // console.log('properties:', properties)
+function UsersReviews() {
+  const dispatch = useDispatch();
+  const userReviewsObj = useSelector((state) => state.reviews);
+  const userReviews = Object.values(userReviewsObj);
 
+  useEffect(() => {
+    dispatch(getUserReviews());
+  }, [dispatch]);
 
-//   useEffect(() => {
-//     dispatch(getPropertyReviews());
-//   }, [dispatch]);
+  if (userReviews.length === 0) {
+    return <p>Oh no! No reviews yet</p>;
+  }
 
-//   return (
-//     <div className='all-reviews-div'>
-//         <h1>Your Reviews</h1>
-//         {reviews.map((reviewState, i) => {
-//           return (
-//             <div>
-//             <p className='stars'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p>
-//             <p className='user'>{`${reviewState.stars} stars`}</p>
-//             <p className='actual-review'>{`${reviewState.review}`}</p>
-//             </div>
-//           )
-//         })
-//         }
-//       </div>
-//   )
-// }
+  return (
+    <div>
+      <h2>My Reviews</h2>
+      {userReviews.map((review) => (
+        <div key={review.id} className="ind-review">
+          <div className="review-list-rating">
+            <i className="fa-solid fa-star"></i>
+            <p>{review.stars}</p>
+          </div>
+          <div className="review-content">{review.review}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
-// export default UsersReviews;
+export default UsersReviews;
