@@ -17,7 +17,8 @@ function UsersReviews() {
 
   const removeReview = (reviewId) => async (e) => {
     e.preventDefault();
-    dispatch(deleteReview(reviewId));
+    await dispatch(deleteReview(reviewId))
+    await dispatch(getUserReviews())
     console.log(`is this hitting`)
     history.push("/currentUser/reviews");
   };
