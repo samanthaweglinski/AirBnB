@@ -50,7 +50,6 @@ function Navigation({ isLoaded }) {
           id="airbnb_logo"
         ></img>
       </NavLink>
-      <i className="fa-solid fa-earth-americas"></i>{" "}
       <NavLink to="/properties">
         <button type="button">Become a Host</button>
       </NavLink>
