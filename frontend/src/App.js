@@ -12,7 +12,7 @@ import EditProperty from "./components/Properties/EditPropertyForm";
 import UsersProperties from "./components/Properties/UsersProperties";
 import PropertyReviews from "./components/Reviews/PropertyReviews";
 import UsersReviews from "./components/Reviews/UsersReviews";
-import SignupForm from "./components/SignupFormModal/SignupForm";
+import ReviewForm from "./components/Reviews/CreateReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/properties/">
             <PropertyForm />
+          </Route>
+          <Route exact path="/properties/:propertyId/createReview">
+            <ReviewForm />
           </Route>
           <Route exact path="/properties/:propertyId/edit">
             <EditProperty />

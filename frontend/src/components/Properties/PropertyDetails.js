@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useHistory, NavLink, Link } from "react-router-dom";
+import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findPropertyById, deletePropertyById } from "../../store/property";
 import "./Properties.css";
@@ -14,7 +14,6 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const prop = useSelector((state) => state.properties[propertyId]);
-  // console.log('Prop:', prop)
   const sessionUser = useSelector((state) => state.session.user);
 
   const removeProperty = (e) => {
@@ -50,13 +49,17 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
             <></>
           )}
         </div>
+        <div>
+          <NavLink to={`/properties/${propertyId}/createReview`}>
+            <button>Create Review</button>
+          </NavLink>
+        </div>
         <br></br>
-        <img
-          src={prop?.previewImage}
-          alt="property_preview_image"
-        ></img>
-        <p>{prop?.description}</p>
-        <p> Price: ${prop?.price}/night</p>
+        <div className="specific_property_info">
+          <img src={prop?.previewImage} alt="property_preview_image"></img>
+          <p>{prop?.description}</p>
+          <p> Price: ${prop?.price}/night</p>
+        </div>
         <div className="property_review_details">
           <div className="avg_rating_component_and_reviews">
             <div className="star_reviews_avg">
