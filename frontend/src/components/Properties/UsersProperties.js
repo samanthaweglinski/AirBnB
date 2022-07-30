@@ -24,7 +24,7 @@ const UsersProperties = () => {
       {userProperties.map((ele) => (
         <Link to={`/properties/${ele.id}`} key={ele.id}>
           <div key={ele.id}>
-            {/* <h3>{ele.name}</h3> */}
+            <h3>{ele.name}</h3>
             <h4>
               {ele.city}, {ele.state}
             </h4>
