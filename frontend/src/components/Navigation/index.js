@@ -64,9 +64,7 @@ function Navigation({ isLoaded }) {
         </div>
         <div>
           <NavLink to="/properties" className="become_a_host">
-            <button type="button">
               Become a Host
-            </button>
           </NavLink>
         </div>
         <div>{isLoaded && sessionLinks}</div>

@@ -1,3 +1,8 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
+}
+
 .navigation_bar {
   padding: 0px 0 10px 0;
   background-color: white;
@@ -29,8 +34,31 @@
   border: 1px solid #dddddd;
 }
 
+.actions_menu:hover {
+  box-shadow: 0px 0px 5px gray;
+}
+
 .become_a_host {
-  margin-top: 10px;
+  /* margin-top: 10px;
+  font-weight: bold; */
+  color: black;
+  margin-bottom: 10px;
+  border: white;
+  border-radius: 20px;
+  height: auto;
+  width: auto;
+  padding-left: 17px;
+  padding-right: 15px;
+  font-size: 15px;
+  display: flex;
+  text-align: start;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.become_a_host:hover {
+  border: 1px solid #dddddd;
+  background-color: rgba(211, 211, 211, 0.5);
 }
 
 .nav_link {
@@ -43,10 +71,10 @@
   font-weight: bold;
 }
 
-
 #propdnd_logo {
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: bold;
   line-height: 20px;
   padding-left: 8px;
   padding-top: 14px;
