@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrentUserProperties } from "../../store/property";
 import "./Properties.css";
+import StarReviews from "../Reviews/StarReviews";
 
 const UsersProperties = () => {
   const dispatch = useDispatch();
@@ -32,8 +33,7 @@ const UsersProperties = () => {
             <p>{ele.description}</p>
             <p> Price: ${ele.price}/night</p>
             <div className="property-rating" id="star_review_score">
-              <i className="fa-solid fa-star"></i>
-              Average rating component
+              <StarReviews property={ele}/>
             </div>
           </div>
         </Link>

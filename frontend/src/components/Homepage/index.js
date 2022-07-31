@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listAllProperties } from "../../store/property";
 import "./Homepage.css";
+import StarReviews from "../Reviews/StarReviews";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -17,21 +18,20 @@ const Homepage = () => {
 
   return (
     <>
-      <div>
+      <div className="allProperties">
         <h2>All Properties</h2>
         {allProps.map((ele) => (
-          <Link to={`/properties/${ele.id}`} key={ele.id}>
+          <Link to={`/properties/${ele.id}`} key={ele.id} className="singleProperty">
             <div key={ele.id}>
               {/* <h3>{ele.name}</h3> */}
               <h4>
                 {ele.city}, {ele.state}
               </h4>
               <img src={ele.previewImage} alt={ele.name}></img>
-              <p>{ele.description}</p>
-              <p> Price: ${ele.price}/night</p>
+              {/* <p>{ele.description}</p> */}
+              <p className="propertyPrice"> Price: ${ele.price}/night</p>
               <div className="property-rating" id="star_review_score">
-                <i className="fa-solid fa-star"></i>
-                Average rating component
+                <StarReviews property={ele}/>
               </div>
             </div>
           </Link>

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { findPropertyById, deletePropertyById } from "../../store/property";
 import "./Properties.css";
 import PropertyReviews from "../Reviews/PropertyReviews";
+import StarReviews from "../Reviews/StarReviews";
 
 const PropertyDetails = ({ passedPropId, hideButtons }) => {
   let { propertyId } = useParams();
@@ -63,8 +64,7 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
         <div className="property_review_details">
           <div className="avg_rating_component_and_reviews">
             <div className="star_reviews_avg">
-              <i className="fa-solid fa-star"></i>
-              Average rating component
+              <StarReviews property={prop}/>
             </div>
             <div className="total_reviews">{`${prop?.numReviews} reviews`}</div>
           </div>

@@ -9,8 +9,8 @@ function PropertyReviews({ property }) {
   // console.log("reviews:", reviews);
 
   useEffect(() => {
-    dispatch(getPropertyReviews(property.id));
-  }, [property.id, dispatch]);
+    dispatch(getPropertyReviews());
+  }, [dispatch]);
 
   if (reviews.length === 0) {
     return <p>No reviews yet</p>;

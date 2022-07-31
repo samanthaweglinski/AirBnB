@@ -1,7 +1,24 @@
 img {
-  display: block;
-  max-width:400px;
-  max-height:400px;
-  width: auto;
-  height: auto;
+  height: 250px;
+  flex-wrap: wrap;
+  float: left;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  border-radius: 33px;
+  margin: 1rem;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.allProperties {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+}
+
+.propertyPrice {
+  font-weight: bold;
 }
