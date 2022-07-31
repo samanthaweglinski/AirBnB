@@ -330,39 +330,37 @@ router.delete("/:propertyId", requireAuth, async (req, res) => {
 
   // if (!prop) {
   //   res.status(404);
-  //   res.json({
+  //   return res.json({
   //     message: "Property couldn't be found",
   //     statusCode: 404,
   //   });
+  // } else if (prop.ownerId !== req.user.id) {
+  //   return res
+  //     .status(403)
+  //     .json({ message: "You must be the owner to edit this property" });
   // }
 
-  // if (prop !== req.user) {
-  //   res.status(401);
-  //   res.json({
-  //     message: "You must be the owner to delete this property",
-  //     statusCode: 401,
-  //   });
-  // }
+  // res.json({
+  //   message: "Successfully deleted",
+  //   statusCode: 200,
+  // });
 
-  if (!prop) {
-    res.status(404);
+  // prop.destroy();
+  // prop.save();
+
+  if(!prop) {
     return res.json({
       message: "Property couldn't be found",
-      statusCode: 404,
-    });
-  } else if (prop.ownerId !== req.user.id) {
-    return res
-      .status(403)
-      .json({ message: "You must be the owner to edit this property" });
+      statusCode: 404
+    })
   }
 
-  res.json({
-    message: "Successfully deleted",
-    statusCode: 200,
-  });
+ await prop.destroy()
 
-  prop.destroy();
-  prop.save();
+   res.json({
+      message: "Successfully deleted",
+      statusCode: 200
+    })
 });
 
 module.exports = router;

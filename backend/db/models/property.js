@@ -10,9 +10,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Property.belongsTo(models.User, { foreignKey: "ownerId", as: "Owner" });
-      Property.hasMany(models.Booking, { foreignKey: "propertyId" });
-      Property.hasMany(models.Review, { foreignKey: "propertyId" });
-      Property.hasMany(models.Image, { foreignKey: "propertyId", as: "images" });
+      Property.hasMany(models.Booking, {
+        foreignKey: "propertyId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
+      Property.hasMany(models.Review, {
+        foreignKey: "propertyId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
+      Property.hasMany(models.Image, {
+        foreignKey: "propertyId",
+        onDelete: "CASCADE",
+        hooks: true,
+        as: "images",
+      });
     }
   }
   Property.init(
