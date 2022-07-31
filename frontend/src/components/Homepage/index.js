@@ -19,7 +19,7 @@ const Homepage = () => {
   return (
     <>
       <div className="allProperties">
-        <h2>All Properties</h2>
+        {/* <h2>All Properties</h2> */}
         {allProps.map((ele) => (
           <Link to={`/properties/${ele.id}`} key={ele.id} className="singleProperty">
             <div key={ele.id}>

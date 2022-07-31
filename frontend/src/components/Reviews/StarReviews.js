@@ -5,9 +5,7 @@ import { getPropertyReviews } from "../../store/review";
 function StarReviews({ property }) {
   const dispatch = useDispatch();
   const [avgRating, setAvgRating] = useState(null)
-  // const reviews = useSelector((state) => Object.values(state));
 
-  // const avgStarRating = (ratingSum / spotReviews.length).toFixed(1);
 
   useEffect(() => {
     async function fetchData() {
@@ -15,10 +13,10 @@ function StarReviews({ property }) {
       if (!property?.id) return
       //get reviews
       const response = await dispatch(getPropertyReviews(property?.id));
-      console.log('response:', response)
+      // console.log('response:', response)
       //if property has no reviews
       if (!response?.length) {
-        return setAvgRating(0)
+        return setAvgRating('New')
       }
       // get average and set
       const sum = response.reduce((acc, review) => (review?.stars ?? 0) + acc, 0)
@@ -32,7 +30,7 @@ function StarReviews({ property }) {
       <>
         <i className="fa-solid fa-star"></i>
         <span className="avg-rating">
-          {avgRating === null ? "New" : avgRating}
+          {avgRating}
         </span>
       </>
     </>

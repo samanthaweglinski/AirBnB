@@ -17,15 +17,17 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
   const prop = useSelector((state) => state.properties[propertyId]);
   const sessionUser = useSelector((state) => state.session.user);
 
-  const removeProperty = (e) => {
-    e.preventDefault();
-    dispatch(deletePropertyById(propertyId));
-    history.push("/currentUser/properties");
-  };
-
   useEffect(() => {
     dispatch(findPropertyById(propertyId));
   }, [dispatch, propertyId]);
+
+  const removeProperty = (propertyId) => async (e) => {
+    e.preventDefault();
+    await dispatch(deletePropertyById(propertyId));
+    // await dispatch(findPropertyById(propertyId))
+    history.push("/currentUser/properties");
+  };
+
 
   return (
     <div>
@@ -42,7 +44,7 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
                   <NavLink to={`/properties/${propertyId}/edit`}>
                     <button>Edit</button>
                   </NavLink>
-                  <button onClick={removeProperty}>Delete</button>
+                  <button onClick={removeProperty(prop.id)}>Delete</button>
                 </div>
               )}
             </>
@@ -64,9 +66,10 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
         <div className="property_review_details">
           <div className="avg_rating_component_and_reviews">
             <div className="star_reviews_avg">
-              <StarReviews property={prop}/>
+              Review Average:
+              <StarReviews property={prop} />
             </div>
-            <div className="total_reviews">{`${prop?.numReviews} reviews`}</div>
+            {/* <div className="total_reviews">{`${prop?.numReviews} reviews`}</div> */}
           </div>
           <div>
             <PropertyReviews property={prop} />

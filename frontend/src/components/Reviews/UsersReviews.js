@@ -19,7 +19,7 @@ function UsersReviews() {
     e.preventDefault();
     await dispatch(deleteReview(reviewId))
     await dispatch(getUserReviews())
-    console.log(`is this hitting`)
+    // console.log(`is this hitting`)
     history.push("/currentUser/reviews");
   };
 
