@@ -28,34 +28,52 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
-  const showUsersProperties = (e) => { };
-  const showUsersReviews = (e) => { };
-
+  const showUsersProperties = (e) => {};
+  const showUsersReviews = (e) => {};
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fa-regular fa-user"></i>
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>Username: {user.username}</li>
-          <li>Email: {user.email}</li>
-          <li>
+      <div className="button">
+        <button className="actions_menu" onClick={openMenu}>
+          {/* <i className="fa-regular fa-user"></i> */}
+          <i className="fas fa-bars nav_bars_icon"></i>
+          <i className="fas fa-user-circle user_icon"></i>
+        </button>
+        {showMenu && (
+          <div id="menu">
+            <p>Username: {user.username}</p>
+            <p>Email: {user.email}</p>
             <NavLink to="/currentUser/properties">
               <button onClick={showUsersProperties}>My Properties</button>
             </NavLink>
-          </li>
-          <li>
             <NavLink to="/currentUser/reviews">
               <button onClick={showUsersReviews}>My Reviews</button>
             </NavLink>
-          </li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
+            <button onClick={logout}>
+              Log Out
+            </button>
+          </div>
+        )}
+        {/* {showMenu && (
+          <ul className="profile_dropdown">
+            <li>Username: {user.username}</li>
+            <li>Email: {user.email}</li>
+            <li>
+              <NavLink to="/currentUser/properties">
+                <button onClick={showUsersProperties}>My Properties</button>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/currentUser/reviews">
+                <button onClick={showUsersReviews}>My Reviews</button>
+              </NavLink>
+            </li>
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+          </ul>
+        )} */}
+      </div>
     </>
   );
 }

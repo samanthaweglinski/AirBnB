@@ -11,11 +11,6 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
 
-  // const openMenu = () => {
-  //   if (showMenu) return;
-  //   setShowMenu(true);
-  // };
-
   useEffect(() => {
     if (!showMenu) return;
 
@@ -34,26 +29,48 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <SignupFormModal />
-        <DemoUser />
+        <div className="home_buttons">
+          <span className="login">
+            <LoginFormModal />
+          </span>
+          <span className="signup">
+            <SignupFormModal />
+          </span>
+          <span className="demo_user">
+            <DemoUser />
+          </span>
+        </div>
       </>
     );
   }
 
   return (
     <>
-      <NavLink exact to="/">
-        <img
-          src="https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg"
-          alt="airbnb-logo"
-          id="airbnb_logo"
-        ></img>
-      </NavLink>
-      <NavLink to="/properties">
-        <button type="button">Become a Host</button>
-      </NavLink>
-      {isLoaded && sessionLinks}
+      <div className="navigation_bar">
+        <div>
+          <NavLink
+            exact
+            to="/"
+            className="nav_link home_link"
+            id="propdnd_logo"
+          >
+            <span
+              className="iconify"
+              data-icon="fa-brands:airbnb"
+              data-width="40"
+            ></span>
+            <span className="propdnd_logo">propdnd</span>
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to="/properties">
+            <button type="button" className="become_a_host">
+              Become a Host
+            </button>
+          </NavLink>
+        </div>
+        <div>{isLoaded && sessionLinks}</div>
+      </div>
     </>
   );
 }

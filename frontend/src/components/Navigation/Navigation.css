@@ -1,7 +1,57 @@
-#airbnb_logo {
-  height: 100%;
-  width: 20%;
+.navigation_bar {
+  padding: 0px 0 10px 0;
+  background-color: white;
   display: flex;
+  border-bottom: 0.5px solid #d3d3d3;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 18px;
+  height: 70px;
+  gap: 10px;
+}
+
+.actions_menu {
+  color: gray;
+  background-color: white;
+  margin-bottom: 10px;
+  border: white;
+  border-radius: 20px;
+  height: 40px;
+  width: 80px;
+  padding-left: 10px;
+  font-size: 15px;
+  display: flex;
+  text-align: start;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  border: 1px solid #dddddd;
+}
+
+.become_a_host {
+  align-items: flex-end;
+}
+
+.nav_link {
+  text-decoration: none;
+}
+
+.home_link {
+  color: #ff385c;
+  display: flex;
+  font-weight: bold;
+}
+
+
+#propdnd_logo {
+  align-items: center;
+  font-size: 1.5rem;
+  line-height: 20px;
+  padding-left: 8px;
+  padding-top: 14px;
+}
+
+.home_buttons {
+  font-size: 18px;
+  margin-right: 8px;
 }
