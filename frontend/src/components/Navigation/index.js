@@ -63,8 +63,8 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </div>
         <div>
-          <NavLink to="/properties">
-            <button type="button" className="become_a_host">
+          <NavLink to="/properties" className="become_a_host">
+            <button type="button">
               Become a Host
             </button>
           </NavLink>

@@ -6,11 +6,11 @@
   border-radius: 20px;
   height: 40px;
   width: 80px;
-  padding-left: 10px;
+  padding-left: 17px;
   font-size: 15px;
   display: flex;
   text-align: start;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   border: 1px solid #dddddd;
 }
@@ -21,17 +21,17 @@
   font-weight: 500;
 }
 
-.nav_bars_icon {
+/* .nav_bars_icon {
   color: #595959;
   font-size: 17px;
-  padding-left: 5px;
+  padding-left: 0px;
 }
 
 .user_icon{
   color: #717171;
-  padding-right: px;
+  padding-right: 0px;
   font-size: 25px;
-}
+} */
 
 #menu > * {
   cursor: pointer;
@@ -52,5 +52,3 @@
   justify-content: flex-start;
   letter-spacing: .5px;
 }
-
-

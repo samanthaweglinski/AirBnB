@@ -19,8 +19,9 @@
   border-radius: 20px;
   height: 40px;
   width: 80px;
-  padding-left: 10px;
-  font-size: 15px;
+  padding-left: 17px;
+  padding-right: 15px;
+  font-size: 20px;
   display: flex;
   text-align: start;
   justify-content: space-between;
@@ -29,7 +30,7 @@
 }
 
 .become_a_host {
-  align-items: flex-end;
+  margin-top: 10px;
 }
 
 .nav_link {
