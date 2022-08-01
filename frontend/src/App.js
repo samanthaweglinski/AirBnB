@@ -13,11 +13,13 @@ import UsersProperties from "./components/Properties/UsersProperties";
 import PropertyReviews from "./components/Reviews/PropertyReviews";
 import UsersReviews from "./components/Reviews/UsersReviews";
 import ReviewForm from "./components/Reviews/CreateReviewForm";
+import SignupForm from "./components/SignupFormModal/SignupForm";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const showLoginModal = useSelector((state) => state.session.showLoginModal);
+  const showSignupModal = useSelector((state) => state.session.showSignupModal);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -60,6 +62,13 @@ function App() {
         >
           You must be logged in to host a property.
           <LoginForm />
+        </Modal>
+      )}
+      {showSignupModal && (
+        <Modal
+          onClose={() => dispatch(sessionActions.setShowSignupModal(false))}
+        >
+          <SignupForm />
         </Modal>
       )}
     </>

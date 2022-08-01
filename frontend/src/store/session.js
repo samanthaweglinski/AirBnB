@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
 const SET_SHOW_LOGIN_MODAL = "/session/setShowLoginModal";
+const SET_SHOW_SIGNUP_MODAL = "/session/setShowSignupModal";
 
 const setUser = (user) => {
   return {
@@ -24,6 +25,12 @@ export const setShowLoginModal = (payload) => {
   };
 };
 
+export const setShowSignupModal = (payload) => {
+  return {
+    type: SET_SHOW_SIGNUP_MODAL,
+    payload,
+  };
+};
 
 // login thunk
 export const login = (user) => async (dispatch) => {
@@ -93,6 +100,10 @@ const sessionReducer = (state = initialState, action) => {
     case SET_SHOW_LOGIN_MODAL:
       newState = Object.assign({}, state); // cloning state object so we dont mutate
       newState.showLoginModal = action.payload; // setting equal to payload when we fire action
+      return newState;
+    case SET_SHOW_SIGNUP_MODAL:
+      newState = Object.assign({}, state); // cloning state object so we dont mutate
+      newState.showSignupModal = action.payload; // setting equal to payload when we fire action
       return newState;
     default:
       return state;

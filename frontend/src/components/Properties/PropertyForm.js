@@ -20,9 +20,11 @@ const PropertyForm = ({ property }) => {
   const [price, setPrice] = useState(property?.price ?? "");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const showLoginModal = useSelector((state) => state.session.showLoginModal);
+  const showSignupModal = useSelector((state) => state.session.showSignupModal);
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !showLoginModal && !showSignupModal) {
       dispatch(sessionActions.setShowLoginModal(true));
     }
   });
