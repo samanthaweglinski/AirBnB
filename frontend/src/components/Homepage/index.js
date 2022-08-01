@@ -8,7 +8,7 @@ import StarReviews from "../Reviews/StarReviews";
 const Homepage = () => {
   const dispatch = useDispatch();
   const allPropsObj = useSelector((state) => state.properties);
-  const allProps = Object.values(allPropsObj) //changing to array to .map
+  const allProps = Object.values(allPropsObj); //changing to array to .map
 
   useEffect(() => {
     dispatch(listAllProperties());
@@ -18,20 +18,30 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="allProperties">
+      <div className="all_properties">
         {/* <h2>All Properties</h2> */}
         {allProps.map((ele) => (
-          <Link to={`/properties/${ele.id}`} key={ele.id} className="singleProperty">
+          <Link
+            to={`/properties/${ele.id}`}
+            key={ele.id}
+            className="single_property"
+          >
             <div key={ele.id}>
-              {/* <h3>{ele.name}</h3> */}
-              <h4>
-                {ele.city}, {ele.state}
-              </h4>
-              <img src={ele.previewImage} alt={ele.name}></img>
-              {/* <p>{ele.description}</p> */}
-              <p className="propertyPrice"> Price: ${ele.price}/night</p>
-              <div className="property-rating" id="star_review_score">
-                <StarReviews property={ele}/>
+              <div className="property_image">
+                <img
+                  src={ele.previewImage}
+                  alt={ele.name}
+                  className="property_image_display"
+                ></img>
+              </div>
+              <div className="property_info">
+                <h4 className="property_location">
+                  {ele.city}, {ele.state}
+                </h4>
+                <p className="property_price"> Price: ${ele.price}/night</p>
+                <div className="property_rating" id="star_review_score">
+                  <StarReviews property={ele} />
+                </div>
               </div>
             </div>
           </Link>
@@ -42,3 +52,4 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
