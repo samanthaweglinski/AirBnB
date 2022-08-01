@@ -30,22 +30,3 @@
   background-color: gray;
 }
 
-/* #menu > * {
-  cursor: pointer;
-  position: absolute;
-  top: 60px;
-  right: 95px;
-  width: 200px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 20px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 15px;
-  width: 100%;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  letter-spacing: .5px;
-} */

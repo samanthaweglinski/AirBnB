@@ -28,7 +28,7 @@ body {
   padding-right: 15px;
   font-size: 20px;
   display: flex;
-  position: absolute;
+  position: relative;
   text-align: start;
   justify-content: space-between;
   align-items: center;
