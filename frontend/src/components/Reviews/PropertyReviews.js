@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPropertyReviews } from "../../store/review";
 import "./UsersReviews";
+import "./PropertyReviews.css"
 
 function PropertyReviews({ property }) {
   const dispatch = useDispatch();
@@ -17,16 +18,16 @@ function PropertyReviews({ property }) {
   }
 
   return (
-    <div>
+    <div className="reviews_div">
       {reviews && (
         <>
           {reviews.map((review) => (
-            <div key={review.id} className="ind-review">
+            <div key={review.id} className="ind_review">
               <div className="review-list-rating">
                 {/* <div>Rating: </div> */}
                 <i className="fa-solid fa-star"></i>
-                <p>{review.stars}</p>
-                <div className="review-content">"{review.review}"</div>
+                <p>Rating: {review.stars} star(s)</p>
+                <div className="review-content">Message: "{review.review}"</div>
               </div>
               <div></div>
               <br></br>

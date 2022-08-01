@@ -1,0 +1,8 @@
+.ind_review {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 20px;
+}

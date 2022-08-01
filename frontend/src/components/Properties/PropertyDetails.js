@@ -3,6 +3,7 @@ import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findPropertyById, deletePropertyById } from "../../store/property";
 import "./PropertyDetails.css";
+import "../Reviews/PropertyReviews.css"
 import PropertyReviews from "../Reviews/PropertyReviews";
 import StarReviews from "../Reviews/StarReviews";
 
@@ -57,10 +58,17 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
         </div>
         <br></br>
         <div className="specific_property_info">
-          <img src={prop?.previewImage} alt="property_preview_image" className="specific_property_image"></img>
+          <img
+            src={prop?.previewImage}
+            alt="property_preview_image"
+            className="specific_property_image"
+          ></img>
           <br></br>
           <p className="specific_property_description">{prop?.description}</p>
-          <p className="specific_property_price"> Price: ${prop?.price}/night</p>
+          <p className="specific_property_price">
+            {" "}
+            Price: ${prop?.price}/night
+          </p>
         </div>
         <div className="property_review_details">
           <div className="avg_rating_component_and_reviews">
