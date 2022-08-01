@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findPropertyById, deletePropertyById } from "../../store/property";
-import "./Properties.css";
+import "./PropertyDetails.css";
 import PropertyReviews from "../Reviews/PropertyReviews";
 import StarReviews from "../Reviews/StarReviews";
 
@@ -28,12 +28,15 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
     history.push("/currentUser/properties");
   };
 
-
   return (
-    <div>
-      <div key={prop?.id}>
-        <h3>{prop?.name}</h3>
-        <h4>
+    <div className="property_details">
+      <div className="detail_border" key={prop?.id}>
+        <h3 className="property_name">{prop?.name}</h3>
+        <div className="avg_rating">
+          <StarReviews property={prop} />
+        </div>
+        <br></br>
+        <h4 className="property_location">
           {prop?.city}, {prop?.state}
         </h4>
         <div>
@@ -52,16 +55,12 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
             <></>
           )}
         </div>
-        <div>
-          <NavLink to={`/properties/${propertyId}/createReview`}>
-            <button>Create Review</button>
-          </NavLink>
-        </div>
         <br></br>
         <div className="specific_property_info">
-          <img src={prop?.previewImage} alt="property_preview_image"></img>
-          <p>{prop?.description}</p>
-          <p> Price: ${prop?.price}/night</p>
+          <img src={prop?.previewImage} alt="property_preview_image" className="property_image"></img>
+          <br></br>
+          <p className="property_description">{prop?.description}</p>
+          <p className="property_price"> Price: ${prop?.price}/night</p>
         </div>
         <div className="property_review_details">
           <div className="avg_rating_component_and_reviews">
@@ -69,7 +68,11 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
               Review Average:
               <StarReviews property={prop} />
             </div>
-            {/* <div className="total_reviews">{`${prop?.numReviews} reviews`}</div> */}
+            <div className="create_review_button">
+              <NavLink to={`/properties/${propertyId}/createReview`}>
+                <button>Create Review</button>
+              </NavLink>
+            </div>
           </div>
           <div>
             <PropertyReviews property={prop} />

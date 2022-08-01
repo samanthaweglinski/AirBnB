@@ -33,7 +33,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div className="button">
+      <div className="actions_button">
         <button className="actions_menu" onClick={openMenu}>
           {/* <i className="fa-regular fa-user"></i> */}
           <i className="fas fa-bars nav_bars_icon"></i>

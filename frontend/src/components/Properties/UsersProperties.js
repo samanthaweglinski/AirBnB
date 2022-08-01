@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrentUserProperties } from "../../store/property";
-import "./Properties.css";
+import "./PropertyDetails.css";
 import StarReviews from "../Reviews/StarReviews";
 
 const UsersProperties = () => {

@@ -21,19 +21,15 @@
   font-weight: 500;
 }
 
-/* .nav_bars_icon {
-  color: #595959;
-  font-size: 17px;
-  padding-left: 0px;
+.actions_button {
+  background-color: gray;
 }
 
-.user_icon{
-  color: #717171;
-  padding-right: 0px;
-  font-size: 25px;
-} */
+#menu {
+  background-color: gray;
+}
 
-#menu > * {
+/* #menu > * {
   cursor: pointer;
   position: absolute;
   top: 60px;
@@ -51,4 +47,4 @@
   align-items: center;
   justify-content: flex-start;
   letter-spacing: .5px;
-}
+} */
