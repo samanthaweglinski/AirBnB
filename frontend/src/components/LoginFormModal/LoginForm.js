@@ -58,7 +58,7 @@ const LoginForm = () => {
           Log In
         </button>
       </form>
-      <button className="login_button" onClick={() => {
+      <button className="signup_button" onClick={() => {
         dispatch(sessionActions.setShowSignupModal(true))
         dispatch(sessionActions.setShowLoginModal(false))
       }}>Don't have an account? Sign Up here!</button>
