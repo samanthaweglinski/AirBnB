@@ -36,7 +36,7 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
           <StarReviews property={prop} />
         </div>
         <br></br>
-        <h4 className="property_location">
+        <h4 className="specific_property_location">
           {prop?.city}, {prop?.state}
         </h4>
         <div>
@@ -57,10 +57,10 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
         </div>
         <br></br>
         <div className="specific_property_info">
-          <img src={prop?.previewImage} alt="property_preview_image" className="property_image"></img>
+          <img src={prop?.previewImage} alt="property_preview_image" className="specific_property_image"></img>
           <br></br>
-          <p className="property_description">{prop?.description}</p>
-          <p className="property_price"> Price: ${prop?.price}/night</p>
+          <p className="specific_property_description">{prop?.description}</p>
+          <p className="specific_property_price"> Price: ${prop?.price}/night</p>
         </div>
         <div className="property_review_details">
           <div className="avg_rating_component_and_reviews">

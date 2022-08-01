@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  margin-top: 5rem;
+  margin-top: 1rem;
   padding: 10px;
 }
 
@@ -35,7 +35,7 @@
   justify-content: flex-start;
 }
 
-.property_location {
+.specific_property_location {
   font-size: 17px;
   display: flex;
   justify-content: flex-start;
@@ -44,7 +44,7 @@
   font-style: oblique;
   font-weight: 400;
 }
-.property_image {
+.specific_property_image {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,11 +56,11 @@
   margin: 0rem;
   position: static;
 }
- .property_description, .property_price {
+ .specific_property_description, .specific_property_price {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 6rem;
   padding-left: 12px;
  }
 
