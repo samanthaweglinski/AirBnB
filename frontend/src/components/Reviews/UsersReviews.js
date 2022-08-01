@@ -34,14 +34,19 @@ function UsersReviews() {
         {userReviews.map((review) => (
           <div key={review.id} className="ind_review">
             <div className="ind_review_info">
-            <div className="review-list-rating">
-              <div className="star_info">
-                <i className="fa-solid fa-star"></i>
-                <p className="star_rating">{review.stars} out of 5 stars</p>
+              <div className="review-list-rating">
+                <div className="star_info">
+                  <i className="fa-solid fa-star"></i>
+                  <p className="star_rating">{review.stars} out of 5 stars</p>
+                </div>
               </div>
-            </div>
-            <div className="review_content">{review.review}</div>
-            <button onClick={removeReview(review.id)} className="delete_review_button">Delete Review</button>
+              <div className="review_content">{review.review}</div>
+              <button
+                onClick={removeReview(review.id)}
+                className="delete_review_button"
+              >
+                Delete Review
+              </button>
             </div>
           </div>
         ))}
