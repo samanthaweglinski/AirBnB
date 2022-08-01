@@ -84,7 +84,7 @@ function SignupForm() {
           />
         </label>
         <label>
-          <span>Password</span>
+          <span>Password:</span>
           <input
             type="password"
             value={password}
@@ -93,7 +93,7 @@ function SignupForm() {
           />
         </label>
         <label>
-          <span>Confirm Password</span>
+          <span>Confirm Password:</span>
           <input
             type="password"
             value={confirmPassword}

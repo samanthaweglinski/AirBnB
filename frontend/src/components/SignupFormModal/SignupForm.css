@@ -6,11 +6,12 @@
 
 .signup_form span {
   font-size: 15px;
-  margin-right: 12px;
+  margin-right: 30px;
+  margin-left: 20px;
 }
 
 .signup_form {
-  align-items: center;
+  align-items: revert;
   display: flex;
   flex-direction: column;
   height: 255px;
@@ -37,8 +38,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 255px;
-  width: 500px;
+  height: 300px;
+  width: 600px;
 }
 
 .signup_form_container span {
