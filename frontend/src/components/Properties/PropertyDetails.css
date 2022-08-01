@@ -10,6 +10,7 @@
 .detail_border {
   display: flex;
   flex-direction: column;
+  /* border: 2px solid; */
   border: 2px double rgb(216, 203, 203);
   padding: 2rem;
   border-radius: 10px;

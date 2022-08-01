@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrentUserProperties } from "../../store/property";
 import "./PropertyDetails.css";
+import "./UsersProperties.css";
 import StarReviews from "../Reviews/StarReviews";
 
 const UsersProperties = () => {
@@ -16,24 +17,28 @@ const UsersProperties = () => {
   }, [dispatch]);
 
   if (userProperties.length === 0) {
-    return <p>Oh no! No properties yet.</p>
+    return <p>Oh no! No properties yet.</p>;
   }
 
   return (
     <div>
-      <h2>My Properties</h2>
+      <h2 className="my_properties_title">My Properties</h2>
       {userProperties.map((ele) => (
         <Link to={`/properties/${ele.id}`} key={ele.id}>
-          <div key={ele.id}>
-            <h3>{ele.name}</h3>
-            <h4>
-              {ele.city}, {ele.state}
-            </h4>
-            <img src={ele.previewImage} alt={ele.name}></img>
-            <p>{ele.description}</p>
-            <p> Price: ${ele.price}/night</p>
-            <div className="property-rating" id="star_review_score">
-              <StarReviews property={ele}/>
+          <div key={ele.id} className="users_property">
+            <div>
+              <img src={ele.previewImage} alt={ele.name}></img>
+            </div>
+            <div>
+              <h3>{ele.name}</h3>
+              <h4>
+                {ele.city}, {ele.state}
+              </h4>
+              <p>{ele.description}</p>
+              <p> Price: ${ele.price}/night</p>
+              <div className="property-rating" id="star_review_score">
+                <StarReviews property={ele} />
+              </div>
             </div>
           </div>
         </Link>
