@@ -16,7 +16,7 @@ export default function DemoUser() {
   return (
     <form onSubmit={handleSubmit}>
       {/* <button type="submit">Demo</button> */}
-      <button class="button-23" type="submit">Demo</button>
+      <button className="button-23" type="submit">Demo</button>
     </form>
   );
 }
