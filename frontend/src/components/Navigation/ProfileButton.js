@@ -41,8 +41,6 @@ function ProfileButton({ user }) {
         </button>
         {showMenu && (
           <div id="menu">
-            <p>Username: {user.username}</p>
-            <p>Email: {user.email}</p>
             <NavLink to="/currentUser/properties">
               <button onClick={showUsersProperties}>My Properties</button>
             </NavLink>
@@ -52,6 +50,8 @@ function ProfileButton({ user }) {
             <button onClick={logout}>
               Log Out
             </button>
+            <p>Username: {user.username}</p>
+            <p>Email: {user.email}</p>
           </div>
         )}
         {/* {showMenu && (

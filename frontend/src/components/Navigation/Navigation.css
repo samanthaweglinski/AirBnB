@@ -19,7 +19,7 @@ body {
 .actions_menu {
   color: gray;
   background-color: white;
-  margin-bottom: 10px;
+  margin-top: 10px;
   border: white;
   border-radius: 20px;
   height: 40px;
@@ -39,16 +39,13 @@ body {
 }
 
 .become_a_host {
-  /* margin-top: 10px;
-  font-weight: bold; */
   color: black;
-  margin-bottom: 10px;
+  margin-top: 14px;
   border: white;
   border-radius: 20px;
   height: auto;
   width: auto;
-  padding-left: 17px;
-  padding-right: 15px;
+  padding: 10px 10px 10px 10px;
   font-size: 15px;
   display: flex;
   text-align: start;
