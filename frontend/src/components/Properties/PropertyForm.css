@@ -11,7 +11,7 @@
 .form_container {
   display: flex;
   justify-content: center;
-  width: 50%;
+  width: auto;
   margin: auto;
   margin-top: 20px;
   padding: 40px;

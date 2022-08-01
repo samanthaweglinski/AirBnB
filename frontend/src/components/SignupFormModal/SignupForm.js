@@ -95,6 +95,7 @@ function SignupForm() {
         <label>
           <span>Confirm Password:</span>
           <input
+            className="signup_input_confirm_password"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
