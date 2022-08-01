@@ -35,7 +35,6 @@ function ProfileButton({ user }) {
     <>
       <div className="actions_button">
         <button className="actions_menu" onClick={openMenu}>
-          {/* <i className="fa-regular fa-user"></i> */}
           <i className="fas fa-bars nav_bars_icon"></i>
           <i className="fas fa-user-circle user_icon"></i>
         </button>
@@ -50,29 +49,10 @@ function ProfileButton({ user }) {
             <button onClick={logout}>
               Log Out
             </button>
-            <p>Username: {user.username}</p>
+            <p>Hello {user.username}!</p>
             <p>Email: {user.email}</p>
           </div>
         )}
-        {/* {showMenu && (
-          <ul className="profile_dropdown">
-            <li>Username: {user.username}</li>
-            <li>Email: {user.email}</li>
-            <li>
-              <NavLink to="/currentUser/properties">
-                <button onClick={showUsersProperties}>My Properties</button>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/currentUser/reviews">
-                <button onClick={showUsersReviews}>My Reviews</button>
-              </NavLink>
-            </li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-          </ul>
-        )} */}
       </div>
     </>
   );

@@ -43,7 +43,7 @@ function UsersReviews() {
               <div className="review_content">{review.review}</div>
               <button
                 onClick={removeReview(review.id)}
-                className="delete_review_button"
+                className="button-23"
               >
                 Delete Review
               </button>

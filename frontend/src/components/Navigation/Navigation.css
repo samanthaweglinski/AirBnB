@@ -19,7 +19,7 @@ body {
 .actions_menu {
   color: gray;
   background-color: white;
-  margin-top: 10px;
+  margin-top: 15px;
   border: white;
   border-radius: 20px;
   height: 40px;
@@ -28,6 +28,7 @@ body {
   padding-right: 15px;
   font-size: 20px;
   display: flex;
+  position: absolute;
   text-align: start;
   justify-content: space-between;
   align-items: center;

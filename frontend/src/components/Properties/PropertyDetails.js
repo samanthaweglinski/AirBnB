@@ -46,9 +46,9 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
               {!hideButtons && sessionUser?.id === prop?.ownerId && (
                 <div>
                   <NavLink to={`/properties/${propertyId}/edit`}>
-                    <button>Edit</button>
+                    <button className="button-23">Edit</button>
                   </NavLink>
-                  <button onClick={removeProperty(prop.id)}>Delete</button>
+                  <button onClick={removeProperty(prop.id)} className="button-23">Delete</button>
                 </div>
               )}
             </>
@@ -78,7 +78,7 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
             </div>
             <div className="create_review_button">
               <NavLink to={`/properties/${propertyId}/createReview`}>
-                <button>Create Review</button>
+                <button className="button-23">Create Review</button>
               </NavLink>
             </div>
           </div>
