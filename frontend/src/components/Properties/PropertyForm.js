@@ -57,105 +57,115 @@ const PropertyForm = ({ property }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="form_container">
+      <form className="create_property" onSubmit={handleSubmit}>
+        <h4 className="form_requirements">Please fill out all of the following fields below:</h4>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
         <label>
-          Address
+        <span>Address:</span>
           <input
             type="text"
             value={address}
+            // placeholder="5 Pope Street"
             onChange={(e) => setAddress(e.target.value)}
             required
           />
         </label>
         <label>
-          City
+        <span>City:</span>
           <input
             type="text"
             value={city}
+            // placeholder="San Francisco"
             onChange={(e) => setCity(e.target.value)}
             required
           />
         </label>
         <label>
-          State
+        <span>State:</span>
           <input
             type="text"
             value={state}
+            // placeholder="California"
             onChange={(e) => setState(e.target.value)}
             required
           />
         </label>
         <label>
-          Country
+        <span>Country:</span>
           <input
             type="text"
             value={country}
+            // placeholder="Ex: United States of America"
             onChange={(e) => setCountry(e.target.value)}
             required
           />
         </label>
         <label>
-          Latitude
+        <span>Latitude:</span>
           <input
             type="text"
             value={lat}
+            // placeholder="32.53789"
             onChange={(e) => setLat(e.target.value)}
             required
           />
         </label>
         <label>
-          Longitude
+        <span>Longitude:</span>
           <input
             type="text"
             value={lng}
+            // placeholder="93.32468"
             onChange={(e) => setLng(e.target.value)}
             required
           />
         </label>
         <label>
-          Name
+        <span> Name: </span>
           <input
             type="text"
             value={name}
+            // placeholder="Charming Victorian"
             onChange={(e) => setName(e.target.value)}
             required
           />
         </label>
         <label>
-          Description
+        <span>Description:</span>
           <input
             type="text"
             value={description}
+            // placeholder="Enjoy the views from the garden!"
             onChange={(e) => setDescription(e.target.value)}
             required
           />
         </label>
         <label>
-          Price
+        <span>Price per night:</span>
           <input
             type="text"
             value={price}
+            // placeholder="250"
             onChange={(e) => setPrice(e.target.value)}
             required
           />
         </label>
         <label>
-          Image
+        <span>Image Url:</span>
           <input
             type="text"
-            placeholder="img-url"
             value={previewImage}
+            placeholder="img-url"
             onChange={(e) => setPreviewImage(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Submit Property</button>
+        <button type="submit" className="create_property_button">Submit Property</button>
       </form>
     </div>
   );

@@ -28,15 +28,17 @@ const LoginForm = () => {
   // console.log('errors:', errors)
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login_container" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
+      <h1 className="welcome_container">Welcome Back</h1>
       <label>
-        Username or Email
+        <span>Username or Email:</span>
         <input
+          className="login_input_credentials"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
@@ -44,15 +46,18 @@ const LoginForm = () => {
         />
       </label>
       <label>
-        Password
+        <span>Password:</span>
         <input
+          className="login_input_password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button className="login_button" type="submit">
+        Log In
+      </button>
     </form>
   );
 };

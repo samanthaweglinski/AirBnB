@@ -1,0 +1,50 @@
+.create_property label {
+  display: flex;
+  padding: 5px;
+}
+
+.create_property span {
+  font-size: 15px;
+  margin-right: 12px;
+}
+
+.form_container {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 40px;
+  border: 2px double rgb(216, 203, 203);
+  border-radius: 20px;
+}
+
+input {
+  font-size: 16px;
+  padding-left: 10px;
+  width: 350px;
+  border: 2px double rgb(216, 203, 203);
+  border-radius: 10px;
+}
+
+.create_property_button {
+  background-color: white;
+  margin-top: 20px;
+  margin-left: 50px;
+  background-image: linear-gradient(
+    to right,
+    #e61e4d 0%,
+    #e31c5f 50%,
+    #d70466 100%
+  );
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  height: 50px;
+  width: 370px;
+}
+
+.form_requirements {
+  margin-bottom: 50px;
+ }
