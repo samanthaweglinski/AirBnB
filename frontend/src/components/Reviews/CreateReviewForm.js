@@ -5,9 +5,9 @@ import { createNewReview } from "../../store/review";
 import "./CreateReviewForm.css";
 
 const ReviewForm = () => {
-  const dispatch = useDispatch()
-  let { propertyId } = useParams()
-  propertyId = Number(propertyId)
+  const dispatch = useDispatch();
+  let { propertyId } = useParams();
+  propertyId = Number(propertyId);
   const [reviewMessage, setReviewMessage] = useState("");
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
@@ -30,7 +30,7 @@ const ReviewForm = () => {
       })
       .catch(async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        if (data?.message) setErrors([data.message]);
       });
   };
 

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import { useSelector } from "react-redux";
 import "./SignupForm.css";
 
 function SignupForm() {
   const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -15,13 +16,13 @@ function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  // if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/" />;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(
+      await dispatch(
         sessionActions.signup({
           firstName,
           lastName,
@@ -29,14 +30,20 @@ function SignupForm() {
           username,
           password,
         })
-      ).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+      )
+        .then(() => {
+          dispatch(sessionActions.setShowSignupModal(false));
+        })
+        .catch(async (res) => {
+          // const data = await res.json();
+          // if (data && data.errors) setErrors(data.errors);
+          const data = await res.json();
+          if (data?.message) setErrors([data.errors]);
+        });
     }
-    return setErrors([
-      "Confirm Password field must be the same as the Password field",
-    ]);
+    // return setErrors([
+    //   "Confirm Password field must be the same as the Password field",
+    // ]);
   };
 
   return (
