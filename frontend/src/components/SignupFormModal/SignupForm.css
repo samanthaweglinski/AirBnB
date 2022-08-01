@@ -40,6 +40,7 @@ input {
   height: 50px;
   width: 370px;
   margin-top: 20px;
+  margin-left: 60px;
 }
 
 .signup_form_container {
@@ -47,7 +48,7 @@ input {
   justify-content: center;
   width: auto;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 0px;
   padding: 40px;
   /* border: 2px double rgb(216, 203, 203); */
   border-radius: 20px;
