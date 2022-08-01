@@ -20,7 +20,8 @@ function StarReviews({ property }) {
       }
       // get average and set
       const sum = response.reduce((acc, review) => (review?.stars ?? 0) + acc, 0)
-      setAvgRating(sum/response.length)
+      const avg = (sum/response.length).toFixed(2)
+      setAvgRating(avg)
     }
     fetchData();
   }, [dispatch, property?.id]);
