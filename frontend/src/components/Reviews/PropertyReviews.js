@@ -6,12 +6,12 @@ import "./PropertyReviews.css";
 
 function PropertyReviews({ property }) {
   const dispatch = useDispatch();
-  const reviews = useSelector((state) => Object.values(state.reviews));
+  const reviews = useSelector((state) => Object.values(state?.reviews));
   // console.log("reviews:", reviews);
 
   useEffect(() => {
-    dispatch(getPropertyReviews(property.id));
-  }, [dispatch, property.id]);
+    dispatch(getPropertyReviews(property?.id));
+  }, [dispatch, property?.id]);
 
   if (reviews.length === 0) {
     return <p>No reviews yet</p>;

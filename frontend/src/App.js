@@ -14,6 +14,7 @@ import PropertyReviews from "./components/Reviews/PropertyReviews";
 import UsersReviews from "./components/Reviews/UsersReviews";
 import ReviewForm from "./components/Reviews/CreateReviewForm";
 import SignupForm from "./components/SignupFormModal/SignupForm";
+import SearchBar from "./components/SearchBar/SearchBar.js";
 
 function App() {
   const dispatch = useDispatch();
