@@ -55,6 +55,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a.dataItem:hover {
   background-color: lightgrey;
 }
