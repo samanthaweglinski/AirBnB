@@ -1,22 +1,16 @@
 .searchInputs {
   display: flex;
+  margin-top: 1em;
 }
-/* .searchInputs {
-  margin-top: 105px;
-  display: flex;
-} */
 
-/* .search input {
+.search input {
   background-color: white;
-  border: 0;
-  border-radius: 2px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  font-size: 18px;
-  padding: 15px;
-  height: 30px;
-  width: 300px;
-} */
+  border-radius: 30px;
+  font-size: 16px;
+  padding: 8px;
+  height: 24px;
+  width: 20em;
+}
 
 .searchIcon {
   height: 60px;
