@@ -12,7 +12,9 @@ function SearchBar({placeholder, data}) {
       </div>
       <div className="dataResult">
         {data.map((value, key) => {
-          return <a className="dataItem" href={`/properties/${value.id}`}> {value.name} </a>
+          return <a className="dataItem" href={`/properties/${value.id}`}>
+            <p>{value.name}</p>
+          </a>
         })}
       </div>
     </div>
