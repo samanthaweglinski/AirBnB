@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
   const allPropsObj = useSelector((state) => state.properties);
   const allProps = Object.values(allPropsObj); //changing to array to .map
   // const allProps = dispatch(listAllProperties())
-  console.log({allProps})
+  // console.log({allProps})
 
   useEffect(() => {
     if (!showMenu) return;

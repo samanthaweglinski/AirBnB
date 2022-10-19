@@ -7,18 +7,23 @@ function SearchBar({ placeholder, data }) {
   const handleFilter = (event) => {
     const searchWord = event.target.value
     const newFilter = data.filter((value) => {
-      return value.name.includes(searchWord)
+      return value.name.toLowerCase().includes(searchWord.toLowerCase())
     })
-    setFilteredData(newFilter)
+
+    if (searchWord === "") {
+      setFilteredData([])
+    } else {
+      setFilteredData(newFilter)
+    }
   }
 
   return (
     <div className="search">
       <div className="searchInputs">
         <input type="text" placeholder={placeholder} onChange={handleFilter}/>
-        <div className="searchIcon">
+        {/* <div className="searchIcon">
           <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+        </div> */}
       </div>
       { (filteredData.length != 0) && (
       <div className="dataResult">
