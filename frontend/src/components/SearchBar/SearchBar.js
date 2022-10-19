@@ -6,9 +6,15 @@ function SearchBar({placeholder, data}) {
     <div className="search">
       <div className="searchInputs">
         <input type="text" placeholder={placeholder} />
-        <div className="searchIcon"></div>
+        <div className="searchIcon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
       </div>
-      <div className="dataResult"></div>
+      <div className="dataResult">
+        {data.map((value, key) => {
+          return <a className="dataItem" href={`/properties/${value.id}`}> {value.name} </a>
+        })}
+      </div>
     </div>
   )
 }

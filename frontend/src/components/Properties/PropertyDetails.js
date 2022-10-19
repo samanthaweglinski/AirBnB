@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findPropertyById, deletePropertyById } from "../../store/property";
+import { findPropertyById, deletePropertyById, listAllProperties } from "../../store/property";
 import "./PropertyDetails.css";
 import "../Reviews/PropertyReviews.css"
 import PropertyReviews from "../Reviews/PropertyReviews";
@@ -18,9 +18,13 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
   const prop = useSelector((state) => state.properties[propertyId]);
   const sessionUser = useSelector((state) => state.session.user);
 
-  useEffect(() => {
+  useEffect((propertyId) => {
     dispatch(findPropertyById(propertyId));
+    dispatch(listAllProperties())
   }, [dispatch, propertyId]);
+
+  // useEffect(() => {
+  // }, [dispatch])
 
   const removeProperty = (propertyId) => async (e) => {
     e.preventDefault();

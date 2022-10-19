@@ -7,14 +7,16 @@ import SignupFormModal from "../SignupFormModal";
 import DemoUser from "../DemoUser";
 import "./Navigation.css";
 import SearchBar from "../SearchBar/SearchBar";
+import { listAllProperties } from "../../store/property";
 
 function Navigation({ isLoaded }) {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   const allPropsObj = useSelector((state) => state.properties);
   const allProps = Object.values(allPropsObj); //changing to array to .map
-
-  // console.log({allProps})
+  // const allProps = dispatch(listAllProperties())
+  console.log({allProps})
 
   useEffect(() => {
     if (!showMenu) return;
@@ -28,6 +30,10 @@ function Navigation({ isLoaded }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+
+  useEffect(() => {
+    dispatch(listAllProperties())
+  }, [dispatch])
 
   let sessionLinks;
   if (sessionUser) {
