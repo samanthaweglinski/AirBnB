@@ -87,14 +87,14 @@ const BookingForm = ({ property, star, review }) => {
     setSubTotal(property.price * daysCount);
     setServiceFee(subTotal / 4);
     setTotal(subTotal - cleaningFee + serviceFee);
-  }, [startDate, endDate, timeDifference, daysCount, subTotal, serviceFee]);
+  }, [startDate, endDate, timeDifference, daysCount, subTotal, serviceFee, property.price, cleaningFee]);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setHasSubmitted(true)
     try {
       const booking = await dispatch(createBooking(property.id, { startDate, endDate }))
-      // history.push(`/currentUser/bookings`)
+      history.push(`/currentUser/bookings`)
     } catch (error) {
       const errors = await error.json()
       const newErrors = [];

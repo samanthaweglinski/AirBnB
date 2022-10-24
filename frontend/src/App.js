@@ -12,6 +12,7 @@ import EditProperty from "./components/Properties/EditPropertyForm";
 import UsersProperties from "./components/Properties/UsersProperties";
 import PropertyReviews from "./components/Reviews/PropertyReviews";
 import UsersReviews from "./components/Reviews/UsersReviews";
+import UsersBookings from "./components/Bookings/UsersBookings";
 import ReviewForm from "./components/Reviews/CreateReviewForm";
 import SignupForm from "./components/SignupFormModal/SignupForm";
 // import SearchBar from "./components/SearchBar/SearchBar.js";
@@ -51,6 +52,9 @@ function App() {
           </Route>
           <Route exact path="/currentUser/reviews">
             <UsersReviews />
+          </Route>
+          <Route exact path="/currentUser/bookings">
+            <UsersBookings />
           </Route>
           <Route exact path="/properties/:propertyId/reviews">
             <PropertyReviews />
