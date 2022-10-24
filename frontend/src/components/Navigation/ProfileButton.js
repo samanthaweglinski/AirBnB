@@ -29,7 +29,9 @@ function ProfileButton({ user }) {
   };
 
   const showUsersProperties = (e) => {};
-  const showUsersReviews = (e) => {};
+  const showUsersReviews = (e) => { };
+  const showUsersBookings = (e) => {};
+
 
   return (
     <>
@@ -45,6 +47,9 @@ function ProfileButton({ user }) {
             </NavLink>
             <NavLink to="/currentUser/reviews">
               <button onClick={showUsersReviews}>My Reviews</button>
+            </NavLink>
+            <NavLink to="/currentUser/bookings">
+              <button onClick={showUsersBookings}>My Bookings</button>
             </NavLink>
             <button onClick={logout}>
               Log Out

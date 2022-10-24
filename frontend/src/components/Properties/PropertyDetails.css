@@ -111,3 +111,7 @@
   -webkit-user-select: none;
   width: auto;
 }
+
+.booking-container {
+  border: thin solid black;
+}
