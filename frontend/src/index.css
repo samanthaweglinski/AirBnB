@@ -8,3 +8,19 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.button-24 {
+  border: none;
+  background: none;
+  color: red;
+  margin-top: 8px;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
+}
+
+.button-24:hover {
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: red;
+}

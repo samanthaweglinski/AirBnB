@@ -24,9 +24,74 @@
 
 .actions_button {
   background-color: gray;
+  /* position: absolute; */
 }
+
+/* #menu {
+  background-color: gray;
+} */
+
+.profile_options {
+  display: flex;
+  flex-direction: column;
+}
+
+#dropdown {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+/* .navBar {
+  color: gray;
+  background-color: white;
+  margin-bottom: 10px;
+  border: white;
+  border-radius: 20px;
+  height: 40px;
+  width: 80px;
+  padding-left: 10px;
+  font-size: 15px;
+  display: flex;
+  text-align: start;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #dddddd;
+  cursor: pointer;
+} */
 
 #menu {
+  cursor: pointer;
+  position: absolute;
+  top: 60px;
+  right: 95px;
+  width: 200px;
   background-color: gray;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+#menu > * {
+  padding: 15px;
+  width: 100%;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  letter-spacing: 0.5px;
+}
+
+.dropdown-options {
+  display: flex;
+  flex-direction: column;
+}
+
+div#dropdown.logout-profile-button {
+  cursor: pointer;
+}
