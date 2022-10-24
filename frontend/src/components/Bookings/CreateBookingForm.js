@@ -93,7 +93,7 @@ const BookingForm = ({ property, star, review }) => {
     e.preventDefault()
     setHasSubmitted(true)
     const booking = await dispatch(createBooking(property.id, { startDate, endDate }))
-    history.push(`/bookings/${booking.id}`)
+    // history.push(`/bookings/${booking.id}`)
     // try {
     // } catch (error) {
     //   const errors = await error.json()

@@ -8,9 +8,9 @@ const CREATE_BOOKING = "bookings/CREATE_BOOKING";
 const UPDATE_BOOKING = "bookings/UPDATE_BOOKING";
 const DELETE_BOOKING = "bookings/DELETE_BOOKING";
 
-const getAllBookingsAction = (payload) => ({
+const getAllBookingsAction = (bookings) => ({
   type: GET_ALL_BOOKINGS,
-  payload,
+  bookings,
 });
 
 // const findBookingAction = (bookings) => ({
@@ -23,19 +23,19 @@ const findMyBookingsAction = (payload) => ({
   payload,
 });
 
-const createBookingAction = (payload) => ({
+const createBookingAction = (booking) => ({
   type: CREATE_BOOKING,
-  payload,
+  booking,
 });
 
-const editBookingAction = (payload) => ({
+const editBookingAction = (booking) => ({
   typ: UPDATE_BOOKING,
-  payload,
+  booking,
 });
 
-const deleteBookingAction = (payload) => ({
+const deleteBookingAction = (bookingId) => ({
   type: DELETE_BOOKING,
-  payload,
+  bookingId,
 });
 
 // Thunks
