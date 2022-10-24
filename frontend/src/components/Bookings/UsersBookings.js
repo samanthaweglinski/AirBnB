@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUserBookings, deleteBooking } from "../../store/booking";
-import "./UsersBookings.css"
+import "./UsersBookings.css";
 
 function UsersBookings() {
   const dispatch = useDispatch();
@@ -40,15 +40,23 @@ function UsersBookings() {
               <div className="booking_property_address">
                 {properties[booking.propertyId].address}
               </div>
-              <img src={properties[booking.propertyId].previewImage} alt="previewimage"/>
+              <img
+                src={properties[booking.propertyId].previewImage}
+                alt="previewimage"
+              />
             </div>
             <div className="booking_dates">
               <div>{booking.startDate}</div>
               <div>{booking.endDate}</div>
             </div>
-            <button onClick={removeBooking(booking.id)} className="button-23">
-              Delete Booking
-            </button>
+            <div>
+              <button
+                onClick={removeBooking(booking.id)}
+                className="delete-booking-button"
+              >
+                Delete Booking
+              </button>
+            </div>
           </div>
         ))}
       </div>
