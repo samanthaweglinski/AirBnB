@@ -29,37 +29,45 @@ function UsersBookings() {
 
   return (
     isLoaded && (
-      <div>
+      <>
         <h2 className="my_bookings_title">My Bookings</h2>
-        {userBookings.map((booking) => (
-          <div key={booking.id} className="individual_booking">
-            <div className="booking_property_details">
-              <div className="booking_property_name">
-                {properties[booking.propertyId].name}
+        <div className="users_bookings_container">
+          {userBookings.map((booking) => (
+            <div key={booking.id} className="individual_booking">
+              <div className="booking_property_picture">
+                <img
+                  src={properties[booking.propertyId].previewImage}
+                  alt="previewimage"
+                />
               </div>
-              <div className="booking_property_address">
-                {properties[booking.propertyId].address}
+              <div className="booking_text_and_button">
+                <div className="booking_information">
+                  <div className="booking_prop_info">
+                    <div className="booking_property_name">
+                      {properties[booking.propertyId].name}
+                    </div>
+                    <div className="booking_property_address">
+                      {properties[booking.propertyId].address}
+                    </div>
+                  </div>
+                  <div>
+                    <div>Start Date: {booking.startDate}</div>
+                    <div>End Date: {booking.endDate}</div>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    onClick={removeBooking(booking.id)}
+                    className="delete-booking-button"
+                  >
+                    Delete Booking
+                  </button>
+                </div>
               </div>
-              <img
-                src={properties[booking.propertyId].previewImage}
-                alt="previewimage"
-              />
             </div>
-            <div className="booking_dates">
-              <div>{booking.startDate}</div>
-              <div>{booking.endDate}</div>
-            </div>
-            <div>
-              <button
-                onClick={removeBooking(booking.id)}
-                className="delete-booking-button"
-              >
-                Delete Booking
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </>
     )
   );
 }
