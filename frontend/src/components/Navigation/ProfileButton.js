@@ -29,9 +29,8 @@ function ProfileButton({ user }) {
   };
 
   const showUsersProperties = (e) => {};
-  const showUsersReviews = (e) => { };
+  const showUsersReviews = (e) => {};
   const showUsersBookings = (e) => {};
-
 
   return (
     <>
@@ -42,18 +41,18 @@ function ProfileButton({ user }) {
         </button>
         {showMenu && (
           <div id="menu">
-            <NavLink to="/currentUser/properties">
-              <button onClick={showUsersProperties}>My Properties</button>
-            </NavLink>
-            <NavLink to="/currentUser/reviews">
-              <button onClick={showUsersReviews}>My Reviews</button>
-            </NavLink>
-            <NavLink to="/currentUser/bookings">
-              <button onClick={showUsersBookings}>My Bookings</button>
-            </NavLink>
-            <button onClick={logout}>
-              Log Out
-            </button>
+            <div className="profile_options">
+              <NavLink to="/currentUser/properties">
+                <button onClick={showUsersProperties}>My Properties</button>
+              </NavLink>
+              <NavLink to="/currentUser/reviews">
+                <button onClick={showUsersReviews}>My Reviews</button>
+              </NavLink>
+              <NavLink to="/currentUser/bookings">
+                <button onClick={showUsersBookings}>My Bookings</button>
+              </NavLink>
+              <button onClick={logout}>Log Out</button>
+            </div>
             <p>Hello {user.username}!</p>
             <p>Email: {user.email}</p>
           </div>

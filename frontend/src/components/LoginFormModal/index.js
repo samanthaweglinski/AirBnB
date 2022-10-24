@@ -8,7 +8,7 @@ function LoginFormModal() {
 
   return (
     <button
-      className="button-23"
+      className="button-24"
       onClick={() => dispatch(sessionActions.setShowLoginModal(true))}
     >
       Log In

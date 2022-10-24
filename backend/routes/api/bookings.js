@@ -314,12 +314,12 @@ router.delete("/:bookingId", requireAuth, async (req, res) => {
 
   const { startDate } = currentBooking.toJSON();
 
-  if (new Date(startDate) < new Date()) {
-    return res.status(400).json({
-      message: "Bookings that have been started can't be deleted",
-      statusCode: 400,
-    });
-  }
+  // if (new Date(startDate) < new Date()) {
+  //   return res.status(400).json({
+  //     message: "Bookings that have been started can't be deleted",
+  //     statusCode: 400,
+  //   });
+  // }
 
   await currentBooking.destroy({
     where: { id: bookingId },

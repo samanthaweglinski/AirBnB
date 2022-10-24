@@ -24,9 +24,14 @@
 
 .actions_button {
   background-color: gray;
+  /* position: absolute; */
 }
 
 #menu {
   background-color: gray;
 }
 
+.profile_options {
+  display: flex;
+  flex-direction: column;
+}

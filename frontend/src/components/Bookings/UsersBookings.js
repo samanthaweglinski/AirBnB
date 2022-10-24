@@ -24,7 +24,7 @@ function UsersBookings() {
   };
 
   if (userBookings.length === 0) {
-    return <p>Oh no! No reviews yet.</p>;
+    return <p>Oh no! No bookings yet.</p>;
   }
 
   return (

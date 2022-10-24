@@ -8,7 +8,7 @@ function SignupFormModal() {
 
   return (
     <button
-      className="button-23"
+      className="button-24"
       onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
     >
       Sign Up
