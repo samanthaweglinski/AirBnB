@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findPropertyById, deletePropertyById, listAllProperties } from "../../store/property";
+import {
+  findPropertyById,
+  deletePropertyById,
+  listAllProperties,
+} from "../../store/property";
 import "./PropertyDetails.css";
-import "../Reviews/PropertyReviews.css"
+import "../Reviews/PropertyReviews.css";
 import PropertyReviews from "../Reviews/PropertyReviews";
 import StarReviews from "../Reviews/StarReviews";
+import Calendar from "react-calendar";
+import BookingForm from "../Bookings/CreateBookingForm";
 
 const PropertyDetails = ({ passedPropId, hideButtons }) => {
   let { propertyId } = useParams();
@@ -18,10 +24,13 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
   const prop = useSelector((state) => state.properties[propertyId]);
   const sessionUser = useSelector((state) => state.session.user);
 
-  useEffect((propertyId) => {
-    dispatch(findPropertyById(propertyId));
-    dispatch(listAllProperties())
-  }, [dispatch, propertyId]);
+  useEffect(
+    (propertyId) => {
+      dispatch(findPropertyById(propertyId));
+      dispatch(listAllProperties());
+    },
+    [dispatch, propertyId]
+  );
 
   // useEffect(() => {
   // }, [dispatch])
@@ -52,7 +61,12 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
                   <NavLink to={`/properties/${propertyId}/edit`}>
                     <button className="button-23">Edit</button>
                   </NavLink>
-                  <button onClick={removeProperty(prop.id)} className="button-23">Delete</button>
+                  <button
+                    onClick={removeProperty(prop.id)}
+                    className="button-23"
+                  >
+                    Delete
+                  </button>
                 </div>
               )}
             </>
@@ -73,6 +87,15 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
             {" "}
             Price: ${prop?.price}/night
           </p>
+        </div>
+        <div className="booking-container">
+          <div>
+            <BookingForm
+              property={prop}
+              // star={avgStarRating}
+              // review={allReviewsForThisSpot}
+            />
+          </div>
         </div>
         <div className="property_review_details">
           <div className="avg_rating_component_and_reviews">
