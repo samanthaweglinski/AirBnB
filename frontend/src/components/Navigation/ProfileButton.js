@@ -25,7 +25,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    history.push("/");
+    // history.push("/");
   };
 
   const showUsersProperties = (e) => {};
@@ -70,7 +70,7 @@ function ProfileButton({ user }) {
           <i className="fas fa-user-circle user_icon"></i>
         </button>
         {showMenu && (
-          <div id="menu">
+          <div id="menu" className="dropdown-options">
             <Link to="/currentUser/properties" id="dropdown">
               My Properties
             </Link>
@@ -80,9 +80,15 @@ function ProfileButton({ user }) {
             <Link to="/currentUser/reviews" id="dropdown">
               My Reviews
             </Link>
-            <div onClick={logout} id="dropdown">
-              Log out
-            </div>
+            <Link to="/" id="dropdown">
+              <div
+                onClick={logout}
+                id="dropdown"
+                className="logout-profile-button"
+              >
+                Log out
+              </div>
+            </Link>
           </div>
         )}
       </div>
