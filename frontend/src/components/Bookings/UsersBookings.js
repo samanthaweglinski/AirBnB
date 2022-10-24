@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUserBookings, deleteBooking } from "../../store/booking";
+import "./UsersBookings.css"
 
 function UsersBookings() {
   const dispatch = useDispatch();
@@ -9,6 +10,7 @@ function UsersBookings() {
   const userBookingsObj = useSelector((state) => state.bookings);
   const userBookings = Object.values(userBookingsObj);
   const [isLoaded, setIsloaded] = useState(false);
+  const properties = useSelector((state) => state.properties);
 
   useEffect(() => {
     dispatch(getUserBookings()).then(() => setIsloaded(true));
@@ -28,14 +30,24 @@ function UsersBookings() {
   return (
     isLoaded && (
       <div>
-        <h2 className="my_bookings_title">My Reviews</h2>
+        <h2 className="my_bookings_title">My Bookings</h2>
         {userBookings.map((booking) => (
           <div key={booking.id} className="individual_booking">
-            <div>Property Id: {booking.propertyId}</div>
-            <div>{booking.startDate}</div>
-            <div>{booking.endDate}</div>
+            <div className="booking_property_details">
+              <div className="booking_property_name">
+                {properties[booking.propertyId].name}
+              </div>
+              <div className="booking_property_address">
+                {properties[booking.propertyId].address}
+              </div>
+              <img src={properties[booking.propertyId].previewImage} alt="previewimage"/>
+            </div>
+            <div className="booking_dates">
+              <div>{booking.startDate}</div>
+              <div>{booking.endDate}</div>
+            </div>
             <button onClick={removeBooking(booking.id)} className="button-23">
-              Delete Review
+              Delete Booking
             </button>
           </div>
         ))}
@@ -44,4 +56,4 @@ function UsersBookings() {
   );
 }
 
-export default UsersBookings
+export default UsersBookings;
