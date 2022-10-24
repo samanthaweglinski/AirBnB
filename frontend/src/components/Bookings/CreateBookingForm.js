@@ -92,17 +92,17 @@ const BookingForm = ({ property, star, review }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setHasSubmitted(true)
-    const booking = await dispatch(createBooking(property.id, { startDate, endDate }))
-    // history.push(`/bookings/${booking.id}`)
-    // try {
-    // } catch (error) {
-    //   const errors = await error.json()
-    //   const newErrors = [];
-    //   for (let error in errors.errors) {
-    //     newErrors.push(errors.errors[error])
-    //   }
-    //   setErrors(newErrors)
-    // }
+    try {
+      const booking = await dispatch(createBooking(property.id, { startDate, endDate }))
+      // history.push(`/currentUser/bookings`)
+    } catch (error) {
+      const errors = await error.json()
+      const newErrors = [];
+      for (let error in errors.errors) {
+        newErrors.push(errors.errors[error])
+      }
+      setErrors(newErrors)
+    }
   }
   const showLogin = (e) => {
     e.preventDefault()

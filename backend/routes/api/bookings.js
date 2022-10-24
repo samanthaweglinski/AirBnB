@@ -129,7 +129,8 @@ router.post("/:propertyId", requireAuth, async (req, res) => {
 
   if (err.errors["endDate"] || err.errors["startDate"]) {
     return res.status(400).json({
-      "message": "Can't create a booking in the past",
+      // "message": "Can't create a booking in the past",
+      "message": err.errors,
       "statusCode": 400,
       "errors": err.errors
     })
