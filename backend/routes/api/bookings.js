@@ -11,32 +11,31 @@ const {
 const router = express.Router();
 
 
-// Get all of the current user's bookings
-// router.get("/current-bookings", requireAuth, async (req, res) => {
-//   const bookings = await Booking.findAll({
-//     include: [
-//       {
-//         model: Property,
-//         attributes: [
-//           "id",
-//           "address",
-//           "city",
-//           "state",
-//           "country",
-//           "lat",
-//           "lng",
-//           "name",
-//           "description",
-//           "price",
-//           "previewImage",
-//           "ownerId",
-//         ],
-//       },
-//     ],
-//     where: { userId: req.user.id },
-//   });
-//   res.json(bookings);
-// });
+// Get all of the bookings
+router.get("/", requireAuth, async (req, res) => {
+  const bookings = await Booking.findAll({
+    include: [
+      {
+        model: Property,
+        attributes: [
+          "id",
+          "address",
+          "city",
+          "state",
+          "country",
+          "lat",
+          "lng",
+          "name",
+          "description",
+          "price",
+          "previewImage",
+          "ownerId",
+        ],
+      },
+    ],
+  });
+  res.json(bookings);
+});
 
 // Get all Bookings for a Property based on the Property's id
 router.get("/:propertyId", requireAuth, async (req, res) => {
