@@ -102,4 +102,38 @@ export const deleteBooking = (bookingId) => async (dispatch) => {
   return res;
 };
 
-// Reducer
+const initialState = {};
+const bookingsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FIND_MY_BOOKINGS: {
+      let newState = {};
+      newState = action.payload;
+      return newState;
+    }
+    case DELETE_BOOKING: {
+      const newState = { ...state };
+      delete newState[action.id];
+      return newState;
+    }
+    case CREATE_BOOKING: {
+      const newState = { ...state };
+      newState[action.booking.id] = action.booking;
+      return newState;
+    }
+    case GET_ALL_BOOKINGS: {
+      const allBookings = {};
+      action.bookings.forEach((booking) => (allBookings[booking.id] = booking));
+      let bookings = { ...allBookings };
+      return bookings;
+    }
+    case UPDATE_BOOKING: {
+      const newState = { ...state };
+      newState[action.booking.id] = action.booking;
+      return newState;
+    }
+    default:
+      return state;
+  }
+};
+
+export default bookingsReducer;
