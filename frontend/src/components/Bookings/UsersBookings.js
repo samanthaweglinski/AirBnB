@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getUserBookings, deleteBooking } from "../../store/booking";
 import { listAllProperties } from "../../store/property";
 import "./UsersBookings.css";
@@ -18,8 +18,8 @@ function UsersBookings() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(listAllProperties())
-  }, [dispatch])
+    dispatch(listAllProperties());
+  }, [dispatch]);
 
   const removeBooking = (bookingId) => async (e) => {
     e.preventDefault();
@@ -38,38 +38,44 @@ function UsersBookings() {
         <h2 className="my_bookings_title">My Bookings</h2>
         <div className="users_bookings_container">
           {userBookings.map((booking) => (
-            <div key={booking?.id} className="individual_booking">
-              <div className="booking_property_picture">
-                <img
-                  src={properties[booking?.propertyId]?.previewImage}
-                  alt="previewimage"
-                />
-              </div>
-              <div className="booking_text_and_button">
-                <div className="booking_information">
-                  <div className="booking_prop_info">
-                    <div className="booking_property_name">
-                      {properties[booking?.propertyId]?.name}
+            <Link
+              to={`/properties/${properties[booking?.propertyId]?.id}`}
+              key={booking.id}
+              className="single_property"
+            >
+              <div key={booking?.id} className="individual_booking">
+                <div className="booking_property_picture">
+                  <img
+                    src={properties[booking?.propertyId]?.previewImage}
+                    alt="previewimage"
+                  />
+                </div>
+                <div className="booking_text_and_button">
+                  <div className="booking_information">
+                    <div className="booking_prop_info">
+                      <div className="booking_property_name">
+                        {properties[booking?.propertyId]?.name}
+                      </div>
+                      <div className="booking_property_address">
+                        {properties[booking?.propertyId]?.address}
+                      </div>
                     </div>
-                    <div className="booking_property_address">
-                      {properties[booking?.propertyId]?.address}
+                    <div>
+                      <div>Start Date: {booking?.startDate}</div>
+                      <div>End Date: {booking?.endDate}</div>
                     </div>
                   </div>
                   <div>
-                    <div>Start Date: {booking?.startDate}</div>
-                    <div>End Date: {booking?.endDate}</div>
+                    <button
+                      onClick={removeBooking(booking?.id)}
+                      className="delete-booking-button"
+                    >
+                      Delete Booking
+                    </button>
                   </div>
                 </div>
-                <div>
-                  <button
-                    onClick={removeBooking(booking?.id)}
-                    className="delete-booking-button"
-                  >
-                    Delete Booking
-                  </button>
-                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </>

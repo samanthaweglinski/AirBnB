@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
 import { format } from "date-fns";
+import "./CreateBookingForm.css"
 
 const BookingForm = ({ property, star, review }) => {
   let { propertyId } = useParams();
@@ -188,6 +189,7 @@ const BookingForm = ({ property, star, review }) => {
             <span>Total before taxes</span>
             <span>{formatter.format(total)}</span>
           </div>
+          <div className="reserve-button">
           {sessionUser ? (
           <button
             className="button-23"
@@ -201,6 +203,7 @@ const BookingForm = ({ property, star, review }) => {
             Login to reserve a date
           </button>
         )}
+          </div>
         </div>
       </form>
     </div>

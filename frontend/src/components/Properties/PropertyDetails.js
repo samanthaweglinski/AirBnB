@@ -46,34 +46,44 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
     <div className="property_details">
       <div className="detail_border" key={prop?.id}>
         <div className="top-container">
-          <h3 className="property_name">{prop?.name}</h3>
-          <div className="avg_rating">
-            <StarReviews property={prop} />
-          </div>
-          <br></br>
-          <h4 className="specific_property_location">
-            {prop?.city}, {prop?.state}
-          </h4>
-          <div>
-            {sessionUser ? (
-              <>
-                {!hideButtons && sessionUser?.id === prop?.ownerId && (
-                  <div>
-                    <NavLink to={`/properties/${propertyId}/edit`}>
-                      <button className="button-23">Edit</button>
-                    </NavLink>
-                    <button
-                      onClick={removeProperty(prop.id)}
-                      className="button-23"
-                    >
-                      Delete
-                    </button>
-                  </div>
+          <div className="preview-and-buttons">
+            <div className="preview">
+              <h3 className="property_name">{prop?.name}</h3>
+              <div className="avg_rating">
+                <StarReviews property={prop} />
+              </div>
+              <br></br>
+              <h4 className="specific_property_location">
+                {prop?.city}, {prop?.state}
+              </h4>
+            </div>
+            <div className="edit-delete-btn">
+              <div className="edit-and-delete-property-button">
+                {sessionUser ? (
+                  <>
+                    {!hideButtons && sessionUser?.id === prop?.ownerId && (
+                      <div className="property-option-buttons">
+                        <div className="edit-btn">
+                          <NavLink to={`/properties/${propertyId}/edit`}>
+                            <button className="button-23">Edit</button>
+                          </NavLink>
+                        </div>
+                        <div className="delete-btn">
+                          <button
+                            onClick={removeProperty(prop.id)}
+                            className="button-23"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <></>
                 )}
-              </>
-            ) : (
-              <></>
-            )}
+              </div>
+            </div>
           </div>
           <div className="specific_property_info">
             <img
@@ -83,10 +93,7 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
             ></img>
             <br></br>
             <p className="specific_property_description">{prop?.description}</p>
-            <p className="specific_property_price">
-              {" "}
-              Price: ${prop?.price}/night
-            </p>
+            <p className="specific_property_price"> ${prop?.price}/night</p>
           </div>
         </div>
         <div className="bottom-container">
@@ -108,9 +115,7 @@ const PropertyDetails = ({ passedPropId, hideButtons }) => {
           </div>
           <div className="booking-container">
             <div>
-              <BookingForm
-                property={prop}
-              />
+              <BookingForm property={prop} />
             </div>
           </div>
         </div>

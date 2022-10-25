@@ -41,11 +41,12 @@
 }
 
 .button-23 {
-  background-color: #FFFFFF;
-  border: 1px solid #222222;
+  background-color: #FF385C;
+  /* border: 1px solid #222222; */
   border-radius: 8px;
   box-sizing: border-box;
-  color: #222222;
+  /* color: #222222; */
+  color: white;
   cursor: pointer;
   display: inline-block;
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
