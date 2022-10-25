@@ -37,14 +37,20 @@ function UsersReviews() {
     isLoaded && (
       <div>
         <h2 className="my_reviews_title">My Reviews</h2>
+        <div className="users-reviews-container">
         {userReviews.map((review) => (
           <Link
             to={`/properties/${properties[review?.propertyId]?.id}`}
             key={review.id}
-            className="single_property"
+            className="single_review"
           >
             <div key={review.id} className="ind_review">
               <div className="ind_review_info">
+                {/* <div className="property-reviewed-name"> */}
+                  <h3>
+                {properties[review?.propertyId]?.name}
+                  </h3>
+                {/* </div> */}
                 <div className="review-list-rating">
                   <div className="star_info">
                     <i className="fa-solid fa-star"></i>
@@ -59,6 +65,7 @@ function UsersReviews() {
             </div>
           </Link>
         ))}
+        </div>
       </div>
     )
   );

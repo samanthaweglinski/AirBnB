@@ -23,6 +23,7 @@ const UsersProperties = () => {
   return (
     <div>
       <h2 className="my_properties_title">My Properties</h2>
+      <div className="users-properties-container">
       {userProperties.map((ele) => (
         <Link to={`/properties/${ele.id}`} key={ele.id}>
           <div key={ele.id} className="users_property">
@@ -43,6 +44,7 @@ const UsersProperties = () => {
           </div>
         </Link>
       ))}
+      </div>
     </div>
   );
 };

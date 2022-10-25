@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: row;
   border: 2px double rgb(216, 203, 203);
-  padding: 10px;
+  padding: 2em;
   margin-top: 20px;
   align-items: center;
   border-radius: 20px;
+  width: 35em;
 }
 
 .my_reviews_title {
@@ -64,4 +65,9 @@
   user-select: none;
   -webkit-user-select: none;
   width: auto;
+}
+
+.users-reviews-container {
+  display: flex;
+  justify-content: space-around;
 }
