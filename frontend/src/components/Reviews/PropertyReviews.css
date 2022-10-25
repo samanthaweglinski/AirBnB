@@ -1,11 +1,12 @@
 .ind-review {
   display: flex;
   flex-direction: row;
-  border: 2px solid;
   border: 2px double rgb(216, 203, 203);
-  padding: 10px;
+  padding: 10px 22px;
   margin-top: 20px;
   border-radius: 20px;
+  width: 32em;
+  word-break: break-word;
 }
 
 .star-info {

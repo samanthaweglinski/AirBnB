@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: row;
   border: 2px double rgb(216, 203, 203);
-  padding: 10px;
+  padding: 2em;
   margin-top: 20px;
   align-items: center;
   border-radius: 20px;
+  width: 35em;
 }
 
 .my_reviews_title {
@@ -41,11 +42,12 @@
 }
 
 .button-23 {
-  background-color: #FFFFFF;
-  border: 1px solid #222222;
+  background-color: #FF385C;
+  /* border: 1px solid #222222; */
   border-radius: 8px;
   box-sizing: border-box;
-  color: #222222;
+  /* color: #222222; */
+  color: white;
   cursor: pointer;
   display: inline-block;
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
@@ -63,4 +65,9 @@
   user-select: none;
   -webkit-user-select: none;
   width: auto;
+}
+
+.users-reviews-container {
+  display: flex;
+  justify-content: space-around;
 }

@@ -10,11 +10,9 @@
 .detail_border {
   display: flex;
   flex-direction: column;
-  /* border: 2px solid; */
-  border: 2px double rgb(216, 203, 203);
-  padding: 2rem;
+  /* padding: 2rem; */
   border-radius: 10px;
-  width: 60%;
+  width: 100%;
   margin-bottom: 2rem;
 }
 
@@ -50,8 +48,8 @@
   justify-content: center;
   align-items: center;
   float: left;
-  width: 450px;
-  height: 350px;
+  width: 35em;
+  height: auto;
   background-size: cover;
   border-radius: 15px;
   margin: 0rem;
@@ -112,6 +110,38 @@
   width: auto;
 }
 
-.booking-container {
+/* .booking-container {
   border: thin solid black;
+} */
+
+.bottom-container {
+  padding: 0px 10em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.top-container {
+  padding: 0px 10em;
+}
+
+.edit-and-delete-property-button {
+  padding-bottom: 1em;
+}
+
+.preview-and-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+.property-option-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.delete-btn {
+  padding-left: 5px;
 }

@@ -2,8 +2,10 @@ img {
   height: 250px;
   flex-wrap: wrap;
   float: left;
-  width: 300px;
-  height: 300px;
+  /* width: 300px;
+  height: 300px; */
+  width: 16em;
+  height: 16em;
   background-size: cover;
   border-radius: 15px;
   margin: 1rem;
@@ -23,7 +25,8 @@ a {
   flex-wrap: wrap;
   margin: 2rem;
   padding-left: 1rem;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
+  justify-content: center;
 }
 
 .property_info {

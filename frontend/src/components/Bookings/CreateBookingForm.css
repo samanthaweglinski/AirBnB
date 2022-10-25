@@ -5,7 +5,7 @@
   border-radius: .7em;
   margin-bottom: 20px;
   overflow-y: auto;
-  padding: 1em;
+  padding: 3em;
   box-shadow: 0 0 6px rgb(195, 195, 195);
 }
 .booking-description {
@@ -193,7 +193,7 @@ input.checkin {
 .adjusted-pricing.total {
   border-top: 1px solid rgb(206, 206, 206);
   font-weight: 700;
-  padding-top: 1.6em;
+  padding: 1.6em 0px;
   margin-bottom: 0;
 }
 
@@ -245,4 +245,9 @@ input.checkin {
   display: flex;
   flex-direction: column;
   justify-content: end;
+}
+
+.reserve-button {
+  display: flex;
+  justify-content: center;
 }

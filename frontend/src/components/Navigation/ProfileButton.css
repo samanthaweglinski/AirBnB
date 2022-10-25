@@ -23,7 +23,7 @@
 }
 
 .actions_button {
-  background-color: gray;
+  /* background-color: gray; */
   /* position: absolute; */
 }
 
@@ -70,7 +70,7 @@
   top: 60px;
   right: 95px;
   width: 200px;
-  background-color: gray;
+  background-color: white;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
@@ -78,7 +78,7 @@
 }
 
 #menu > * {
-  padding: 15px;
+  padding: 15px 0px;
   width: 100%;
   font-size: 15px;
   display: flex;
@@ -90,8 +90,12 @@
 .dropdown-options {
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 div#dropdown.logout-profile-button {
   cursor: pointer;
 }
+ #dropdown:hover {
+  font-weight: 900;
+ }

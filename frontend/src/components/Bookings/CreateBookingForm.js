@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
 import { format } from "date-fns";
+import "./CreateBookingForm.css"
 
 const BookingForm = ({ property, star, review }) => {
   let { propertyId } = useParams();
@@ -131,16 +132,6 @@ const BookingForm = ({ property, star, review }) => {
           <span className="price-wrapper">
             <strong>${property.price}</strong> night
           </span>
-          {/* <div className="booking-rating-wrapper">
-            <i className="fa-solid fa-star"></i>
-            <span>
-              {" "}
-              {(star || 0.00).toFixed(2)} ·{" "}
-              <u>
-                {review.length} {review.length === 1 ? "review" : "reviews"}
-              </u>
-            </span>
-          </div> */}
         </div>
         <div className="booking-input-wrapper">
           <div className="checkin-wrapper">
@@ -177,21 +168,7 @@ const BookingForm = ({ property, star, review }) => {
             </ul>
           )}
         </div>
-        {sessionUser ? (
-          <button
-            className="submit-button booking"
-            onClick={handleSubmit}
-            type="submit"
-          >
-            Reserve
-          </button>
-        ) : (
-          <button onClick={showLogin} className="submit-button booking">
-            Login to reserve a date
-          </button>
-        )}
         <p className="no-charge">You won't be charged yet</p>
-
         <div className="adjusted-pricing-container">
           <div className="adjusted-pricing initial">
             <u>
@@ -211,6 +188,21 @@ const BookingForm = ({ property, star, review }) => {
           <div className="adjusted-pricing total">
             <span>Total before taxes</span>
             <span>{formatter.format(total)}</span>
+          </div>
+          <div className="reserve-button">
+          {sessionUser ? (
+          <button
+            className="button-23"
+            onClick={handleSubmit}
+            type="submit"
+          >
+            Reserve
+          </button>
+        ) : (
+          <button onClick={showLogin} className="button-23">
+            Login to reserve a date
+          </button>
+        )}
           </div>
         </div>
       </form>

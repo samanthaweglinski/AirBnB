@@ -38,7 +38,7 @@ const Homepage = () => {
                 <h4 className="property_location">
                   {ele.city}, {ele.state}
                 </h4>
-                <p className="property_price"> Price: ${ele.price}/night</p>
+                <p className="property_price">${ele.price}/night</p>
                 <div className="property_rating" id="star_review_score">
                   <StarReviews property={ele} />
                 </div>
@@ -52,4 +52,3 @@ const Homepage = () => {
 };
 
 export default Homepage;
-
